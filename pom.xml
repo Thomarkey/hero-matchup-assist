@@ -14,12 +14,14 @@
 	<name>dotaApplicationTool</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>3.0.4</version>
 		</dependency>
 
 		<dependency>
@@ -28,11 +30,21 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.moesif.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
@@ -45,3 +57,4 @@
 	</build>
 
 </project>
+
