@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{title}}</h2> <!--variable interpolation.-->
+          <ul class="text-center list-inline py-3">
+            <!-- ADD HERO LIST
+              <li class="list-inline-item">
+              <a [routerLink]="['/home']" class="btn btn-info">Heroes list</a>
+            </li>
+          -->
+            <li class="list-inline-item">
+              <input type="text" #box (keyup)="getValue(box.value)" [(ngModel)]="heroName" name="heroName">
+            </li>
+            <li class="list-inline-item">
+              <button [routerLink]="['/hero/{{heroModelName}}']">Look up!</button>
+              <!--<a [routerLink]="['/hero/'+ box.value]" class="btn btn-info">Look up!</a> -->
+            </li>
+            <li class="list-inline-item">
+              <a [routerLink]="['/heroes']" class="btn btn-info">All Heroes!</a>
+            </li>
+          </ul>
+        </div> 
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
