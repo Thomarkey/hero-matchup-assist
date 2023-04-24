@@ -10,14 +10,14 @@ import { Observable } from 'rxjs';
 
 export class HeroComponent {
   
-  heroName: string;
+  heroName: string | undefined;
 
 
   constructor (private http:HttpClient){
   }
 
   ngOnInit(){
-    this.getHero().subscribe((response: any) => {
+    this.getHero('axe').subscribe((response: any) => {
       console.log(response);
     });
 }

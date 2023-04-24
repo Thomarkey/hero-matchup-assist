@@ -14,8 +14,7 @@
               <input type="text" #box (keyup)="getValue(box.value)" [(ngModel)]="heroName" name="heroName">
             </li>
             <li class="list-inline-item">
-              <button [routerLink]="['/hero/{{heroModelName}}']">Look up!</button>
-              <!--<a [routerLink]="['/hero/'+ box.value]" class="btn btn-info">Look up!</a> -->
+              <button [routerLink]="['/hero/' + heroName]">Look up!</button>
             </li>
             <li class="list-inline-item">
               <a [routerLink]="['/heroes']" class="btn btn-info">All Heroes!</a>

@@ -8,6 +8,7 @@ import { HeroComponent } from './hero/hero.component';
 })
 export class AppComponent {
   title: string;
+  heroName: string | undefined;
 
   constructor(){
     this.title = "Select your hero"
