@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { HeroComponent } from './hero/hero.component';
+import { Component} from '@angular/core';
+import { Hero } from './hero';
+
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,9 @@ import { HeroComponent } from './hero/hero.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title: string;
-  heroName: string | undefined;
+  title: string;  
+  heroName!: string;
+  hero: Hero | undefined;
 
   constructor(){
     this.title = "Select your hero"
@@ -17,7 +19,8 @@ export class AppComponent {
   displayValue:string="";
   getValue(value:string){
     this.displayValue=value;
-    return value;
+    return value;           
   }
+  
 
 }

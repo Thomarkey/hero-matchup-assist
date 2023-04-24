@@ -7,7 +7,8 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "hero/:name", component: HeroComponent},
-  {path: "heroes", component: AllHeroesComponent}
+  {path: "heroes", component: AllHeroesComponent},
+  // {path: "", component: HomeComponent},
 ];
 
 @NgModule({
@@ -15,3 +16,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

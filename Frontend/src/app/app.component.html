@@ -10,14 +10,21 @@
               <a [routerLink]="['/home']" class="btn btn-info">Heroes list</a>
             </li>
           -->
-            <li class="list-inline-item">
-              <input type="text" #box (keyup)="getValue(box.value)" [(ngModel)]="heroName" name="heroName">
+            <li class="list-inline-item"> 
+              <input type="text" #box (keyup)="getValue(box.value)" [(ngModel)]="heroName" name="heroName" placeholder="Enter hero name">
             </li>
+
             <li class="list-inline-item">
-              <button [routerLink]="['/hero/' + heroName]">Look up!</button>
+              <!-- <button class="btn btn-info" (click)="getHero(heroName)">Look up!</button> -->
+              <button class="btn btn-info" [routerLink]="['/hero', heroName]">Look up!</button>
+
             </li>
+
             <li class="list-inline-item">
               <a [routerLink]="['/heroes']" class="btn btn-info">All Heroes!</a>
+            </li>
+            <li class="list-inline-item">
+              <a [routerLink]="['/']" class="btn btn-info">Home</a>
             </li>
           </ul>
         </div> 
@@ -26,5 +33,3 @@
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>
