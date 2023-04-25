@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,12 +10,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class HeroComponent {
-
   loading = true;
-
   heroName: string | undefined;
   hero: Hero | undefined;
-  appComponent: any;
+
+
+  showProperties = [
+    { name: 'startingArmor', checked: true },
+    { name: 'startingMagicArmor', checked: true },
+    { name: 'startingDamageMin', checked: true },
+    { name: 'startingDamageMax', checked: true },
+    { name: 'attackRange', checked: true },
+    { name: 'moveSpeed', checked: true },
+  ];
 
 
   constructor (
@@ -30,9 +37,11 @@ export class HeroComponent {
         if (this.heroName) {
           this.getHero(this.heroName);
         }
-      }); 
-    }
+      });
 
+      //when the component only needs to perform an action once, such as when it is initialized:
+      // this.getHero(this.heroName!); 
+    }
 
 
   getHero(heroName: string): void {

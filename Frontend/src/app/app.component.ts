@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef, ViewChild} from '@angular/core';
 import { Hero } from './hero';
 
 
@@ -16,11 +16,11 @@ export class AppComponent {
     this.title = "Select your hero"
   }
 
-  displayValue:string="";
-  getValue(value:string){
+  displayValue: string="";
+  getValue(value: string){
     this.displayValue=value;
-    return value;           
+    return value;
   }
-  
+
 
 }

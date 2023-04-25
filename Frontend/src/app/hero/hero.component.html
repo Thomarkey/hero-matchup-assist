@@ -2,14 +2,27 @@
   <div class="spinner"></div>
 </div>
 
-<div *ngIf="loading" class="spinner-container">
-  <p>LOADING</p> 
-</div>
-
-
 <div *ngIf="!loading">
-    <div><h2>{{ hero?.name }}</h2></div>
+  <div><h2>{{ hero?.displayName }}</h2></div>
+  <div class="property-checkboxes">
+    <div *ngFor="let property of showProperties">
+      <label class="property-checkbox">
+        <input type="checkbox" [(ngModel)]="property.checked"><span>{{ property.name }}</span>
+      </label>
+    </div>
+  </div>
+  <div class="property-details">
+    <div *ngFor="let property of showProperties">
+      <div *ngIf="property.checked">
+        <div *ngIf="property.name === 'startingArmor'"> startingArmor: {{ hero?.stat?.startingArmor }}</div>
+        <div *ngIf="property.name === 'startingMagicArmor'">startingMagicArmor: {{ hero?.stat?.startingMagicArmor }}</div>
+        <div *ngIf="property.name === 'startingDamageMin'">startingDamageMin: {{ hero?.stat?.startingDamageMin }}</div>
+        <div *ngIf="property.name === 'startingDamageMax'">startingDamageMax: {{ hero?.stat?.startingDamageMax }}</div>
+        <div *ngIf="property.name === 'attackRange'">attackRange: {{ hero?.stat?.attackRange }}</div>
+        <div *ngIf="property.name === 'moveSpeed'">moveSpeed: {{ hero?.stat?.moveSpeed }}</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-
-<!-- <div><h2>{{ hero?.name }}</h2></div>                      -->
