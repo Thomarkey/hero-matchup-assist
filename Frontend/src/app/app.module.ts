@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { HeroComponent } from './hero/hero.component';
 import { AllHeroesComponent } from './all-heroes/all-heroes.component';
 import { FormsModule } from '@angular/forms';
+import { HeroComparisonComponent } from './hero-comparison/hero-comparison.component';
+import { HeroDropdownComponent } from './hero-dropdown/hero-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     HeroComponent,
     AllHeroesComponent,
+    HeroComparisonComponent,
+    HeroDropdownComponent,
   ],
   imports: [
     BrowserModule,

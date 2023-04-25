@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild} from '@angular/core';
-import { Hero } from './hero';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,12 +7,10 @@ import { Hero } from './hero';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title: string;  
+  title = "Select your hero";  
   heroName!: string;
-  hero: Hero | undefined;
 
   constructor(){
-    this.title = "Select your hero"
   }
 
   displayValue: string="";
@@ -21,6 +18,5 @@ export class AppComponent {
     this.displayValue=value;
     return value;
   }
-
 
 }

@@ -59,5 +59,6 @@ export class HeroComponent {
       });
  
     };
+
   
 }

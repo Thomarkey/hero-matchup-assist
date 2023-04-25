@@ -7,7 +7,10 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 
 @RestController
@@ -25,7 +28,7 @@ public class HeroDisplay {
 
         System.out.println("Response code: " + response.getStatus() + " " + LocalDateTime.now());
 
-        return response.getBody();
+                                                                        return response.getBody();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "api/heroes")
@@ -33,10 +36,6 @@ public class HeroDisplay {
         return getAllHeroes();
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/heroes/{name}")
-    public String getHeroByName(@PathVariable String name) throws UnirestException, JSONException {
-        return returnHero(name);
-    }
 
     @GetMapping("/hero/{heroName}")
     public String getHero(@PathVariable String heroName) throws UnirestException, JSONException {
@@ -54,13 +53,30 @@ public class HeroDisplay {
             String key = keys.next();
             JSONObject hero = obj.getJSONObject(key);
             String displayName = hero.getString("displayName");
-            if (displayName.toUpperCase().equals(name.toUpperCase())) {
+            if (displayName.equalsIgnoreCase(name)) {
                 heroJson = hero.toString();
                 break;
             }
         }
 
         return heroJson;
+    }
+
+    @GetMapping("/heroNames")
+    public List<String> getHeroNames() throws UnirestException, JSONException {
+        String jsonString = getAllHeroes();
+        JSONObject obj = new JSONObject(jsonString);
+        List<String> heroesList = new ArrayList<String>();
+
+        Iterator<String> keys = obj.sortedKeys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            JSONObject hero = obj.getJSONObject(key);
+            heroesList.add(hero.getString("displayName"));
+        }
+        Collections.sort(heroesList);
+
+        return heroesList;
     }
 
 }

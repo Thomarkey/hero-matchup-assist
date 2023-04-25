@@ -16,4 +16,9 @@ export class HeroService {
     const url = `${this.backendApiUrl}/${heroName}`;
     return this.http.get<Hero>(url);
   }
+
+  getHeroNames(): Observable<string[]>{
+    return this.http.get<string[]>('http://localhost:8080/heroNames');
+  }
+
 }
