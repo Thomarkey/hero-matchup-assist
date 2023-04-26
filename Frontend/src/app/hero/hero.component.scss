@@ -1,42 +1,4 @@
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 4px solid #ccc;
-    border-top-color: #3498db;
-    animation: spin 1s ease-in-out infinite;
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .property-checkboxes {
-    display: flex;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .property-checkbox {
-    margin-right: 20px;
-  }
-  
-  .property-checkbox input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .property-border {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+.toBeCompared {
+    float: right;
   }
 

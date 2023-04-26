@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
@@ -13,7 +13,8 @@ export class HeroComponent {
   loading = true;
   heroName: string | undefined;
   hero: Hero | undefined;
-
+  selectedHero: string = '';
+  secondHeroName: string | undefined;
 
   showProperties = [
     { name: 'startingArmor', checked: true },
@@ -33,7 +34,7 @@ export class HeroComponent {
     ngOnInit(): void {
       console.log("ngOnit from hero component");
       this.route.paramMap.subscribe((params) => {
-        this.heroName = params.get('name')!;
+        this.heroName = params.get('heroName')!;
         if (this.heroName) {
           this.getHero(this.heroName);
         }
@@ -47,7 +48,7 @@ export class HeroComponent {
   getHero(heroName: string): void {
     this.loading = true;
     console.log('hero component log')
-    console.log('hero component' + this.hero);
+    console.log('hero component' + this.hero?.name);
     console.log('loading : ' + this.loading);
     this.heroService.getHero(heroName)
       .subscribe((hero: Hero | undefined) => {
@@ -60,5 +61,4 @@ export class HeroComponent {
  
     };
 
-  
 }

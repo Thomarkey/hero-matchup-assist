@@ -78,5 +78,4 @@ public class HeroDisplay {
 
         return heroesList;
     }
-
 }

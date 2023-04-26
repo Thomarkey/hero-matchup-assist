@@ -1,6 +1,15 @@
+<div class="toBeCompared">compare to:
+  <app-hero-dropdown (heroSelectedEvent)="secondHeroName=$event"></app-hero-dropdown>
+  <li class="list-inline-item">
+    <button class="btn btn-info" [routerLink]="['/hero-comparison', hero?.displayName, secondHeroName]">Compare</button>
+  </li>
+</div>
+
+
 <div *ngIf="loading" class="spinner-container">
   <div class="spinner"></div>
 </div>
+
 
 <div *ngIf="!loading">
   <div><h2>{{ hero?.displayName }}</h2></div>
@@ -23,7 +32,6 @@
       </div>
     </div>
   </div>
-
 
 </div>
 

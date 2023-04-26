@@ -18,6 +18,7 @@ export interface Hero {
       abilityId: number;
     }[];
     stat: {
+      [key: string]: number | boolean | string;
       gameVersionId: number;
       enabled: boolean;
       heroUnlockOrder: number;

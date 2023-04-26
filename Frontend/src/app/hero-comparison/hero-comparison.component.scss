@@ -1,0 +1,38 @@
+
+  
+  .hero-comparison {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .hero-container {
+    margin-right: 20px;
+  }
+  
+  .properties-table table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .properties-table th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  .properties-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .properties-table td.property-name {
+    font-weight: bold;
+  }
+  
+  .properties-table td.property-value {
+    text-align: center;
+  }
+  
