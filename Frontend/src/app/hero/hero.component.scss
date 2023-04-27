@@ -1,4 +1,11 @@
-.toBeCompared {
-    float: right;
-  }
+.compare-wrapper {
+  overflow: auto;
+}
 
+.toBeCompared {
+  float: right;
+}
+
+button.compare {
+  margin: 10px;
+}

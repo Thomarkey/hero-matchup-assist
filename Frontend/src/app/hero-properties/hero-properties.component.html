@@ -1,0 +1,22 @@
+<table class="properties-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="display-name">{{ hero?.displayName }}</th>
+        <ng-container *ngIf="secondHero">
+          <th class="display-name">{{ secondHero?.displayName }}</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let property of showProperties">
+        <tr *ngIf="property.checked">
+          <td class="property-name">{{ property.name }}</td>
+          <td class="property-value">{{  hero && hero.stat && hero.stat[property.name] | round:property.name }}</td>
+          <ng-container *ngIf="secondHero">
+            <td class="property-value">{{  secondHero && secondHero.stat && secondHero.stat[property.name] | round:property.name }}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>

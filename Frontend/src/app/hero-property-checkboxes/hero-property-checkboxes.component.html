@@ -1,0 +1,10 @@
+<div class="property-checkboxes">
+    <div *ngFor="let property of showProperties">
+      <label class="property-checkbox">
+      <input type="checkbox"
+        [checked]="property.checked"
+        (change)="toggleProperty(property)">
+        <span>{{ property.name }}</span>
+      </label>
+    </div>
+</div> 

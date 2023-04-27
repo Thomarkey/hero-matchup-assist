@@ -10,6 +10,9 @@ import { AllHeroesComponent } from './all-heroes/all-heroes.component';
 import { FormsModule } from '@angular/forms';
 import { HeroComparisonComponent } from './hero-comparison/hero-comparison.component';
 import { HeroDropdownComponent } from './hero-dropdown/hero-dropdown.component';
+import { RoundPipe } from './pipes/round.pipe';
+import { HeroPropertiesComponent } from './hero-properties/hero-properties.component';
+import { HeroPropertyCheckboxesComponent } from './hero-property-checkboxes/hero-property-checkboxes.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { HeroDropdownComponent } from './hero-dropdown/hero-dropdown.component';
     AllHeroesComponent,
     HeroComparisonComponent,
     HeroDropdownComponent,
+    RoundPipe,
+    HeroPropertiesComponent,
+    HeroPropertyCheckboxesComponent,
   ],
   imports: [
     BrowserModule,

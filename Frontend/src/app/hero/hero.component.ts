@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
+import { PropertyService } from '../services/property.service';
 
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.scss']
+  styleUrls: ['./hero.component.scss'],
 })
 
 export class HeroComponent {
@@ -16,20 +17,17 @@ export class HeroComponent {
   selectedHero: string = '';
   secondHeroName: string | undefined;
 
-  showProperties = [
-    { name: 'startingArmor', checked: true },
-    { name: 'startingMagicArmor', checked: true },
-    { name: 'startingDamageMin', checked: true },
-    { name: 'startingDamageMax', checked: true },
-    { name: 'attackRange', checked: true },
-    { name: 'moveSpeed', checked: true },
-  ];
-
+  showProperties = this.propertyService.showProperties;
 
   constructor (
     private heroService: HeroService,
     private route: ActivatedRoute,
+    private propertyService: PropertyService,
     ){}
+
+    onPropertySelection(selectedProperties:string[]) {
+      this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
+    }
 
     ngOnInit(): void {
       console.log("ngOnit from hero component");
@@ -41,7 +39,7 @@ export class HeroComponent {
       });
 
       //when the component only needs to perform an action once, such as when it is initialized:
-      // this.getHero(this.heroName!); 
+      // this.getHero(this.heroName!);
     }
 
 
@@ -58,7 +56,7 @@ export class HeroComponent {
         }
         console.log('loading  : ' + this.loading);
       });
- 
+
     };
 
 }
