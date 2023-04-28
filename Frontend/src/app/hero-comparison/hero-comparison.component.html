@@ -1,7 +1,4 @@
-<div *ngIf="loading" class="spinner-container">
-    <div class="spinner"></div>
-</div>
-
+<app-loader [loading]="loading"></app-loader>
 
 <div>
   <app-hero-property-checkboxes [showProperties]="showProperties" (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
