@@ -21,4 +21,13 @@ export class HeroService {
     return this.http.get<string[]>('http://localhost:8080/heroNames');
   }
 
+  getHeroPropertyZScore(heroName: string, propertyName: string): Observable<number> {
+    const url = `${this.backendApiUrl}/${heroName}/${propertyName}`;
+    return this.http.get<number>(url);
+  }
+
+  getAllHeroesPropertiesZScores(): Observable<Map<string, Map<string, number>>>{
+    const url = `${this.backendApiUrl}/propertiesZScores`;
+    return this.http.get<Map<string, Map<string, number>>>(url);
+  }
 }

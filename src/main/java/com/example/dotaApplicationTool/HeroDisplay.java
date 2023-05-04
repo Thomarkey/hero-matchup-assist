@@ -11,11 +11,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import static com.example.dotaApplicationTool.Calculations.calculateZScores;
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class HeroDisplay {
+
+    public static Map<String, Map<String, Double>> zScoresMap;
 
     final String URL = "https://api.stratz.com/api/v1/Hero";
     final String BEARER = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTc5NzgzMzE0OTgiLCJ1bmlxdWVfbmFtZSI6IlRPTUFUT1JPIiwiU3ViamVjdCI6ImYzNDg2ODVjLWYyYTAtNDllZS1hNGYwLWM5ZmUwYjc4OWUyYiIsIlN0ZWFtSWQiOiIxODA2NTc3MCIsIm5iZiI6MTY4MjM0MTYzNCwiZXhwIjoxNzEzODc3NjM0LCJpYXQiOjE2ODIzNDE2MzQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.XtyfxyjVDpP5DTHMCEnIuYpFqcnMqqu4M9l-Lod-Tnk";
@@ -79,8 +84,8 @@ public class HeroDisplay {
         return heroesList;
     }
 
-    public JSONObject getHeroesWithStatsJson(JSONObject jsonObject) throws JSONException {
-        JSONObject json = new JSONObject(jsonObject.toString());
+    public JSONObject getHeroesWithStatsJson() throws JSONException, UnirestException {
+        JSONObject json = new JSONObject(getAllHeroes());
         JSONObject resultJson = new JSONObject();
 
         Iterator<String> sortedKeys = json.keys();
@@ -104,8 +109,24 @@ public class HeroDisplay {
             resultJson.put(displayName, statObj);
         }
 
-        System.out.println(resultJson.toString());
+        System.out.println(resultJson);
         return resultJson;
+    }
+
+    @GetMapping("/hero/propertiesZScores")
+    public Map<String, Map<String, Double>> getAllHeroesPropertiesZScores() throws JSONException, UnirestException {
+        System.out.println("getHeroPropertyZScore");
+        if (zScoresMap == null) {
+            JSONObject heroesStatsJson = getHeroesWithStatsJson();
+            zScoresMap = calculateZScores(heroesStatsJson);
+        }
+        return zScoresMap;
+    }
+
+
+    @GetMapping("/hero/{heroName}/{propertyName}")
+    public Double getHeroPropertyZScore(@PathVariable String heroName, @PathVariable String propertyName) throws UnirestException, JSONException {
+        return Calculations.getHeroZScore(heroName, propertyName);
     }
 
 }

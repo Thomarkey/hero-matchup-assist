@@ -3,9 +3,12 @@
       <tr>
         <th></th>
         <th class="display-name">{{ hero?.displayName }}</th>
+        <th>Z-Score</th>
         <ng-container *ngIf="secondHero">
           <th class="display-name">{{ secondHero?.displayName }}</th>
+          <th>Z-Score</th>
         </ng-container>
+        
       </tr>
     </thead>
     <tbody>
@@ -13,6 +16,7 @@
         <tr *ngIf="property.checked">
           <td class="property-name">{{ property.name }}</td>
           <td class="property-value">{{  hero && hero.stat && hero.stat[property.name] | round:property.name }}</td>
+          <app-hero-properties-zscore [hero]="hero" [propertyName]="property.name"></app-hero-properties-zscore>
           <ng-container *ngIf="secondHero">
             <td class="property-value">{{  secondHero && secondHero.stat && secondHero.stat[property.name] | round:property.name }}</td>
           </ng-container>

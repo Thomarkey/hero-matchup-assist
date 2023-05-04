@@ -14,6 +14,7 @@ import { RoundPipe } from './pipes/round.pipe';
 import { HeroPropertiesComponent } from './hero-properties/hero-properties.component';
 import { HeroPropertyCheckboxesComponent } from './hero-property-checkboxes/hero-property-checkboxes.component';
 import { LoaderComponent } from './loader/loader.component';
+import { HeroPropertiesZscoreComponent } from './hero-properties-zscore/hero-properties-zscore.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoaderComponent } from './loader/loader.component';
     HeroPropertiesComponent,
     HeroPropertyCheckboxesComponent,
     LoaderComponent,
+    HeroPropertiesZscoreComponent,
   ],
   imports: [
     BrowserModule,
