@@ -1,0 +1,99 @@
+package com.example.dotaApplicationTool;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.*;
+
+public class Calculations {
+
+    public int getStatsRank(JSONObject json, String selectedHero, String selectedStat) throws JSONException {
+        double selectedStatValue = json.getJSONObject(selectedHero).getDouble(selectedStat);
+
+        int rank = 1;
+        Iterator<String> keys = json.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            JSONObject hero = json.getJSONObject(key);
+            double statValue = hero.getDouble(selectedStat);
+            if (key.equals(selectedHero)) {
+                continue;
+            }
+            if (statValue > selectedStatValue) {
+                rank++;
+            }
+        }
+
+        return rank;
+    }
+
+    public Map<String, Map<String, Integer>> calculateStatsRanks(JSONObject json) throws JSONException {
+        Map<String, Map<String, Integer>> statsRankMap = new HashMap<>();
+        for (Iterator<String> heroIter = json.keys(); heroIter.hasNext();) {
+            String hero = heroIter.next();
+            JSONObject heroObj = json.getJSONObject(hero);
+            Map<String, Double> statsMap = new HashMap<>();
+
+            //map because its needs to be sorted
+            for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext();) {
+                String stat = statIter.next();
+                statsMap.put(stat, heroObj.getDouble(stat));
+            }
+
+            Map<String, Integer> ranksMap = new HashMap<>();
+            int rank = 1;
+            for (String stat : Helper.sortMapByValueDescending(statsMap).keySet()) {
+                ranksMap.put(stat, rank++);
+            }
+            statsRankMap.put(hero, ranksMap);
+        }
+
+        return statsRankMap;
+    }
+
+
+    public Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
+        Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
+
+        // Step 1: Calculate mean and standard deviation for each statistic
+        Map<String, Double> meanMap = new HashMap<>();
+        Map<String, Double> stdDevMap = new HashMap<>();
+        for (Iterator<String> heroIter = json.keys(); heroIter.hasNext();) {
+            String hero = heroIter.next();
+            JSONObject heroObj = json.getJSONObject(hero);
+            for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext();) {
+                String stat = statIter.next();
+                double value = heroObj.getDouble(stat);
+                meanMap.merge(stat, value, Double::sum);
+                stdDevMap.merge(stat, value * value, Double::sum);
+            }
+        }
+        int numHeroes = json.length();
+        for (String stat : meanMap.keySet()) {
+            double mean = meanMap.get(stat) / numHeroes;
+            double stdDev = Math.sqrt(stdDevMap.get(stat) / numHeroes - mean * mean);
+            stdDevMap.put(stat, stdDev);
+            meanMap.put(stat, mean);
+        }
+
+        // Step 2: Calculate z-score for each statistic of each hero
+        for (Iterator<String> heroIter = json.keys(); heroIter.hasNext();) {
+            String hero = heroIter.next();
+            JSONObject heroObj = json.getJSONObject(hero);
+            Map<String, Double> zScoreMap = new HashMap<>();
+            for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext();) {
+                String stat = statIter.next();
+                double value = heroObj.optDouble(stat, 0.0);
+                double mean = meanMap.get(stat);
+                double stdDev = stdDevMap.get(stat);
+                double zScore = (value - mean) / stdDev;
+                zScoreMap.put(stat, zScore);
+            }
+            zScoresMap.put(hero, zScoreMap);
+        }
+
+        return zScoresMap;
+    }
+
+
+}

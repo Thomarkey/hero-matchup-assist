@@ -28,7 +28,7 @@ public class HeroDisplay {
 
         System.out.println("Response code: " + response.getStatus() + " " + LocalDateTime.now());
 
-                                                                        return response.getBody();
+        return response.getBody();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "api/heroes")
@@ -78,4 +78,34 @@ public class HeroDisplay {
 
         return heroesList;
     }
+
+    public JSONObject getHeroesWithStatsJson(JSONObject jsonObject) throws JSONException {
+        JSONObject json = new JSONObject(jsonObject.toString());
+        JSONObject resultJson = new JSONObject();
+
+        Iterator<String> sortedKeys = json.keys();
+        while (sortedKeys.hasNext()) {
+            String key = sortedKeys.next();
+            JSONObject hero = json.getJSONObject(key);
+            String displayName = hero.getString("displayName");
+            JSONObject stat = hero.getJSONObject("stat");
+
+            JSONObject statObj = new JSONObject();
+
+            Iterator<String> statKeys = stat.keys();
+            while (statKeys.hasNext()) {
+                String statKey = statKeys.next();
+                Object statValue = stat.get(statKey);
+                if (statValue instanceof Number) {
+                    statObj.put(statKey, statValue);
+                }
+            }
+
+            resultJson.put(displayName, statObj);
+        }
+
+        System.out.println(resultJson.toString());
+        return resultJson;
+    }
+
 }
