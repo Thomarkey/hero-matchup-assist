@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeroService } from './services/hero.service';
+import { Hero } from './hero';
 
 
 
@@ -10,11 +12,16 @@ import { HeroService } from './services/hero.service';
 })
 export class AppComponent {
   title = "Select your hero";  
-  heroName!: string;
+  heroName: string | undefined;
   propertiesZScores!: Map<string, Map<string, number>>;
+  selectedHero: Hero | undefined;
 
-
-  constructor(private heroService: HeroService){}
+  onHeroSelection(selectedHero: Hero){
+    this.selectedHero = selectedHero;
+    this.changeDetector.detectChanges();
+  }
+  
+  constructor(private heroService: HeroService, private router: Router, private changeDetector: ChangeDetectorRef){}
 
   ngOnInit() {
     this.heroService.getAllHeroesPropertiesZScores().subscribe(data=> {
@@ -22,11 +29,5 @@ export class AppComponent {
         console.log(this.propertiesZScores);
       });
   }
-  
-  
-  
-  
 
-  
-  
 }

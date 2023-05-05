@@ -43,15 +43,15 @@ ngOnInit(): void {
   getFirstHero(heroName: string): void {
     this.loading = true;
     console.log('first hero component log')
-    console.log('hero component' + this.firstHero?.name);
-    console.log('loading : ' + this.loading);
     this.heroService.getHero(heroName)
       .subscribe((hero: Hero | undefined) => {
+        console.log('first hero component' + this.firstHero?.name);
+        console.log('loading first : ' + this.loading);
         if (hero) {
           this.firstHero = hero;
           this.loading = false;
         }
-        console.log('loading  : ' + this.loading);
+        console.log('loading first : ' + this.loading);
       });
 
     };
@@ -59,15 +59,15 @@ ngOnInit(): void {
     getSecondHero(heroName: string): void {
       this.loading = true;
       console.log('secondo hero component log')
-      console.log('hero component' + this.secondHero?.name);
-      console.log('loading : ' + this.loading);
       this.heroService.getHero(heroName)
         .subscribe((hero: Hero | undefined) => {
+          console.log('second hero component' + this.secondHero?.name);
+          console.log('loading second: ' + this.loading);
           if (hero) {
             this.secondHero = hero;
             this.loading = false;
           }
-          console.log('loading  : ' + this.loading);
+          console.log('loading second : ' + this.loading);
         });
 
       };

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HeroService } from '../services/hero.service';
+import { Hero } from '../hero';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-dropdown',
@@ -7,11 +9,15 @@ import { HeroService } from '../services/hero.service';
   styleUrls: ['./hero-dropdown.component.scss']
 })
 export class HeroDropdownComponent {
+
   heroes!: string[];
+  selectedHero: Hero | undefined;
+  // hero!: Hero;
 
-  @Output() heroSelectedEvent = new EventEmitter<string>();
+  @Output() heroSelectedEvent = new EventEmitter<Hero>();
+ 
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private router: Router) { }
 
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
@@ -21,8 +27,27 @@ export class HeroDropdownComponent {
   }
 
   heroSelected(event: Event) {
-    console.log('heroSelected', (event.target as HTMLTextAreaElement).value);
-    this.heroSelectedEvent.emit((event.target as HTMLTextAreaElement).value);
+    const selectedHeroName = (event.target as HTMLTextAreaElement).value;
+    console.log('heroSelected',selectedHeroName);
+  
+    this.heroService.getHero(selectedHeroName).subscribe(hero => {
+      console.log(hero);
+      this.heroSelectedEvent.emit(hero);
+    });
+  }
+
+  
+  onLookUp(selectedHeroName: string) {
+    const selectedHero = 
+    this.heroService.getHero(selectedHeroName).subscribe((hero: Hero | undefined) => {
+      if (hero) {
+        this.selectedHero = hero;
+      }});
+    if (selectedHero) {
+      setTimeout(() => {
+        this.router.navigate(['/hero', this.selectedHero!.displayName]);
+      }, 0);
+    }
   }
 
 }
