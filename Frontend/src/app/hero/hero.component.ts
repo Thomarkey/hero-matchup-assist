@@ -14,7 +14,7 @@ export class HeroComponent {
   loading = true;
   heroName: string | undefined;
   hero: Hero | undefined;
-  selectedHero: string = '';
+  selectedHero: Hero | undefined;
   secondHeroName: string | undefined;
 
   showProperties = this.propertyService.showProperties;
@@ -27,6 +27,10 @@ export class HeroComponent {
 
     onPropertySelection(selectedProperties:string[]) {
       this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
+    }
+
+    onHeroSelection(selectedHero: Hero){
+      this.selectedHero = selectedHero;
     }
 
     ngOnInit(): void {

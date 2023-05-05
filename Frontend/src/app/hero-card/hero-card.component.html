@@ -15,10 +15,11 @@
       <ng-container *ngFor="let property of showProperties">
         <tr *ngIf="property.checked">
           <td class="property-name">{{ property.name }}</td>
-          <td class="property-value">{{  hero && hero.stat && hero.stat[property.name] | round:property.name }}</td>
-          <app-hero-properties-zscore [hero]="hero" [propertyName]="property.name"></app-hero-properties-zscore>
-          <ng-container *ngIf="secondHero">
+          <td class="property-value">{{  hero && hero.stat && hero.stat[property.name]| round:property.name }}</td>
+          <app-hero-properties-zscore [firstHero]="hero" [propertyName]="property.name"></app-hero-properties-zscore>
+          <ng-container *ngIf="secondHero && secondHero.displayName">
             <td class="property-value">{{  secondHero && secondHero.stat && secondHero.stat[property.name] | round:property.name }}</td>
+            <app-hero-properties-zscore [secondHero]="secondHero" [propertyName]="property.name"></app-hero-properties-zscore>
           </ng-container>
         </tr>
       </ng-container>
