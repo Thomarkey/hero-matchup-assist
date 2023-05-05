@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HeroComparisonComponent } from './hero-comparison/hero-comparison.component';
 import { HeroDropdownComponent } from './hero-dropdown/hero-dropdown.component';
 import { RoundPipe } from './pipes/round.pipe';
-import { HeroPropertiesComponent } from './hero-properties/hero-properties.component';
+import { HeroCardComponent } from './hero-card/hero-card.component';
 import { HeroPropertyCheckboxesComponent } from './hero-property-checkboxes/hero-property-checkboxes.component';
 import { LoaderComponent } from './loader/loader.component';
 import { HeroPropertiesZscoreComponent } from './hero-properties-zscore/hero-properties-zscore.component';
@@ -25,7 +25,7 @@ import { HeroPropertiesZscoreComponent } from './hero-properties-zscore/hero-pro
     HeroComparisonComponent,
     HeroDropdownComponent,
     RoundPipe,
-    HeroPropertiesComponent,
+    HeroCardComponent,
     HeroPropertyCheckboxesComponent,
     LoaderComponent,
     HeroPropertiesZscoreComponent,

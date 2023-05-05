@@ -1,16 +1,25 @@
 <div class="compare-wrapper">
-<div class="toBeCompared">compare to:
-  <app-hero-dropdown (heroSelectedEvent)="secondHeroName=$event"></app-hero-dropdown>
-  <li class="list-inline-item">
-    <button class="btn btn-info compare" [routerLink]="['/hero-comparison', hero?.displayName, secondHeroName]">Compare</button>
-  </li>
+  <div class="toBeCompared">compare to:
+    <app-hero-dropdown (heroSelectedEvent)="onHeroSelection($event)"></app-hero-dropdown>
+  </div>
 </div>
-</div>
-
 
 <app-loader [loading]="loading"></app-loader>
 
+<div class="checkbox-wrapper">
+  <app-hero-property-checkboxes [showProperties]="showProperties" (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
+</div>
+
+
 <div *ngIf="!loading">
-<div class="checkbox-wrapper"><app-hero-property-checkboxes [showProperties]="showProperties" (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes></div>
-<div><app-hero-properties [hero]="hero" [selectedProperties]="showProperties"></app-hero-properties></div>
+  <div class="hero-wrapper">
+    <div class="hero-card">
+      <app-hero-card [hero]="hero" [selectedProperties]="showProperties"></app-hero-card>
+    </div>
+    <div *ngIf="selectedHero">
+    <div class="hero-card">
+      <app-hero-card [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
+    </div>
+  </div>
+</div>
 </div>

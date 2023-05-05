@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroPropertiesComponent } from './hero-properties.component';
+import { HeroPropertiesComponent } from './hero-card.component';
 
 describe('HeroPropertiesComponent', () => {
   let component: HeroPropertiesComponent;
