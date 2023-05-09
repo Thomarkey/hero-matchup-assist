@@ -8,6 +8,7 @@ import { HeroComponent } from './hero/hero.component';
 import { FormsModule } from '@angular/forms';
 import { HeroDropdownComponent } from './hero-dropdown/hero-dropdown.component';
 import { RoundPipe } from './pipes/round.pipe';
+import { TransformedPropertiesPipe } from './pipes/transformed-properties.pipe';
 import { HeroCardComponent } from './hero-card/hero-card.component';
 import { HeroPropertyCheckboxesComponent } from './hero-property-checkboxes/hero-property-checkboxes.component';
 import { LoaderComponent } from './loader/loader.component';
@@ -20,6 +21,7 @@ import { HomeDropdownComponent } from './home-dropdown/home-dropdown.component';
     HeroComponent,
     HeroDropdownComponent,
     RoundPipe,
+    TransformedPropertiesPipe,
     HeroCardComponent,
     HeroPropertyCheckboxesComponent,
     LoaderComponent,

@@ -12,7 +12,7 @@
     <tbody>
       <ng-container *ngFor="let property of showProperties">
         <tr *ngIf="property.checked">
-          <td class="property-name">{{ isComparing ? '' : property.name }}</td>
+          <td class="property-name">{{ isComparing ? '' : property.name | transformedProperties }}</td>
           <td class="property-value">{{  hero && hero.stat && hero.stat[property.name]| round:property.name }}</td>
           <app-hero-properties-zscore [firstHero]="hero" [propertyName]="property.name"></app-hero-properties-zscore>
           <!-- <ng-container *ngIf="secondHero && secondHero.displayName">
