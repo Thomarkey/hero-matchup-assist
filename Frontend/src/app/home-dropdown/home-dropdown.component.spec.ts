@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroComparisonComponent } from './hero-comparison.component';
+import { HomeDropdownComponent } from './home-dropdown.component';
 
-describe('HeroComparisonComponent', () => {
-  let component: HeroComparisonComponent;
-  let fixture: ComponentFixture<HeroComparisonComponent>;
+describe('HomeDropdownComponent', () => {
+  let component: HomeDropdownComponent;
+  let fixture: ComponentFixture<HomeDropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeroComparisonComponent ]
+      declarations: [ HomeDropdownComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeroComparisonComponent);
+    fixture = TestBed.createComponent(HomeDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

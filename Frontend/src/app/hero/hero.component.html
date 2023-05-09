@@ -16,10 +16,11 @@
     <div class="hero-card">
       <app-hero-card [hero]="hero" [selectedProperties]="showProperties"></app-hero-card>
     </div>
-    <div *ngIf="selectedHero">
-    <div class="hero-card">
-      <app-hero-card [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
+    <div *ngIf="isComparing">
+      <div class="hero-card">
+      <app-hero-card [isComparing]="isComparing" [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
+      </div>
     </div>
   </div>
-</div>
+
 </div>

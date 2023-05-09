@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { HeroService } from '../services/hero.service';
+import { HeroService } from '../services/hero/hero.service';
 import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyService } from '../services/property.service';
+import { PropertyService } from '../services/property/property.service';
+import { SharedService } from '../services/shared/shared.service';
 
 @Component({
   selector: 'app-hero',
@@ -16,6 +17,7 @@ export class HeroComponent {
   hero: Hero | undefined;
   selectedHero: Hero | undefined;
   secondHeroName: string | undefined;
+  isComparing = false;
 
   showProperties = this.propertyService.showProperties;
 
@@ -23,7 +25,12 @@ export class HeroComponent {
     private heroService: HeroService,
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    ){}
+    public sharedService: SharedService
+    ){
+      this.sharedService.isComparing$.subscribe(isComparing => {
+        this.isComparing = isComparing;
+      });
+    }
 
     onPropertySelection(selectedProperties:string[]) {
       this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
@@ -31,9 +38,12 @@ export class HeroComponent {
 
     onHeroSelection(selectedHero: Hero){
       this.selectedHero = selectedHero;
+      this.sharedService.setComparingStatus(true);
+      console.log("isComparing : " + this.isComparing);
     }
 
     ngOnInit(): void {
+      console.log("isComparing : " + this.isComparing);
       console.log("ngOnit from hero component");
       this.route.paramMap.subscribe((params) => {
         this.heroName = params.get('heroName')!;
@@ -58,6 +68,7 @@ export class HeroComponent {
           this.hero = hero;
           this.loading = false;
         }
+        console.log('this hero: '+ this.hero?.displayName);
         console.log('loading  : ' + this.loading);
       });
 
