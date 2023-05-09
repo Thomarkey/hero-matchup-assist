@@ -5,19 +5,12 @@
         <div class="card-body">
           <h2 class="card-title text-center text-white py-3">{{title}}</h2>
           <ul class="text-center list-inline py-3">
-            <!--text input field like this:
-              <li class="list-inline-item">
-              <input type="text" #heroNameInput (keyup)="getValue(heroNameInput.value)" [(ngModel)]="heroName" name="heroName" placeholder="{{heroName ? '' : 'Enter hero name'}}">
-            </li> -->
             <li class="list-inline-item">
-              <app-hero-dropdown (heroSelectedEvent)="heroName=$event"></app-hero-dropdown>
+              <app-home-dropdown (heroSelectedEvent)="heroName=$event"></app-home-dropdown>
             </li>
             <li class="list-inline-item">
-              <button class="btn btn-info" [routerLink]="['/hero', heroName]">Look up!</button>
+              <button (click)="resetComparison()" class="btn btn-info" [routerLink]="['/hero', heroName]">Look up!</button>
             </li>
-            <!-- <li class="list-inline-item">
-              <a [routerLink]="['/heroes']" class="btn btn-info">All Heroes!</a>
-            </li> -->
             <li class="list-inline-item">
               <a [routerLink]="['/']" class="btn btn-info">Home</a>
             </li>

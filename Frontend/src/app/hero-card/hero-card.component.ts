@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PropertyService } from '../services/property.service';
+import { PropertyService } from '../services/property/property.service';
 
 @Component({
   selector: 'app-hero-card',
@@ -9,6 +9,7 @@ import { PropertyService } from '../services/property.service';
 export class HeroCardComponent {
   @Input() hero: any;
   @Input() secondHero: any;
+  @Input() isComparing?: boolean;
   @Input() selectedProperties!: any[]; 
   @Output() showPropertiesChange = new EventEmitter<any[]>();
 

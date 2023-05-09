@@ -57,7 +57,7 @@ public class Calculations {
     }
 
 
-    public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
+   public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
         if (zScoresMap == null) {
             Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
 

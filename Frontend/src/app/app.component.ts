@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HeroService } from './services/hero.service';
-
+import { HeroService } from './services/hero/hero.service';
+import { Hero } from './hero';
+import { SharedService } from './services/shared/shared.service';
 
 
 @Component({
@@ -9,12 +10,14 @@ import { HeroService } from './services/hero.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private sharedService: SharedService, private heroService: HeroService){}
+
   title = "Select your hero";  
-  heroName!: string;
+  heroName: string | undefined;
   propertiesZScores!: Map<string, Map<string, number>>;
+  selectedSecondHero: Hero | undefined;
+  // selectedHero: Hero | undefined;
 
-
-  constructor(private heroService: HeroService){}
 
   ngOnInit() {
     this.heroService.getAllHeroesPropertiesZScores().subscribe(data=> {
@@ -22,11 +25,10 @@ export class AppComponent {
         console.log(this.propertiesZScores);
       });
   }
-  
-  
-  
-  
 
-  
-  
+  resetComparison(){
+    const isComparing = false;
+    this.sharedService.setComparingStatus(isComparing);
+  }
+
 }

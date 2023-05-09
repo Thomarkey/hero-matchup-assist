@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PropertyService } from '../services/property.service';
-
 
 @Component({
   selector: 'app-hero-property-checkboxes',
