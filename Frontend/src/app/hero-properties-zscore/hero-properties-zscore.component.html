@@ -1,10 +1,17 @@
 <!-- <app-loader [loading]="loading"></app-loader> -->
-
 <div *ngIf="firstHero">
-    <span class="property-value">{{firstHeroZScore | number:'1.2-2'}}</span>
+    <span class="z-score" [ngClass]="{
+        'gradient-positive': firstHeroZScore! >= 1,
+        'gradient-neutral': firstHeroZScore! >= -1 && firstHeroZScore! < 1,
+        'gradient-negative': firstHeroZScore! < -1
+      }">{{firstHeroZScore | number:'1.2-2'}}</span>
 </div>
 
 
 <div *ngIf="secondHero">
-    <span class="property-value">{{secondHeroZScore | number:'1.2-2'}}</span>
+    <span class="z-score" [ngClass]="{
+        'gradient-positive': secondHeroZScore! >= 1,
+        'gradient-neutral': secondHeroZScore! >= -1 && secondHeroZScore! < 1,
+        'gradient-negative': secondHeroZScore! < -1
+      }">{{secondHeroZScore | number:'1.2-2'}}</span>
 </div>

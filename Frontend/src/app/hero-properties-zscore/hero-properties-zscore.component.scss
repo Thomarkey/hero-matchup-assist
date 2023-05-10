@@ -1,0 +1,14 @@
+/* Gradient for z-scores >= 1 */
+.gradient-positive {
+    background: linear-gradient(to right, rgba(107, 142, 35, 0.5), rgba(34, 139, 34, 0.5));
+}
+
+/* Gradient for -1 <= z-score < 1 */
+.gradient-neutral {
+    background: linear-gradient(to right, rgba(255, 255, 0, 0.5), rgba(255, 215, 0, 0.5));
+}
+
+/* Gradient for -5 <= z-score < -1 */
+.gradient-negative {
+    background: linear-gradient(to right, rgba(255, 69, 0, 0.5), rgba(139, 0, 0, 0.5));
+}

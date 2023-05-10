@@ -12,5 +12,8 @@ export class PropertyService {
     { name: 'startingDamageMax', checked: true },
     { name: 'attackRange', checked: true },
     { name: 'moveSpeed', checked: true },
+    { name: 'visionDaytimeRange', checked: true },
+    // { name: 'visionNighttimeRange', checked: true },
+    // { name: 'moveTurnRate', checked: true },
   ];
 }
