@@ -4,7 +4,8 @@
       <input type="checkbox"
         [checked]="property.checked"
         (change)="toggleProperty(property)">
-        <span>{{ property.name | transformedProperties}}</span>
+        <img class="property-img" [src]="(property.name | transformedProperties).icon" />
+        <span>{{ (property.name | transformedProperties).displayName }}</span>
       </label>
     </div>
 </div> 

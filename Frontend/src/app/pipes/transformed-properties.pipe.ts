@@ -7,9 +7,13 @@ import { propertyMappings } from '../services/property/PropertyMappings';
 })
 export class TransformedPropertiesPipe implements PipeTransform {
 
-  transform(propertyName: string): string {
+  transform(propertyName: string): any {
     const mapping = propertyMappings[propertyName as keyof typeof propertyMappings];
-    return mapping ? mapping.displayName : propertyName;
+    if (mapping) {
+      return {displayName: mapping.displayName, icon: mapping.icon};
+    } else {
+      return {displayName: propertyName, icon: ''};
+    }
   }
-
+  
 }

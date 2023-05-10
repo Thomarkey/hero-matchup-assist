@@ -1,5 +1,8 @@
+<!-- <app-hero-header [hero]="hero" [loading]="loading" [isComparing]="isComparing"></app-hero-header> -->
+
 <div class="compare-wrapper">
-  <div class="toBeCompared">compare to:
+  <div class="toBeCompared">
+    <span>compare to: </span>
     <app-hero-dropdown (heroSelectedEvent)="onHeroSelection($event)"></app-hero-dropdown>
   </div>
 </div>
@@ -7,7 +10,8 @@
 <app-loader [loading]="loading"></app-loader>
 
 <div class="checkbox-wrapper">
-  <app-hero-property-checkboxes [showProperties]="showProperties" (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
+  <app-hero-property-checkboxes [showProperties]="showProperties"
+    (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
 </div>
 
 
@@ -17,8 +21,9 @@
       <app-hero-card [hero]="hero" [selectedProperties]="showProperties"></app-hero-card>
     </div>
     <div *ngIf="isComparing">
-      <div class="hero-card">
-      <app-hero-card [isComparing]="isComparing" [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
+      <div class="hero-card isComparing">
+        <app-hero-card [isComparing]="isComparing" [hero]="selectedHero"
+          [selectedProperties]="showProperties"></app-hero-card>
       </div>
     </div>
   </div>

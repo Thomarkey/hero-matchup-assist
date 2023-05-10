@@ -10,9 +10,9 @@ import { SharedService } from './services/shared/shared.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private sharedService: SharedService, private heroService: HeroService){}
+  constructor(private sharedService: SharedService, private heroService: HeroService) { }
 
-  title = "Select your hero";  
+  title = "Select your hero";
   heroName: string | undefined;
   propertiesZScores!: Map<string, Map<string, number>>;
   selectedSecondHero: Hero | undefined;
@@ -20,13 +20,13 @@ export class AppComponent {
 
 
   ngOnInit() {
-    this.heroService.getAllHeroesPropertiesZScores().subscribe(data=> {
-        this.propertiesZScores = data;
-        console.log(this.propertiesZScores);
-      });
+    this.heroService.getAllHeroesPropertiesZScores().subscribe(data => {
+      this.propertiesZScores = data;
+      console.log(this.propertiesZScores);
+    });
   }
 
-  resetComparison(){
+  resetComparison() {
     const isComparing = false;
     this.sharedService.setComparingStatus(isComparing);
   }

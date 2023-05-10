@@ -5,3 +5,45 @@
 .zScore-header {
     font-weight: normal;
 }
+
+.properties-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.properties-table thead tr th {
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.properties-table tbody tr td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.properties-table tbody tr td:first-child {
+    text-align: left;
+    width: 60px;
+}
+
+.properties-table .display-name,
+.properties-table .zScore-header {
+    padding: 10px;
+}
+
+.properties-table .display-name img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.properties-table .property-value {
+    font-weight: bold;
+}
+
+.properties-table td:last-child {
+    width: 130px;
+}

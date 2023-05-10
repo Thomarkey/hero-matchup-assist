@@ -1,35 +1,35 @@
 export const propertyMappings = {
     startingArmor: {
       displayName: 'Starting Armor',
-      icon: 'armor-icon.png'
+      icon: 'assets/icons/icon_armor.png'
     },
     startingMagicArmor: {
       displayName: 'Starting Magic Armor',
-      icon: 'magic-armor-icon.png'
+      icon: 'assets/icons/icon_magic_resist.png'
     },
     startingDamageMin: {
       displayName: 'Starting Damage (Min)',
-      icon: 'damage-icon.png'
+      icon: 'assets/icons/icon_damage.png'
     },
     startingDamageMax: {
       displayName: 'Starting Damage (Max)',
-      icon: 'damage-icon.png'
+      icon: 'assets/icons/icon_damage.png'
     },
     attackRate: {
       displayName: 'Attack Rate',
-      icon: 'attack-rate-icon.png'
+      icon: ''
     },
     attackAnimationPoint: {
       displayName: 'Attack Animation Point',
-      icon: 'attack-animation-icon.png'
+      icon: ''
     },
     attackAcquisitionRange: {
       displayName: 'Attack Acquisition Range',
-      icon: 'acquisition-range-icon.png'
+      icon: 'assets/icons/icon_attack_range.png'
     },
     attackRange: {
       displayName: 'Attack Range',
-      icon: 'attack-range-icon.png'
+      icon: 'assets/icons/icon_attack_range.png'
     },
     primaryAttribute: {
       displayName: 'Primary Attribute',
@@ -73,11 +73,11 @@ export const propertyMappings = {
     },
     moveSpeed: {
       displayName: 'Movement Speed',
-      icon: 'move-speed-icon.png'
+      icon: 'assets/icons/icon_movement_speed.png'
     },
     moveTurnRate: {
       displayName: 'Turn Rate',
-      icon: 'turn-rate-icon.png'
+      icon: 'assets/icons/icon_turn_rate.png'
     },
     hpBarOffset: {
       displayName: 'HP Bar Offset',
@@ -85,11 +85,11 @@ export const propertyMappings = {
     },
     visionDaytimeRange: {
       displayName: 'Daytime Vision Range',
-      icon: 'vision-range-icon.png'
+      icon: 'assets/icons/icon_vision.png'
     },
     visionNighttimeRange: {
       displayName: 'Nighttime Vision Range',
-      icon: 'vision-range-icon.png'
+      icon: 'assets/icons/icon_vision.png'
     },
   };
   

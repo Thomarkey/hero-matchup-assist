@@ -1,23 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="card bg-dark my-5">
-        <div class="card-body">
-          <h2 class="card-title text-center text-white py-3">{{title}}</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <app-home-dropdown (heroSelectedEvent)="heroName=$event"></app-home-dropdown>
-            </li>
-            <li class="list-inline-item">
-              <button (click)="resetComparison()" class="btn btn-info" [routerLink]="['/hero', heroName]">Look up!</button>
-            </li>
-            <li class="list-inline-item">
-              <a [routerLink]="['/']" class="btn btn-info">Home</a>
-            </li>
-          </ul>
-
-
-        </div>
+      <div class="card-body">
+        <h2 class="card-title text-center text-white py-3">{{title}}</h2>
+        <ul class="text-center list-inline py-3">
+          <li class="list-inline-item">
+            <app-home-dropdown (heroSelectedEvent)="heroName=$event"></app-home-dropdown>
+          </li>
+          <li class="list-inline-item">
+            <button (click)="resetComparison()" class="btn btn-info" [routerLink]="['/hero', heroName]">Look
+              up!</button>
+          </li>
+          <li class="list-inline-item">
+            <a [routerLink]="['/']" class="btn btn-info">Home</a>
+          </li>
+        </ul>
       </div>
 
       <router-outlet></router-outlet>
