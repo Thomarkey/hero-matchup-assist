@@ -16,6 +16,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { HeroPropertiesZscoreComponent } from './hero-properties-zscore/hero-properties-zscore.component';
 import { HomeDropdownComponent } from './home-dropdown/home-dropdown.component';
 import { HeroHeaderComponent } from './hero-header/hero-header.component';
+import { ComparingHeroesComponent } from './comparing-heroes/comparing-heroes.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HeroHeaderComponent } from './hero-header/hero-header.component';
     HeroPropertiesZscoreComponent,
     HomeDropdownComponent,
     HeroHeaderComponent,
+    ComparingHeroesComponent,
   ],
   imports: [
     BrowserModule,

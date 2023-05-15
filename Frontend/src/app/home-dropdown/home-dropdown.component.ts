@@ -22,9 +22,9 @@ export class HomeDropdownComponent {
 
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
-        this.heroes = heroes;
-        console.log(heroes);
-      })
+      this.heroes = heroes;
+      console.log(heroes);
+    })
   }
 
 
@@ -33,6 +33,6 @@ export class HomeDropdownComponent {
     this.heroSelectedEvent.emit((event.target as HTMLTextAreaElement).value);
   }
 
-  
+
 
 }

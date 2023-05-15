@@ -8,16 +8,16 @@ import { Hero } from 'src/app/hero';
 })
 export class HeroService {
 
-  private backendApiUrl  = 'http://localhost:8080/hero';
+  private backendApiUrl = 'http://localhost:8080/hero';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getHero(heroName:string): Observable<Hero> {
+  getHero(heroName: string): Observable<Hero> {
     const url = `${this.backendApiUrl}/${heroName}`;
     return this.http.get<Hero>(url);
   }
 
-  getHeroNames(): Observable<string[]>{
+  getHeroNames(): Observable<string[]> {
     return this.http.get<string[]>('http://localhost:8080/heroNames');
   }
 
@@ -26,7 +26,7 @@ export class HeroService {
     return this.http.get<number>(url);
   }
 
-  getAllHeroesPropertiesZScores(): Observable<Map<string, Map<string, number>>>{
+  getAllHeroesPropertiesZScores(): Observable<Map<string, Map<string, number>>> {
     const url = `${this.backendApiUrl}/propertiesZScores`;
     return this.http.get<Map<string, Map<string, number>>>(url);
   }

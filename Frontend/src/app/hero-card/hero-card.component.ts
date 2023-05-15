@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { PropertyService } from '../services/property/property.service';
+import { SharedService } from '../services/shared/shared.service';
 
 @Component({
   selector: 'app-hero-card',
@@ -10,17 +11,15 @@ export class HeroCardComponent {
   @Input() hero: any;
   @Input() secondHero: any;
   @Input() isComparing?: boolean;
-  @Input() selectedProperties!: any[]; 
+  @Input() selectedProperties!: any[];
   @Output() showPropertiesChange = new EventEmitter<any[]>();
-
 
   showProperties = this.propertyService.showProperties;
 
-  constructor (private propertyService: PropertyService){}
+  constructor(private propertyService: PropertyService) { }
 
-    onCheckboxChange(property: any) {
-      property.checked = !property.checked;
-      this.showPropertiesChange.emit(this.showProperties);
-    }
-
+  onCheckboxChange(property: any) {
+    property.checked = !property.checked;
+    this.showPropertiesChange.emit(this.showProperties);
+  }
 }

@@ -1,0 +1,25 @@
+<p>comparing-heroes works!</p>
+
+<!-- <div *ngIf="!loading">
+    <div class="hero-wrapper">
+        <div class="hero-card isComparing">
+            <app-hero-card [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
+        </div>
+
+        <div class="hero-card isComparing">
+            <app-hero-card [hero]="secondHero" [selectedProperties]="showProperties"></app-hero-card>
+        </div>
+
+    </div>
+</div> -->
+
+<div *ngIf="firstHero&& secondHero">
+    <div class="hero-wrapper">
+        <div class="hero-card">
+            <app-hero-card [hero]="firstHero"></app-hero-card>
+        </div>
+        <div class="hero-card">
+            <app-hero-card [hero]="secondHero"></app-hero-card>
+        </div>
+    </div>
+</div>

@@ -5,25 +5,16 @@
         <img class="hero-header-small-img" [src]="(hero?.displayName!| heroImages).smallImage" /><br>
         {{ hero?.displayName }}
       </th>
-      <!-- <ng-container *ngIf="secondHero">
-          <th class="display-name">{{ secondHero?.displayName }}</th>
-        </ng-container> -->
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let property of showProperties">
       <tr *ngIf="property.checked">
-        <!-- <td *ngIf="!isComparing"> -->
         <td><img class="property-img" [src]="(property.name | transformedProperties).icon" /></td>
-        <!-- </td> -->
         <td class="property-name">{{(property.name | transformedProperties).displayName }}</td>
         <td class="property-value">{{ hero && hero.stat && hero.stat[property.name]| round:property.name }}</td>
         <td class="property-value"><app-hero-properties-zscore [firstHero]="hero"
             [propertyName]="property.name"></app-hero-properties-zscore></td>
-        <!-- <ng-container *ngIf="secondHero && secondHero.displayName">
-            <td class="property-value">{{  secondHero && secondHero.stat && secondHero.stat[property.name] | round:property.name }}</td>
-            <app-hero-properties-zscore [secondHero]="secondHero" [propertyName]="property.name"></app-hero-properties-zscore>
-          </ng-container> -->
       </tr>
     </ng-container>
   </tbody>

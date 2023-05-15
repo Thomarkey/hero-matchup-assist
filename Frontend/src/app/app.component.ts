@@ -13,11 +13,8 @@ export class AppComponent {
   constructor(private sharedService: SharedService, private heroService: HeroService) { }
 
   title = "Select your hero";
-  heroName: string | undefined;
+  firstHero: string | undefined;
   propertiesZScores!: Map<string, Map<string, number>>;
-  selectedSecondHero: Hero | undefined;
-  // selectedHero: Hero | undefined;
-
 
   ngOnInit() {
     this.heroService.getAllHeroesPropertiesZScores().subscribe(data => {

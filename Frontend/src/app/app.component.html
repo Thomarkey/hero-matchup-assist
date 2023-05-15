@@ -5,10 +5,10 @@
         <h2 class="card-title text-center text-white py-3">{{title}}</h2>
         <ul class="text-center list-inline py-3">
           <li class="list-inline-item">
-            <app-home-dropdown (heroSelectedEvent)="heroName=$event"></app-home-dropdown>
+            <app-home-dropdown (heroSelectedEvent)="firstHero=$event"></app-home-dropdown>
           </li>
           <li class="list-inline-item">
-            <button (click)="resetComparison()" class="btn btn-info" [routerLink]="['/hero', heroName]">Look
+            <button (click)="resetComparison()" class="btn btn-info" [routerLink]="['/hero', firstHero]">Look
               up!</button>
           </li>
           <li class="list-inline-item">
@@ -16,7 +16,6 @@
           </li>
         </ul>
       </div>
-
       <router-outlet></router-outlet>
     </div>
   </div>

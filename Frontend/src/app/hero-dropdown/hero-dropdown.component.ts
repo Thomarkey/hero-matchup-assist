@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HeroService } from '../services/hero/hero.service';
 import { Hero } from '../hero';
+import { SharedService } from '../services/shared/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-dropdown',
@@ -13,26 +15,24 @@ export class HeroDropdownComponent {
   selectedHero: Hero | undefined;
 
   @Output() heroSelectedEvent = new EventEmitter<Hero>();
- 
+
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
-        this.heroes = heroes;
-        console.log(heroes);
-      })
+      this.heroes = heroes;
+      console.log(heroes);
+    })
   }
 
   heroSelected(event: Event) {
     const selectedHeroName = (event.target as HTMLTextAreaElement).value;
     console.log('heroSelected', selectedHeroName);
-  
+
     this.heroService.getHero(selectedHeroName).subscribe(hero => {
       console.log(hero);
       this.heroSelectedEvent.emit(hero);
     });
   }
-
-
 }

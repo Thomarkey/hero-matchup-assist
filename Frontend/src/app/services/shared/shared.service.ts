@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Hero } from 'src/app/hero';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,12 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
 
   constructor() { }
-  
+
   private isComparingSubject = new BehaviorSubject<boolean>(false);
   isComparing$ = this.isComparingSubject.asObservable();
 
   setComparingStatus(isComparing: boolean): void {
     this.isComparingSubject.next(isComparing);
   }
-  
+
 }
