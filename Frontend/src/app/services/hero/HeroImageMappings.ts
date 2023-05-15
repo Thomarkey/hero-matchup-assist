@@ -1,7 +1,7 @@
 export const heroImageMappings = {
   'Abaddon': {
-    largeImage: 'assets/heroes/crops/abbadon.png',
-    smallImage: 'assets/heroes/abbadon.png'
+    largeImage: 'assets/heroes/crops/abaddon.png',
+    smallImage: 'assets/heroes/abaddon.png'
   },
   'Alchemist': {
     largeImage: 'assets/heroes/crops/alchemist.png',
@@ -12,8 +12,8 @@ export const heroImageMappings = {
     smallImage: 'assets/heroes/ancient_apparition.png'
   },
   'Anti-Mage': {
-    largeImage: 'assets/heroes/crops/anti_mage.png',
-    smallImage: 'assets/heroes/anti_mage.png'
+    largeImage: 'assets/heroes/crops/antimage.png',
+    smallImage: 'assets/heroes/antimage.png'
   },
   'Arc Warden': {
     largeImage: 'assets/heroes/crops/arc_warden.png',

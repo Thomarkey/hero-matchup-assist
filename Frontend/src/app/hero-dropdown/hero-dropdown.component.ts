@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HeroService } from '../services/hero/hero.service';
 import { Hero } from '../hero';
 import { SharedService } from '../services/shared/shared.service';
@@ -9,15 +9,17 @@ import { Router } from '@angular/router';
   templateUrl: './hero-dropdown.component.html',
   styleUrls: ['./hero-dropdown.component.scss']
 })
-export class HeroDropdownComponent {
+export class HeroDropdownComponent implements OnInit {
 
   heroes!: string[];
-  selectedHero: Hero | undefined;
 
-  @Output() heroSelectedEvent = new EventEmitter<Hero>();
+  @Input() firstHero: Hero | undefined;
+  @Output() heroSelectedEvent = new EventEmitter<{ firstHero: Hero, secondHero: Hero }>();
 
+  secondHero: Hero | undefined;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private sharedService: SharedService, private router: Router
+  ) { }
 
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
@@ -26,13 +28,21 @@ export class HeroDropdownComponent {
     })
   }
 
-  heroSelected(event: Event) {
+  heroSelected(event: any) {
+    console.log("from hero dropdown");
     const selectedHeroName = (event.target as HTMLTextAreaElement).value;
     console.log('heroSelected', selectedHeroName);
+    console.log('the first hero is :' + this.firstHero?.displayName)
 
-    this.heroService.getHero(selectedHeroName).subscribe(hero => {
-      console.log(hero);
-      this.heroSelectedEvent.emit(hero);
+    this.heroService.getHero(selectedHeroName).subscribe(secondHero => {
+      console.log(secondHero);
+      this.secondHero = secondHero;
+      this.sharedService.setSecondHero(secondHero);
+      console.log("start of the emit");
+      this.heroSelectedEvent.emit(
+        { firstHero: this.firstHero!, secondHero });
+      console.log("emit should be done now?");
+      this.router.navigate(['/' + this.firstHero?.displayName + '/' + this.secondHero?.displayName]);
     });
   }
 }

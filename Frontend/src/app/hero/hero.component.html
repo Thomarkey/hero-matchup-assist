@@ -3,7 +3,8 @@
 <div class="compare-wrapper">
   <div class="toBeCompared">
     <span>compare to: </span>
-    <app-hero-dropdown (heroSelectedEvent)="onHeroSelection($event)"></app-hero-dropdown>
+    <app-hero-dropdown [firstHero]="hero"
+      (heroSelectedEvent)="onHeroSelection($event.firstHero, $event.secondHero)"></app-hero-dropdown>
   </div>
 </div>
 

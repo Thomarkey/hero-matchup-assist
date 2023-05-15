@@ -1,22 +1,18 @@
 .compare-wrapper {
-  overflow: auto;
+    overflow: auto;
 }
 
 .toBeCompared {
-  float: right;
-  margin-bottom: 2em;
+    float: right;
+    margin-bottom: 2em;
 }
 
 button.compare {
-  margin: 10px;
+    margin: 10px;
 }
 
 .hero-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-card.isComparing {
-  margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

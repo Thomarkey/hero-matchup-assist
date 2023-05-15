@@ -1,3 +1,4 @@
 <select (change)="heroSelected($event)">
+    <option selected disabled>Choose hero</option>
     <option *ngFor="let hero of heroes">{{ hero }}</option>
 </select>

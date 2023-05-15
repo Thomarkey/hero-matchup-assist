@@ -16,4 +16,19 @@ export class SharedService {
     this.isComparingSubject.next(isComparing);
   }
 
+
+  private firstHeroSubject = new BehaviorSubject<Hero | undefined>(undefined);
+  public firstHero$ = this.firstHeroSubject.asObservable();
+
+  private secondHeroSubject = new BehaviorSubject<Hero | undefined>(undefined);
+  public secondHero$ = this.secondHeroSubject.asObservable();
+
+  setFirstHero(hero: Hero | undefined): void {
+    this.firstHeroSubject.next(hero);
+  }
+
+  setSecondHero(hero: Hero | undefined): void {
+    this.secondHeroSubject.next(hero);
+  }
+
 }

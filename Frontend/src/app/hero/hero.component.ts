@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HeroService } from '../services/hero/hero.service';
 import { Hero } from '../hero';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PropertyService } from '../services/property/property.service';
 import { SharedService } from '../services/shared/shared.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-hero',
@@ -14,11 +15,16 @@ import { SharedService } from '../services/shared/shared.service';
 export class HeroComponent {
   loading = true;
   heroName: string | undefined;
-  hero: Hero | undefined;
+  // hero: Hero | undefined;
   secondHero: Hero | undefined;
   isComparing = false;
 
   showProperties = this.propertyService.showProperties;
+
+  private readonly destroyed$ = new Subject<void>();
+
+  @Input() hero?: Hero;
+  @Output() heroSelectedEvent = new EventEmitter<{ firstHero: Hero, secondHero: Hero }>();
 
   constructor(
     private heroService: HeroService,
@@ -35,42 +41,56 @@ export class HeroComponent {
     this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
   }
 
-  onHeroSelection(secondHero: Hero) {
+  onHeroSelection(firstHero: Hero, secondHero: Hero) {
     this.secondHero = secondHero;
     this.sharedService.setComparingStatus(true);
     console.log("isComparing : " + this.isComparing);
+    this.heroSelectedEvent.emit({ firstHero: firstHero, secondHero });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    console.log('ngOnInit start');
     console.log("isComparing : " + this.isComparing);
     console.log("ngOnit from hero component");
-    this.route.paramMap.subscribe((params) => {
-      this.heroName = params.get('heroName')!;
+
+    this.route.paramMap.subscribe(async (params: ParamMap) => {
+      this.heroName = params.get('firstHero')!;
       if (this.heroName) {
-        this.getHero(this.heroName);
+        console.log('getting hero');
+        this.hero = await this.getHero(this.heroName);
+        console.log('hero retrieved', this.hero);
       }
     });
 
-    //when the component only needs to perform an action once, such as when it is initialized:
-    // this.getHero(this.heroName!);
+    console.log('ngOnInit end');
   }
 
 
-  getHero(heroName: string): void {
-    this.loading = true;
-    console.log('hero component log')
-    console.log('hero component' + this.hero?.name);
-    console.log('loading : ' + this.loading);
-    this.heroService.getHero(heroName)
-      .subscribe((hero: Hero | undefined) => {
-        if (hero) {
-          this.hero = hero;
-          this.loading = false;
-        }
-        console.log('this hero: ' + this.hero?.displayName);
-        console.log('loading  : ' + this.loading);
-      });
 
-  };
+  async getHero(heroName: string): Promise<Hero | undefined> {
+    try {
+      console.log('getHero start', heroName);
+      const hero = await this.heroService.getHero(heroName).toPromise();
+
+      console.log('this hero: ' + hero?.displayName);
+      console.log('loading  : ' + this.loading);
+      console.log('hero retrieved in getHero', hero);
+
+      return hero;
+    } catch (error) {
+      console.error('Error retrieving hero', error);
+
+      return undefined;
+    }
+    finally {
+      this.loading = false;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
 
 }

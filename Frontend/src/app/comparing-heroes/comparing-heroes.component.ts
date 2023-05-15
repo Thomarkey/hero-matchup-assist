@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HeroService } from '../services/hero/hero.service';
+import { SharedService } from '../services/shared/shared.service';
+import { PropertyService } from '../services/property/property.service';
 
 
 @Component({
@@ -8,18 +11,43 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './comparing-heroes.component.html',
   styleUrls: ['./comparing-heroes.component.scss']
 })
-export class ComparingHeroesComponent {
+export class ComparingHeroesComponent implements OnInit {
   loading = true;
+  isComparing = true;
   firstHero: Hero | undefined;
   secondHero: Hero | undefined;
+  @Output() heroSelectedEvent = new EventEmitter<{ firstHero: Hero, secondHero: Hero }>();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private sharedService: SharedService, private propertyService: PropertyService) { }
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.firstHero = params['firstHeroName'] as Hero;
-      this.secondHero = params['secondHeroName'] as Hero;
+  async ngOnInit(): Promise<void> {
+    this.route.paramMap.subscribe(async (params) => {
+      const firstHero = params.get('firstHero');
+      if (firstHero) {
+        this.firstHero = await this.heroService.getHero(firstHero).toPromise();
+      }
+      const secondHero = params.get('secondHero');
+      if (secondHero) {
+        this.secondHero = await this.heroService.getHero(secondHero).toPromise();
+      }
+      this.loading = false;
     });
   }
+
+
+  onHeroSelection(firstHero: Hero, secondHero: Hero) {
+    this.secondHero = secondHero;
+    this.sharedService.setComparingStatus(true);
+    console.log("isComparing : " + this.isComparing);
+    this.heroSelectedEvent.emit({ firstHero: firstHero, secondHero });
+  }
+
+  showProperties = this.propertyService.showProperties;
+
+
+  onPropertySelection(selectedProperties: string[]) {
+    this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
+  }
+
 
 }

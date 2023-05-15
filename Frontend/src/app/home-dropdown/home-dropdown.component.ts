@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HeroService } from '../services/hero/hero.service';
+import { Hero } from '../hero';
+import { SharedService } from '../services/shared/shared.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,11 +14,8 @@ import { HeroService } from '../services/hero/hero.service';
 export class HomeDropdownComponent {
 
   heroes!: string[];
-  selectedHero!: string;
 
   @Output() heroSelectedEvent = new EventEmitter<string>();
-
-  selectedSecondHero: undefined;
 
   constructor(private heroService: HeroService) { }
 
@@ -32,7 +32,6 @@ export class HomeDropdownComponent {
     console.log('heroSelected', (event.target as HTMLTextAreaElement).value);
     this.heroSelectedEvent.emit((event.target as HTMLTextAreaElement).value);
   }
-
 
 
 }

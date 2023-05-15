@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HeroService } from './services/hero/hero.service';
-import { Hero } from './hero';
 import { SharedService } from './services/shared/shared.service';
 
 

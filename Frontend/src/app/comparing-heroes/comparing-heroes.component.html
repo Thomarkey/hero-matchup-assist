@@ -1,25 +1,34 @@
-<p>comparing-heroes works!</p>
-
-<!-- <div *ngIf="!loading">
-    <div class="hero-wrapper">
-        <div class="hero-card isComparing">
-            <app-hero-card [hero]="selectedHero" [selectedProperties]="showProperties"></app-hero-card>
-        </div>
-
-        <div class="hero-card isComparing">
-            <app-hero-card [hero]="secondHero" [selectedProperties]="showProperties"></app-hero-card>
-        </div>
-
-    </div>
+<!-- <div>
+    <h2>Comparing {{ firstHero?.displayName }} and {{ secondHero?.displayName }}</h2>
 </div> -->
 
-<div *ngIf="firstHero&& secondHero">
+<div class="compare-wrapper">
+    <div class="toBeCompared">
+        <span>compare {{firstHero!.displayName}} to : </span>
+        <app-hero-dropdown [firstHero]="firstHero"
+            (heroSelectedEvent)="onHeroSelection($event.firstHero, $event.secondHero)"></app-hero-dropdown>
+    </div>
+</div>
+
+<app-loader [loading]="loading"></app-loader>
+
+<div class="checkbox-wrapper">
+    <app-hero-property-checkboxes [showProperties]="showProperties"
+        (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
+</div>
+
+
+<div *ngIf="!loading">
     <div class="hero-wrapper">
         <div class="hero-card">
-            <app-hero-card [hero]="firstHero"></app-hero-card>
+            <app-hero-card [hero]="firstHero" [selectedProperties]="showProperties"></app-hero-card>
         </div>
-        <div class="hero-card">
-            <app-hero-card [hero]="secondHero"></app-hero-card>
+        <div *ngIf="isComparing">
+            <div class="hero-card isComparing">
+                <app-hero-card [isComparing]="isComparing" [hero]="secondHero"
+                    [selectedProperties]="showProperties"></app-hero-card>
+            </div>
         </div>
     </div>
+
 </div>
