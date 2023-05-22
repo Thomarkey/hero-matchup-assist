@@ -35,7 +35,7 @@ export interface Hero {
     attackAcquisitionRange: number;
     attackRange: number;
     primaryAttribute: string;
-    heroPrimaryAttribute: number;
+    primaryAttributeEnum: number;
     strengthBase: number;
     strengthGain: number;
     intelligenceBase: number;

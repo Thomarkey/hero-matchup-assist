@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PropertyService } from '../services/property/property.service';
 import { attackTypeIcons } from '../services/shared/attack-type-icons';
-import { Hero } from '../hero';
+import { primaryStatsIcons } from '../services/shared/primary-stats-icons';
 
 
 @Component({
@@ -14,10 +14,14 @@ export class HeroCardComponent {
   @Input() secondHero: any;
   @Input() isComparing?: boolean;
   @Input() selectedProperties!: any[];
+  @Input() isHighestValue!: (hero: any, secondHero: any, propertyName: string) => number;
+
   @Output() showPropertiesChange = new EventEmitter<any[]>();
+
 
   showProperties = this.propertyService.showProperties;
   attackTypeIcons = attackTypeIcons as { [key: string]: string };
+  primaryStatsIcons: { [key: number]: { icon: string, name: string } } = primaryStatsIcons;
 
   constructor(private propertyService: PropertyService) { }
 

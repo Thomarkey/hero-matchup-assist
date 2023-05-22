@@ -1,10 +1,13 @@
 <table class="properties-table">
   <thead>
     <tr>
-      <th class="display-name" colspan="4">
+      <th class="display-header" colspan="4">
         <img class="hero-header-small-img" [src]="(hero?.displayName!| heroImages).smallImage" /><br>
-        <img class="property-img inverted" [src]="attackTypeIcons[hero.stat.attackType]" />
-        {{ hero?.displayName }}
+        <div class="display-name">
+          <img class="property-img" [src]="(primaryStatsIcons[hero.stat.primaryAttributeEnum]).icon" />
+          {{ hero?.displayName }}
+          <img class="property-img inverted" [src]="attackTypeIcons[hero.stat.attackType]" />
+        </div>
       </th>
     </tr>
   </thead>

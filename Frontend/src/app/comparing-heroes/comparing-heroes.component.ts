@@ -49,5 +49,4 @@ export class ComparingHeroesComponent implements OnInit {
     this.showProperties = selectedProperties.map(name => ({ name, checked: true }));
   }
 
-
 }

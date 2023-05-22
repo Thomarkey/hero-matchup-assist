@@ -29,15 +29,19 @@
     width: 60px;
 }
 
-.properties-table .display-name,
+.properties-table .display-header,
 .properties-table .zScore-header {
     padding: 10px;
 }
 
-.properties-table .display-name img {
+.properties-table .display-header .display-name {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
     max-width: 100%;
+}
+
+.property-img {
+    margin-left: 0.5em;
 }
 
 .properties-table .property-value {
