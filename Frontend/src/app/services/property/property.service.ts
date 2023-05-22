@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class PropertyService {
   showProperties = [
-    { name: 'startingArmor', checked: true },
+    { name: 'startingArmor', checked: true, comparisonValue: 0 },
     { name: 'startingMagicArmor', checked: true },
     { name: 'startingDamageMin', checked: true },
     { name: 'startingDamageMax', checked: true },

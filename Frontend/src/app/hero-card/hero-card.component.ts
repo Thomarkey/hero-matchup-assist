@@ -11,10 +11,10 @@ import { primaryStatsIcons } from '../services/shared/primary-stats-icons';
 })
 export class HeroCardComponent {
   @Input() hero: any;
-  @Input() secondHero: any;
+  // @Input() secondHero: any;
+  @Input() compareHero: any;
   @Input() isComparing?: boolean;
   @Input() selectedProperties!: any[];
-  @Input() isHighestValue!: (hero: any, secondHero: any, propertyName: string) => number;
 
   @Output() showPropertiesChange = new EventEmitter<any[]>();
 
@@ -29,4 +29,20 @@ export class HeroCardComponent {
     property.checked = !property.checked;
     this.showPropertiesChange.emit(this.showProperties);
   }
+
+
+  getComparisonClass(propertyName: string): string {
+    const heroValue = this.hero.stat[propertyName];
+    const secondHeroValue = this.compareHero.stat[propertyName];
+
+    if (heroValue > secondHeroValue) {
+      return 'arrow-up';
+    } else if (heroValue < secondHeroValue) {
+      return 'arrow-down';
+    }
+
+    return '';
+  }
+
+
 }

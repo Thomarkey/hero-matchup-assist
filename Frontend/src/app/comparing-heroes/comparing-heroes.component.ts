@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Hero } from '../hero';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../services/hero/hero.service';
 import { SharedService } from '../services/shared/shared.service';
 import { PropertyService } from '../services/property/property.service';
@@ -14,7 +14,6 @@ import { PropertyService } from '../services/property/property.service';
 
 export class ComparingHeroesComponent implements OnInit {
   loading = true;
-  isComparing = true;
   firstHero: Hero | undefined;
   secondHero: Hero | undefined;
   @Output() heroSelectedEvent = new EventEmitter<{ firstHero: Hero, secondHero: Hero }>();
@@ -39,7 +38,6 @@ export class ComparingHeroesComponent implements OnInit {
   onHeroSelection(firstHero: Hero, secondHero: Hero) {
     this.secondHero = secondHero;
     this.sharedService.setComparingStatus(true);
-    console.log("isComparing : " + this.isComparing);
     this.heroSelectedEvent.emit({ firstHero: firstHero, secondHero });
   }
 

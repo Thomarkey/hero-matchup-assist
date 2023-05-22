@@ -1,6 +1,6 @@
-<!-- <div>
+<div>
     <h2>Comparing {{ firstHero?.displayName }} and {{ secondHero?.displayName }}</h2>
-</div> -->
+</div>
 
 <div class="compare-wrapper">
     <div class="toBeCompared">
@@ -21,14 +21,12 @@
 <div *ngIf="!loading">
     <div class="hero-wrapper">
         <div class="hero-card">
-            <app-hero-card [hero]="firstHero" [selectedProperties]="showProperties"></app-hero-card>
+            <app-hero-card [hero]="firstHero" [compareHero]="secondHero" [selectedProperties]="showProperties"
+                [isComparing]="true"></app-hero-card>
         </div>
-        <div *ngIf="isComparing">
-            <div class="hero-card isComparing">
-                <app-hero-card [isComparing]="isComparing" [hero]="secondHero"
-                    [selectedProperties]="showProperties"></app-hero-card>
-            </div>
+        <div class="hero-card isComparing">
+            <app-hero-card [hero]="secondHero" [compareHero]="firstHero" [selectedProperties]="showProperties"
+                [isComparing]="true"></app-hero-card>
         </div>
     </div>
-
 </div>

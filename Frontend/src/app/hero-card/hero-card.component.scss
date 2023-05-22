@@ -55,3 +55,27 @@
 .inverted {
     filter: invert(1);
 }
+
+.arrow-up::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid green;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+.arrow-down::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid red;
+    margin-right: 2px;
+    vertical-align: middle;
+}
