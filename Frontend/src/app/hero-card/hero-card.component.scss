@@ -47,3 +47,7 @@
 .properties-table td:last-child {
     width: 130px;
 }
+
+.inverted {
+    filter: invert(1);
+}

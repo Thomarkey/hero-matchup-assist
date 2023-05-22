@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PropertyService } from '../services/property/property.service';
-import { SharedService } from '../services/shared/shared.service';
+import { attackTypeIcons } from '../services/shared/attack-type-icons';
+import { Hero } from '../hero';
+
 
 @Component({
   selector: 'app-hero-card',
@@ -15,6 +17,7 @@ export class HeroCardComponent {
   @Output() showPropertiesChange = new EventEmitter<any[]>();
 
   showProperties = this.propertyService.showProperties;
+  attackTypeIcons = attackTypeIcons as { [key: string]: string };
 
   constructor(private propertyService: PropertyService) { }
 
