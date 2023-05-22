@@ -11,7 +11,6 @@ import { primaryStatsIcons } from '../services/shared/primary-stats-icons';
 })
 export class HeroCardComponent {
   @Input() hero: any;
-  // @Input() secondHero: any;
   @Input() compareHero: any;
   @Input() isComparing?: boolean;
   @Input() selectedProperties!: any[];
@@ -19,7 +18,7 @@ export class HeroCardComponent {
   @Output() showPropertiesChange = new EventEmitter<any[]>();
 
 
-  showProperties = this.propertyService.showProperties;
+  // showProperties = this.propertyService.showProperties;
   attackTypeIcons = attackTypeIcons as { [key: string]: string };
   primaryStatsIcons: { [key: number]: { icon: string, name: string } } = primaryStatsIcons;
 
@@ -27,7 +26,7 @@ export class HeroCardComponent {
 
   onCheckboxChange(property: any) {
     property.checked = !property.checked;
-    this.showPropertiesChange.emit(this.showProperties);
+    this.showPropertiesChange.emit(this.selectedProperties);
   }
 
 

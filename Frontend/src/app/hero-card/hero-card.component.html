@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let property of showProperties">
+    <ng-container *ngFor="let property of selectedProperties">
       <tr *ngIf="property.checked">
         <td><img class="property-img" [src]="(property.name | transformedProperties).icon" /></td>
         <td class="property-name">{{(property.name | transformedProperties).displayName }}</td>
