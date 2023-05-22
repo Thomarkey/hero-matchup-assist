@@ -11,6 +11,7 @@ import { PropertyService } from '../services/property/property.service';
   templateUrl: './comparing-heroes.component.html',
   styleUrls: ['./comparing-heroes.component.scss']
 })
+
 export class ComparingHeroesComponent implements OnInit {
   loading = true;
   isComparing = true;
