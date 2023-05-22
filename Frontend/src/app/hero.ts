@@ -25,7 +25,7 @@ export interface Hero {
     team: boolean;
     cmEnabled: boolean;
     newPlayerEnabled: boolean;
-    attackType: 'melee' | 'ranged';
+    attackType: string;
     startingArmor: number;
     startingMagicArmor: number;
     startingDamageMin: number;
