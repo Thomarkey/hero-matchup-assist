@@ -4,9 +4,9 @@
       <th class="display-header" colspan="4">
         <img class="hero-header-small-img" [src]="(hero?.displayName!| heroImages).smallImage" /><br>
         <div class="display-name">
-          <img class="property-img" [src]="(primaryStatsIcons[hero.stat.primaryAttributeEnum]).icon" />
-          {{ hero?.displayName }}
           <img class="property-img inverted" [src]="attackTypeIcons[hero.stat.attackType]" />
+          {{ hero?.displayName }}
+          <img class="property-img" [src]="(primaryStatsIcons[hero.stat.primaryAttributeEnum]).icon" />
         </div>
       </th>
     </tr>
