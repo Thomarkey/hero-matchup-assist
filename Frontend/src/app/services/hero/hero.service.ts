@@ -27,7 +27,12 @@ export class HeroService {
   }
 
   getAllHeroesPropertiesZScores(): Observable<Map<string, Map<string, number>>> {
-    const url = `${this.backendApiUrl}/propertiesZScores`;
+    const url = `http://localhost:8080/propertiesZScores`;
+    return this.http.get<Map<string, Map<string, number>>>(url);
+  }
+
+  getAllHeroesMinMaxPropertiesValues(): Observable<Map<string, Map<string, number>>> {
+    const url = `http://localhost:8080/minMaxPropertiesValues`;
     return this.http.get<Map<string, Map<string, number>>>(url);
   }
 }

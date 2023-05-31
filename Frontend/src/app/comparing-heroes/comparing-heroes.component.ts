@@ -18,6 +18,8 @@ export class ComparingHeroesComponent implements OnInit {
   secondHero: Hero | undefined;
   @Output() heroSelectedEvent = new EventEmitter<{ firstHero: Hero, secondHero: Hero }>();
 
+  showProperties = this.propertyService.showProperties;
+
   constructor(private route: ActivatedRoute, private heroService: HeroService, private sharedService: SharedService, private propertyService: PropertyService) { }
 
   async ngOnInit(): Promise<void> {
@@ -40,8 +42,6 @@ export class ComparingHeroesComponent implements OnInit {
     this.sharedService.setComparingStatus(true);
     this.heroSelectedEvent.emit({ firstHero: firstHero, secondHero });
   }
-
-  showProperties = this.propertyService.showProperties;
 
 
   onPropertySelection(selectedProperties: string[]) {

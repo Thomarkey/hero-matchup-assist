@@ -18,11 +18,10 @@ export class HeroCardComponent {
   @Output() showPropertiesChange = new EventEmitter<any[]>();
 
 
-  // showProperties = this.propertyService.showProperties;
   attackTypeIcons = attackTypeIcons as { [key: string]: string };
   primaryStatsIcons: { [key: number]: { icon: string, name: string } } = primaryStatsIcons;
 
-  constructor(private propertyService: PropertyService) { }
+  constructor() { }
 
   onCheckboxChange(property: any) {
     property.checked = !property.checked;

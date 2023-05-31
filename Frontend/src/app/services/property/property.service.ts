@@ -5,6 +5,10 @@ import { Injectable } from '@angular/core';
 })
 
 export class PropertyService {
+
+  private propertiesValues: Map<string, Map<string, number>> | undefined;
+
+
   showProperties = [
     { name: 'startingArmor', checked: true, comparisonValue: 0 },
     { name: 'startingMagicArmor', checked: true },
@@ -16,4 +20,13 @@ export class PropertyService {
     // { name: 'visionNighttimeRange', checked: true },
     // { name: 'moveTurnRate', checked: true },
   ];
+
+  setPropertiesValues(data: Map<string, Map<string, number>>): void {
+    this.propertiesValues = data;
+  }
+
+  getPropertiesValues(): Map<string, Map<string, number>> {
+    return this.propertiesValues!;
+  }
+
 }

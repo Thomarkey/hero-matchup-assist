@@ -20,8 +20,8 @@
           [ngClass]="{'arrow-up': isComparing && getComparisonClass(property.name) === 'arrow-up', 'arrow-down': isComparing && getComparisonClass(property.name) === 'arrow-down'}">
           {{ hero && hero.stat && hero.stat[property.name] | round:property.name }}
         </td>
-        <td class="property-value"><app-hero-properties-zscore [firstHero]="hero"
-            [propertyName]="property.name"></app-hero-properties-zscore></td>
+        <td class="property-value"><app-hero-properties-zscore [hero]="hero" [propertyName]="property.name"
+            [propertyValue]="hero.stat[property.name]"></app-hero-properties-zscore></td>
       </tr>
     </ng-container>
   </tbody>
