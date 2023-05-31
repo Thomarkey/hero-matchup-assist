@@ -24,6 +24,7 @@ export class HeroPropertiesZscoreComponent {
   markerPosition: number | undefined;
   updatetMarkerPosition: number | undefined;
   easyMarkerPosition: number | undefined;
+  hovering: boolean = false;
 
   constructor(private heroService: HeroService, private propertiesZScoresService: PropertiesZScoresService, private propertyService: PropertyService) { }
 
@@ -138,4 +139,12 @@ export class HeroPropertiesZscoreComponent {
 
   }
 
+
+  showZScore(): void {
+    this.hovering = true;
+  }
+
+  hideZScore(): void {
+    this.hovering = false;
+  }
 }

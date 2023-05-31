@@ -5,7 +5,7 @@ export const heroImageMappings = {
   },
   'Alchemist': {
     largeImage: 'assets/heroes/crops/alchemist.png',
-    smallImage: 'assets/heroes/crops/alchemist.png'
+    smallImage: 'assets/heroes/alchemist.png'
   },
   'Ancient Apparition': {
     largeImage: 'assets/heroes/crops/ancient_apparition.png',

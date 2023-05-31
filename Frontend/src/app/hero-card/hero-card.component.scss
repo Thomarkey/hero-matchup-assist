@@ -61,9 +61,10 @@
     display: inline-block;
     width: 0;
     height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 8px solid green;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 9px solid green;
+    margin-left: 4px;
     margin-right: 2px;
     vertical-align: middle;
 }
@@ -73,9 +74,10 @@
     display: inline-block;
     width: 0;
     height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 8px solid red;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 9px solid red;
+    margin-left: 4px;
     margin-right: 2px;
     vertical-align: middle;
 }

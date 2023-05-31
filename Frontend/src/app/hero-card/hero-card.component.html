@@ -16,12 +16,14 @@
       <tr *ngIf="property.checked">
         <td><img class="property-img" [src]="(property.name | transformedProperties).icon" /></td>
         <td class="property-name">{{(property.name | transformedProperties).displayName }}</td>
-        <td class="property-value"
-          [ngClass]="{'arrow-up': isComparing && getComparisonClass(property.name) === 'arrow-up', 'arrow-down': isComparing && getComparisonClass(property.name) === 'arrow-down'}">
-          {{ hero && hero.stat && hero.stat[property.name] | round:property.name }}
+        <td class="property-value">
+          <div
+            [ngClass]="{'arrow-up': isComparing && getComparisonClass(property.name) === 'arrow-up', 'arrow-down': isComparing && getComparisonClass(property.name) === 'arrow-down'}">
+            {{ hero && hero.stat && hero.stat[property.name] | round:property.name }}</div>
+          <span class="property-value"><app-hero-properties-zscore [hero]="hero" [propertyName]="property.name"
+              [propertyValue]="hero.stat[property.name]"></app-hero-properties-zscore>
+          </span>
         </td>
-        <td class="property-value"><app-hero-properties-zscore [hero]="hero" [propertyName]="property.name"
-            [propertyValue]="hero.stat[property.name]"></app-hero-properties-zscore></td>
       </tr>
     </ng-container>
   </tbody>

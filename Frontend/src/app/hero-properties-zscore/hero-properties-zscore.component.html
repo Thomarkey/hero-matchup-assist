@@ -1,16 +1,8 @@
-<!-- <app-loader [loading]="loading"></app-loader> -->
-<div *ngIf="hero">
-  <span class="z-score" [ngClass]="{
-        'gradient-positive': hero! >= 1,
-        'gradient-neutral': hero! >= -1 && hero! < 1,
-        'gradient-negative': hero! < -1
-      }">{{heroZScore | number:'1.2-2'}}</span>
-</div>
-
-<div class="bar">
+<div class="bar" (mouseenter)="showZScore()" (mouseleave)="hideZScore()">
   <div class="marker" [style.width.%]="easyMarkerPosition! * 100" [ngClass]="{
     'gradient-positive': easyMarkerPosition! > 0.5,
     'gradient-neutral': easyMarkerPosition! == 0.5,
     'gradient-negative': easyMarkerPosition! <0.5
   }"></div>
+  <div *ngIf="hovering" class="z-score">{{ heroZScore | number:'1.2-2' }}</div>
 </div>
