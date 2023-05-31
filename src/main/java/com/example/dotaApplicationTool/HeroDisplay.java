@@ -21,6 +21,7 @@ import static com.example.dotaApplicationTool.Calculations.calculateZScores;
 public class HeroDisplay {
 
     public static Map<String, Map<String, Double>> zScoresMap;
+    public static Map<String, Map<String, Double>> minMaxPropertyValuesMap;
 
     final String URL = "https://api.stratz.com/api/v1/Hero";
     final String BEARER = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTc5NzgzMzE0OTgiLCJ1bmlxdWVfbmFtZSI6IlRPTUFUT1JPIiwiU3ViamVjdCI6ImYzNDg2ODVjLWYyYTAtNDllZS1hNGYwLWM5ZmUwYjc4OWUyYiIsIlN0ZWFtSWQiOiIxODA2NTc3MCIsIm5iZiI6MTY4MjM0MTYzNCwiZXhwIjoxNzEzODc3NjM0LCJpYXQiOjE2ODIzNDE2MzQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.XtyfxyjVDpP5DTHMCEnIuYpFqcnMqqu4M9l-Lod-Tnk";
@@ -113,14 +114,24 @@ public class HeroDisplay {
         return resultJson;
     }
 
-    @GetMapping("/hero/propertiesZScores")
+    @GetMapping("/propertiesZScores")
     public Map<String, Map<String, Double>> getAllHeroesPropertiesZScores() throws JSONException, UnirestException {
         System.out.println("getHeroPropertyZScore");
         if (zScoresMap == null) {
             JSONObject heroesStatsJson = getHeroesWithStatsJson();
             zScoresMap = calculateZScores(heroesStatsJson);
         }
+        System.out.println("returning the zScoresMap from the getAllHeroesPropertiesZScores aka /propertiesZScores");
+        System.out.println(zScoresMap);
         return zScoresMap;
+    }
+
+    //TODO: rework the double called getHeroesWithsStatsJson()
+    @GetMapping("/minMaxPropertiesValues")
+    public Map<String, Map<String, Double>> getAllMinMaxPropertiesValues() throws JSONException, UnirestException {
+        JSONObject heroesStatsJson = getHeroesWithStatsJson();
+        minMaxPropertyValuesMap = Calculations.mapAllMinMaxPropertiesValues(heroesStatsJson);
+        return minMaxPropertyValuesMap;
     }
 
 

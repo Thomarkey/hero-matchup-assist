@@ -16,4 +16,8 @@ public class Helper {
         return result;
     }
 
+    public static double roundToThreeDecimals(double value) {
+        return Math.round(value * 1000.0) / 1000.0;
+    }
+
 }

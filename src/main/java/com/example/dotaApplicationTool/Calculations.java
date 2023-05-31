@@ -4,7 +4,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.*;
 
 import static com.example.dotaApplicationTool.HeroDisplay.zScoresMap;
@@ -56,8 +55,7 @@ public class Calculations {
         return statsRankMap;
     }
 
-
-   public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
+    public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
         if (zScoresMap == null) {
             Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
 
@@ -109,6 +107,47 @@ public class Calculations {
         }
     }
 
+    public static Map<String, Map<String, Double>> mapAllMinMaxPropertiesValues(JSONObject heroesStatsJson) throws JSONException {
+        Map<String, Map<String, Double>> propertyMinMaxMap = new HashMap<>();
+
+        // Iterate over each hero in the JSON object
+        for (Iterator it = heroesStatsJson.keys(); it.hasNext(); ) {
+            String heroName = (String) it.next();
+            JSONObject heroObj = heroesStatsJson.getJSONObject(heroName);
+
+            // Iterate over each property in the hero's JSON object
+            for (Iterator iter = heroObj.keys(); iter.hasNext(); ) {
+                String property = (String) iter.next();
+                if (heroObj.get(property) instanceof Number) {
+                    double value = Helper.roundToThreeDecimals(heroObj.getDouble(property));
+
+                    // Update the minimum and maximum values for the property
+                    if (!propertyMinMaxMap.containsKey(property)) {
+                        // If the property is encountered for the first time, initialize the min and max values
+                        Map<String, Double> minMaxValues = new HashMap<>();
+                        minMaxValues.put("min", value);
+                        minMaxValues.put("max", value);
+                        propertyMinMaxMap.put(property, minMaxValues);
+                    } else {
+                        // Update the min and max values if necessary
+                        Map<String, Double> minMaxValues = propertyMinMaxMap.get(property);
+                        double minValue = minMaxValues.get("min");
+                        double maxValue = minMaxValues.get("max");
+
+                        if (value < minValue) {
+                            minMaxValues.put("min", value);
+                        }
+                        if (value > maxValue) {
+                            minMaxValues.put("max", value);
+                        }
+                    }
+                }
+            }
+        }
+
+        return propertyMinMaxMap;
+    }
+
     public static Double getHeroZScore(String hero, String propertyName) throws UnirestException, JSONException {
         if (zScoresMap == null) {
             JSONObject heroesStatsJson = heroDisplay.getHeroesWithStatsJson();
@@ -125,7 +164,7 @@ public class Calculations {
             throw new IllegalArgumentException("Property not found for hero " + hero + ": " + propertyName);
         }
 
-        return zScore;
+        return Helper.roundToThreeDecimals(zScore);
     }
 
 }
