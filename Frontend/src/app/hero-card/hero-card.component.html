@@ -8,6 +8,15 @@
           {{ hero?.displayName }}
           <img class="property-img" [src]="(primaryStatsIcons[hero.stat.primaryAttributeEnum]).icon" />
         </div>
+        <div class="hp-bar-container">
+          <div class="hp-bar">
+            <span class="raw-hp-stat">{{ hero?.stat.rawHP }}</span>
+            <span class="raw-hp-regen-stat"> +{{ hero?.stat.rawHPRegen }}</span>
+          </div>
+          <div
+            [ngClass]="{'arrow-up': isComparing && getComparisonClass('rawHP') === 'arrow-up', 'arrow-down': isComparing && getComparisonClass('rawHP') === 'arrow-down'}">
+          </div>
+        </div>
       </th>
     </tr>
   </thead>

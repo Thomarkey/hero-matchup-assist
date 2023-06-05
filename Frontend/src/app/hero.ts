@@ -18,7 +18,7 @@ export interface Hero {
     abilityId: number;
   }[];
   stat: {
-    [key: string]: number | boolean | string;
+    [key: string]: number | boolean | string | undefined;
     gameVersionId: number;
     enabled: boolean;
     heroUnlockOrder: number;
@@ -50,6 +50,8 @@ export interface Hero {
     visionDaytimeRange: number;
     visionNighttimeRange: number;
     complexity: number;
+    rawHP: number;
+    rawHPRegen: number;
   };
   language: {
     heroId: number;

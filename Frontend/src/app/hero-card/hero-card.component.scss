@@ -81,3 +81,33 @@
     margin-right: 2px;
     vertical-align: middle;
 }
+
+.hp-bar-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.hp-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(to right, #107a2c, #12a339, #5cff8a);
+    padding: 4px 8px;
+    border-radius: 4px;
+    height: 20px;
+}
+
+.raw-hp-stat {
+    color: #fff;
+    font-weight: lighter;
+}
+
+.raw-hp-regen-stat {
+    color: black;
+    font-size: 80%;
+    position: relative;
+    right: -20px;
+    font-weight: lighter;
+}

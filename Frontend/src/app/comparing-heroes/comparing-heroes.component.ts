@@ -25,13 +25,23 @@ export class ComparingHeroesComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(async (params) => {
       const firstHero = params.get('firstHero');
-      if (firstHero) {
-        this.firstHero = await this.heroService.getHero(firstHero).toPromise();
-      }
       const secondHero = params.get('secondHero');
-      if (secondHero) {
+
+      if (firstHero && secondHero) {
+        this.firstHero = await this.heroService.getHero(firstHero).toPromise();
         this.secondHero = await this.heroService.getHero(secondHero).toPromise();
       }
+
+      if (this.firstHero && this.firstHero?.stat) {
+        this.firstHero.stat.rawHP = this.propertyService.calculateRawHP(this.firstHero);
+        this.firstHero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.firstHero);
+      }
+
+      if (this.secondHero && this.secondHero?.stat) {
+        this.secondHero.stat.rawHP = this.propertyService.calculateRawHP(this.secondHero);
+        this.secondHero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.secondHero);
+      }
+
       this.loading = false;
     });
   }

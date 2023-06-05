@@ -4,7 +4,7 @@ import { Hero } from '../hero';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PropertyService } from '../services/property/property.service';
 import { SharedService } from '../services/shared/shared.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-hero',
@@ -49,31 +49,24 @@ export class HeroComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    console.log('ngOnInit start');
-    console.log("isComparing : " + this.isComparing);
-    console.log("ngOnit from hero component");
-
     this.route.paramMap.subscribe(async (params: ParamMap) => {
       this.heroName = params.get('firstHero')!;
       if (this.heroName) {
-        console.log('getting hero');
         this.hero = await this.getHero(this.heroName);
         console.log('hero retrieved', this.hero);
+        if (this.hero && this.hero.stat) {
+          this.hero.stat.rawHP = this.propertyService.calculateRawHP(this.hero);
+          this.hero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.hero);
+        }
       }
     });
-
-    console.log('ngOnInit end');
   }
 
 
 
   async getHero(heroName: string): Promise<Hero | undefined> {
     try {
-      console.log('getHero start', heroName);
       const hero = await this.heroService.getHero(heroName).toPromise();
-
-      console.log('this hero: ' + hero?.displayName);
-      console.log('loading  : ' + this.loading);
       console.log('hero retrieved in getHero', hero);
 
       return hero;
@@ -94,3 +87,4 @@ export class HeroComponent {
 
 
 }
+
