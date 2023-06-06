@@ -31,7 +31,7 @@ export class PropertyService {
 
   calculateRawHP(hero: Hero): number {
     const rawHP = MAIN_HP + (HP_MULTIPLIER * hero.stat.strengthBase);
-    return +rawHP.toFixed(2);
+    return +rawHP.toFixed(0);
   }
 
   calculateRawHPRegen(hero: Hero): number {

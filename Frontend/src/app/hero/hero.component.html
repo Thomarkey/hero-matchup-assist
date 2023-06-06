@@ -2,7 +2,7 @@
 
 <div class="compare-wrapper">
   <div class="toBeCompared">
-    <span>compare to: </span>
+    <span>compare {{hero!.displayName}} to : </span>
     <app-hero-dropdown [firstHero]="hero"
       (heroSelectedEvent)="onHeroSelection($event.firstHero, $event.secondHero)"></app-hero-dropdown>
   </div>

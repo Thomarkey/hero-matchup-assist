@@ -8,23 +8,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class HeroPropertyCheckboxesComponent {
   @Input() showProperties: { name: string; checked: boolean }[] = [];
   @Output() selectedProperties = new EventEmitter<string[]>();
-  selected: string[] = [];
+  showPropertyOptions: boolean = true;
 
-  toggleProperty(property: any) {
+  toggleProperty(property: any): void {
     property.checked = !property.checked;
-    console.log(this.showProperties);
-    console.log(property.checked);
-
-    // this.ngOnChanges();
   }
 
-  // ngOnChanges() {
-  //   this.selected = this.showProperties
-  //     .filter((property) => property.checked)
-  //     .map((property) => property.name);
-  //   this.selectedProperties.emit(this.selected);
-  // }
+  toggleShowProperties(): void {
+    this.showPropertyOptions = !this.showPropertyOptions;
+  }
 
-
-  
 }

@@ -1,11 +1,17 @@
 <div class="property-checkboxes">
+  <label class="show-properties-lbl" (click)="toggleShowProperties()">
+    {{ showPropertyOptions ? 'Hide stats' : 'Show stats' }}
+  </label>
+
+  <div class="checkbox-container" *ngIf="showPropertyOptions">
+
     <div *ngFor="let property of showProperties">
       <label class="property-checkbox">
-      <input type="checkbox"
-        [checked]="property.checked"
-        (change)="toggleProperty(property)">
+        <input type="checkbox" [checked]="property.checked" (change)="toggleProperty(property)"
+          id="{{ property.name }}">
+        <div class="checkbox-custom"></div>
         <img class="property-img" [src]="(property.name | transformedProperties).icon" />
-        <span>{{ (property.name | transformedProperties).displayName }}</span>
+        <span class="property-name">{{ (property.name | transformedProperties).displayName }}</span>
       </label>
     </div>
-</div> 
+  </div>
