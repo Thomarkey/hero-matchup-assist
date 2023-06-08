@@ -13,14 +13,12 @@ import { PropertyService } from './services/property/property.service';
 export class AppComponent {
   constructor(private sharedService: SharedService, private heroService: HeroService, private propertiesZScoresService: PropertiesZScoresService, private propertyService: PropertyService) { }
 
-  title = "Select your hero";
+  title = "CHOOSE YOUR HERO";
   firstHero: string | undefined;
-  // propertiesZScores!: Map<string, Map<string, number>>;
 
   ngOnInit() {
     this.heroService.getAllHeroesPropertiesZScores().subscribe(data => {
       this.propertiesZScoresService.setPropertiesZScores(data);
-      // this.propertiesZScores = data;
       console.log("getAllHeroesPropertiesZScores : ");
       console.log(data);
     });
