@@ -30,6 +30,7 @@ export interface Hero {
     startingMagicArmor: number;
     startingDamageMin: number;
     startingDamageMax: number;
+    startingDamage: number;
     attackRate: number;
     attackAnimationPoint: number;
     attackAcquisitionRange: number;
@@ -50,7 +51,7 @@ export interface Hero {
     visionDaytimeRange: number;
     visionNighttimeRange: number;
     complexity: number;
-    rawHP: number;
+    hp: number;
     rawHPRegen: number;
   };
   language: {

@@ -99,9 +99,6 @@ export const heroImageMappings = {
     largeImage: 'assets/heroes/crops/death_prophet.png',
     smallImage: 'assets/heroes/death_prophet.png'
   },
-
-
-
   'Disruptor': {
     largeImage: 'assets/heroes/crops/disruptor.png',
     smallImage: 'assets/heroes/disruptor.png'
@@ -262,7 +259,6 @@ export const heroImageMappings = {
     largeImage: 'assets/heroes/crops/naga_siren.png',
     smallImage: 'assets/heroes/naga_siren.png'
   },
-
   'Natures Prophet': {
     largeImage: 'assets/heroes/crops/natures_prophet.png',
     smallImage: 'assets/heroes/natures_prophet.png'
@@ -292,8 +288,8 @@ export const heroImageMappings = {
     smallImage: 'assets/heroes/oracle.png'
   },
   'Outworld Destroyer': {
-    largeImage: 'assets/heroes/crops/outworld_devourer.png',
-    smallImage: 'assets/heroes/outworld_devourer.png'
+    largeImage: 'assets/heroes/crops/outworld_destroyer.png',
+    smallImage: 'assets/heroes/outworld_destroyer.png'
   },
   'Pangolier': {
     largeImage: 'assets/heroes/crops/pangolier.png',

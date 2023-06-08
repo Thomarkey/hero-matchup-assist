@@ -15,6 +15,10 @@ export const propertyMappings = {
     displayName: 'Starting Damage (Max)',
     icon: 'assets/icons/icon_damage.png'
   },
+  startingDamage: {
+    displayName: 'Starting Damage',
+    icon: 'assets/icons/icon_damage.png'
+  },
   attackRate: {
     displayName: 'Attack Rate',
     icon: ''

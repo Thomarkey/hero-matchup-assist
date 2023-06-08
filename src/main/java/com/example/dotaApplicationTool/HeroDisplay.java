@@ -2,6 +2,7 @@ package com.example.dotaApplicationTool;
 
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class HeroDisplay {
     final String URL = "https://api.stratz.com/api/v1/Hero";
     final String BEARER = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTc5NzgzMzE0OTgiLCJ1bmlxdWVfbmFtZSI6IlRPTUFUT1JPIiwiU3ViamVjdCI6ImYzNDg2ODVjLWYyYTAtNDllZS1hNGYwLWM5ZmUwYjc4OWUyYiIsIlN0ZWFtSWQiOiIxODA2NTc3MCIsIm5iZiI6MTY4MjM0MTYzNCwiZXhwIjoxNzEzODc3NjM0LCJpYXQiOjE2ODIzNDE2MzQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.XtyfxyjVDpP5DTHMCEnIuYpFqcnMqqu4M9l-Lod-Tnk";
 
-    public String getAllHeroes() throws UnirestException {
+    public String getAllHeroes() throws UnirestException, JSONException {
         Unirest.setTimeouts(0, 0);
         HttpResponse<String> response = Unirest.get(URL)
                 .header("Authorization", "Bearer " + BEARER)
@@ -34,11 +35,16 @@ public class HeroDisplay {
 
         System.out.println("Response code: " + response.getStatus() + " " + LocalDateTime.now());
 
-        return response.getBody();
+        JSONObject responseJSON = new JSONObject(response.getBody());
+        JSONObject updatedJson = addExtraStatsToHeroes(responseJSON);
+
+
+        return updatedJson.toString();
     }
 
+
     @RequestMapping(method = RequestMethod.GET, path = "api/heroes")
-    public String getHeroes() throws UnirestException {
+    public String getHeroes() throws UnirestException, JSONException {
         return getAllHeroes();
     }
 
@@ -111,6 +117,38 @@ public class HeroDisplay {
         }
 
         System.out.println(resultJson);
+        return resultJson;
+    }
+
+    //EXTRA STATS: attackDamage, HP, rawHPRegen
+    public JSONObject addExtraStatsToHeroes(JSONObject heroesJson) throws JSONException {
+        JSONObject resultJson = new JSONObject();
+
+        Iterator<String> keys = heroesJson.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            JSONObject heroObj = heroesJson.getJSONObject(key);
+            String displayName = heroObj.getString("displayName");
+            JSONObject statObj = heroObj.getJSONObject("stat");
+
+//            int startingDamageMin = statObj.getInt("startingDamageMin");
+//            int startingDamageMax = statObj.getInt("startingDamageMax");
+//            int startingDamage = (startingDamageMin + startingDamageMax) / 2;
+            int startingDamage = Calculations.calculateStartingDamage(statObj.getInt("startingDamageMin"), statObj.getInt("startingDamageMax"));
+            double hp = Calculations.calculateHP(statObj.getInt("strengthBase"));
+            double rawHPRegen = Calculations.calculateRawHPRegen(statObj.getInt("hpRegen"), statObj.getInt("strengthBase"));
+
+            statObj.put("startingDamage", startingDamage);
+            statObj.put("hp", hp);
+            statObj.put("rawHPRegen", rawHPRegen);
+
+            JSONObject updatedHeroObj = new JSONObject();
+            updatedHeroObj.put("displayName", displayName);
+            updatedHeroObj.put("stat", statObj);
+
+            resultJson.put(displayName, updatedHeroObj);
+        }
+
         return resultJson;
     }
 

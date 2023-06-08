@@ -9,7 +9,23 @@ import java.util.*;
 import static com.example.dotaApplicationTool.HeroDisplay.zScoresMap;
 
 public class Calculations {
+    static final int MAIN_HP = 120;
+    static final int HP_MULTIPLIER = 22;
+    static final double HP_REGEN_MULTIPLIER = 0.1;
     static HeroDisplay heroDisplay = new HeroDisplay();
+
+    public static int calculateStartingDamage(int startingDamageMin, int startingDamageMax) {
+        return (startingDamageMin + startingDamageMax) / 2;
+    }
+
+    public static double calculateHP(int strengthBase) {
+        return MAIN_HP + (HP_MULTIPLIER * strengthBase);
+    }
+
+    public static double calculateRawHPRegen(int hpRegen, int strengthBase) {
+        double rawHPRegen = hpRegen + (HP_REGEN_MULTIPLIER * strengthBase);
+        return Math.round(rawHPRegen * 10.0) / 10.0;
+    }
 
     public int getStatsRank(JSONObject json, String selectedHero, String selectedStat) throws JSONException {
         double selectedStatValue = json.getJSONObject(selectedHero).getDouble(selectedStat);
@@ -107,6 +123,8 @@ public class Calculations {
         }
     }
 
+    //TODO: seperate attackrange scores for melee vs ranged
+    //TODO: create starting damage average (min/max)
     public static Map<String, Map<String, Double>> mapAllMinMaxPropertiesValues(JSONObject heroesStatsJson) throws JSONException {
         Map<String, Map<String, Double>> propertyMinMaxMap = new HashMap<>();
 

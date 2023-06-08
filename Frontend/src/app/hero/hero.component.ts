@@ -54,10 +54,6 @@ export class HeroComponent {
       if (this.heroName) {
         this.hero = await this.getHero(this.heroName);
         console.log('hero retrieved', this.hero);
-        if (this.hero && this.hero.stat) {
-          this.hero.stat.rawHP = this.propertyService.calculateRawHP(this.hero);
-          this.hero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.hero);
-        }
       }
     });
   }

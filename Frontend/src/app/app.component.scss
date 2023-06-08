@@ -1,20 +1,5 @@
-.compare-wrapper {
-    overflow: auto;
-}
-
-.toBeCompared {
-    float: right;
-    margin-bottom: 2em;
-}
-
-button.compare {
-    margin: 10px;
-}
-
-.hero-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.card-title {
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .hero-card.isComparing {

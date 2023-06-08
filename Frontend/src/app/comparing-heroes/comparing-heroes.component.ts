@@ -31,17 +31,6 @@ export class ComparingHeroesComponent implements OnInit {
         this.firstHero = await this.heroService.getHero(firstHero).toPromise();
         this.secondHero = await this.heroService.getHero(secondHero).toPromise();
       }
-
-      if (this.firstHero && this.firstHero?.stat) {
-        this.firstHero.stat.rawHP = this.propertyService.calculateRawHP(this.firstHero);
-        this.firstHero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.firstHero);
-      }
-
-      if (this.secondHero && this.secondHero?.stat) {
-        this.secondHero.stat.rawHP = this.propertyService.calculateRawHP(this.secondHero);
-        this.secondHero.stat.rawHPRegen = this.propertyService.calculateRawHPRegen(this.secondHero);
-      }
-
       this.loading = false;
     });
   }
