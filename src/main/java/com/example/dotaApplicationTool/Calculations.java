@@ -124,7 +124,6 @@ public class Calculations {
     }
 
     //TODO: seperate attackrange scores for melee vs ranged
-    //TODO: create starting damage average (min/max)
     public static Map<String, Map<String, Double>> mapAllMinMaxPropertiesValues(JSONObject heroesStatsJson) throws JSONException {
         Map<String, Map<String, Double>> propertyMinMaxMap = new HashMap<>();
 
