@@ -2,7 +2,6 @@ package com.example.dotaApplicationTool;
 
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,8 @@ import static com.example.dotaApplicationTool.Calculations.calculateZScores;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"https://hero-matchup-assistant.herokuapp.com", "http://hero-matchup-assistant.herokuapp.com"})
 public class HeroDisplay {
 
     public static Map<String, Map<String, Double>> zScoresMap;
