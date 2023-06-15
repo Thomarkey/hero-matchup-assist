@@ -12,8 +12,6 @@ export class HeroService {
 
   private backendApiUrl = environment.backendApiUrl;
 
-  // private backendApiUrl = 'http://localhost:8080/hero';
-
   constructor(private http: HttpClient) { }
 
   getHero(heroName: string): Observable<Hero> {
@@ -26,7 +24,7 @@ export class HeroService {
   }
 
   getHeroPropertyZScore(heroName: string, propertyName: string): Observable<number> {
-    const url = `${this.backendApiUrl}/${heroName}/${propertyName}`;
+    const url = `${this.backendApiUrl}/hero/${heroName}/${propertyName}`;
     return this.http.get<number>(url);
   }
 
