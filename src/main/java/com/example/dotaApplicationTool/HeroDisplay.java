@@ -17,8 +17,7 @@ import static com.example.dotaApplicationTool.Calculations.calculateZScores;
 
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = {"https://hero-matchup-assistant.herokuapp.com", "http://hero-matchup-assistant.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:4200", "https://hero-matchup-assistant.herokuapp.com", "http://hero-matchup-assistant.herokuapp.com"})
 public class HeroDisplay {
 
     public static Map<String, Map<String, Double>> zScoresMap;

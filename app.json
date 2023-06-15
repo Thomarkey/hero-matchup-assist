@@ -1,0 +1,12 @@
+{
+  "environments": {
+    "production": {
+      "scripts": {
+        "postdeploy": "ng build --configuration=production"
+      }
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo 'Build completed.'"
+  }
+}

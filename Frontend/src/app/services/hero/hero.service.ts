@@ -2,23 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from 'src/app/hero';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  private backendApiUrl = 'http://localhost:8080/hero';
+  private backendApiUrl = environment.backendApiUrl;
+
+  // private backendApiUrl = 'http://localhost:8080/hero';
 
   constructor(private http: HttpClient) { }
 
   getHero(heroName: string): Observable<Hero> {
-    const url = `${this.backendApiUrl}/${heroName}`;
+    const url = `${this.backendApiUrl}/hero/${heroName}`;
     return this.http.get<Hero>(url);
   }
 
   getHeroNames(): Observable<string[]> {
-    return this.http.get<string[]>('http://localhost:8080/heroNames');
+    return this.http.get<string[]>(`${this.backendApiUrl}/heroNames`);
   }
 
   getHeroPropertyZScore(heroName: string, propertyName: string): Observable<number> {
@@ -27,12 +31,12 @@ export class HeroService {
   }
 
   getAllHeroesPropertiesZScores(): Observable<Map<string, Map<string, number>>> {
-    const url = `http://localhost:8080/propertiesZScores`;
+    const url = `${this.backendApiUrl}/propertiesZScores`;
     return this.http.get<Map<string, Map<string, number>>>(url);
   }
 
   getAllHeroesMinMaxPropertiesValues(): Observable<Map<string, Map<string, number>>> {
-    const url = `http://localhost:8080/minMaxPropertiesValues`;
+    const url = `${this.backendApiUrl}/minMaxPropertiesValues`;
     return this.http.get<Map<string, Map<string, number>>>(url);
   }
 }
