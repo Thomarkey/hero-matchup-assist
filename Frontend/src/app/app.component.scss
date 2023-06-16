@@ -1,3 +1,26 @@
+.search-btn {
+    padding: .375rem 2.250rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: linear-gradient(353deg, #3b6a42, #578e59, #4a8351);
+    color: #ffffff;
+    box-shadow: 0 0 6px rgb(104, 121, 216, 0.2);
+    transition: box-shadow 0.3s ease;
+    outline: none;
+}
+
+.search-btn:hover {
+    box-shadow: 0 0 8px #15212d, 0 0 10px rgba(21, 33, 45, 0.2), 0 0 20px 5px rgba(21, 33, 45, 0.1), 0 0 6px #f8f0d9;
+}
+
+
 .card-title {
     font-family: 'Roboto Condensed', sans-serif;
 }
