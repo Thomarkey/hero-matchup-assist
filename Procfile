@@ -1,1 +1,0 @@
-web: sh -c 'cd Frontend && npm install && npm run build --configuration=production && cd .. && java -Dserver.port=$PORT $JAVA_OPTS -jar target/dotaApplicationTool-0.0.1-SNAPSHOT.jar'
