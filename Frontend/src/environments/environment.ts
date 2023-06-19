@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    backendApiUrl: 'testURL',
+    backendApiUrl: 'https://hero-matchup-assistant-25269114e6bf.herokuapp.com/',
 };
