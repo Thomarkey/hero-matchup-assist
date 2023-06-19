@@ -15,7 +15,8 @@ app.get('/*', (req, res) => {
   res.sendFile('index.html', { root: distPath });
 });
 
+const host = '0.0.0.0';
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log('Server is running on port', port);
 });
