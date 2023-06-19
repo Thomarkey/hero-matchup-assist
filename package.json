@@ -7,7 +7,7 @@
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "npm install --force --prefix Frontend && npm run build --prefix Frontend"
+    "heroku-postbuild": "npm install --force --prefix Frontend && export backendApiUrl=https://hero-matchup-assistant-25269114e6bf.herokuapp.com/ && npm run build --prefix Frontend"
   },
   "private": true,
   "dependencies": {
