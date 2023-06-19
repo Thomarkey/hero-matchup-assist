@@ -20,11 +20,6 @@ const setJsonContentType = (req, res, next) => {
 // Apply the middleware to all API calls
 app.use('/', setJsonContentType);
 
-
-app.get('/*', (req, res) => {
-  res.sendFile('index.html', { root: distPath });
-});
-
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log('Server is running on port', port);
