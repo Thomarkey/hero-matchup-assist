@@ -21,9 +21,16 @@ export class HeroPropertiesZscoreComponent {
   maxZScore: number | undefined;
   minPropertyValue: number | undefined;
   maxPropertyValue: number | undefined;
+
+  minZScoreValue: number | undefined;
+  maxZScoreValue: number | undefined;
+
   markerPosition: number | undefined;
   updatetMarkerPosition: number | undefined;
   easyMarkerPosition: number | undefined;
+
+  zScoreMarkerPosition: number | undefined;
+
   hovering: boolean = false;
 
   constructor(private heroService: HeroService, private propertiesZScoresService: PropertiesZScoresService, private propertyService: PropertyService) { }
@@ -49,7 +56,10 @@ export class HeroPropertiesZscoreComponent {
           this.heroZScore = zScore;
           // this.calculateMarkerPosition(zScore, propertyName);
           // this.calculateUpdatetMarkerPosition(zScore, propertyName);
-          this.calculateEasyMarkerPosition(propertyName);
+
+          // this.calculateEasyMarkerPosition(propertyName);
+
+          this.calculateZScoresMarkerPosition(propertyName);
         }
         this.loading = false;
       });
@@ -137,6 +147,30 @@ export class HeroPropertiesZscoreComponent {
       console.log('marker position : ', this.easyMarkerPosition)
     }
 
+  }
+
+  calculateZScoresMarkerPosition(propertyName: string): void {
+    const zScoresMap = this.propertiesZScoresService.getPropertiesZScoresMap();
+
+    if (zScoresMap) {
+      const minMaxZScoresValuesObj = zScoresMap.get(propertyName);
+
+
+      this.minZScoreValue = minMaxZScoresValuesObj ? Object.entries(minMaxZScoresValuesObj)[0][1] : {};
+      this.maxZScoreValue = minMaxZScoresValuesObj ? Object.entries(minMaxZScoresValuesObj)[1][1] : {};
+
+      console.log('Min:', this.minZScoreValue);
+      console.log('Max:', this.maxZScoreValue);
+      console.log('current:', this.propertyValue);
+
+      if (this.minZScoreValue === this.maxZScoreValue) {
+        this.zScoreMarkerPosition = 0.5;
+      } else {
+        this.zScoreMarkerPosition = (Number(this.propertyValue) - Number(this.minZScoreValue)) / (Number(this.maxZScoreValue) - Number(this.minZScoreValue));
+      }
+      console.log('marker position : ', this.easyMarkerPosition)
+
+    }
   }
 
 
