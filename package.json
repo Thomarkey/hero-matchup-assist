@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild": "ng build",
-    "prebuild": "cd frontend"
+    "heroku-prebuild": "cd frontend"
   },
   "private": true,
   "dependencies": {
