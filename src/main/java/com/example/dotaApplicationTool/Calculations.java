@@ -71,6 +71,7 @@ public class Calculations {
         return statsRankMap;
     }
 
+
     public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
         if (zScoresMap == null) {
             Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
@@ -78,16 +79,35 @@ public class Calculations {
             // Step 1: Calculate mean and standard deviation for each statistic
             Map<String, Double> meanMap = new HashMap<>();
             Map<String, Double> stdDevMap = new HashMap<>();
+
+            // Step 2: Separate ranged and melee heroes based on attack range
+            List<Double> rangedAttackRanges = new ArrayList<>();
+            List<Double> meleeAttackRanges = new ArrayList<>();
+
             for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
                 String hero = heroIter.next();
                 JSONObject heroObj = json.getJSONObject(hero);
+                boolean isRanged = heroObj.getInt("isRanged") == 1;
+
+                // Iterate over the hero's stats
                 for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
                     String stat = statIter.next();
                     double value = heroObj.getDouble(stat);
-                    meanMap.merge(stat, value, Double::sum);
-                    stdDevMap.merge(stat, value * value, Double::sum);
+
+                    if (stat.equals("attackRange")) {
+                        if (isRanged) {
+                            rangedAttackRanges.add(value);
+                        } else {
+                            meleeAttackRanges.add(value);
+                        }
+                    } else {
+
+                        meanMap.merge(stat, value, Double::sum);
+                        stdDevMap.merge(stat, value * value, Double::sum);
+                    }
                 }
             }
+
             int numHeroes = json.length();
             for (String stat : meanMap.keySet()) {
                 double mean = meanMap.get(stat) / numHeroes;
@@ -96,21 +116,35 @@ public class Calculations {
                 meanMap.put(stat, mean);
             }
 
-            // Step 2: Calculate z-score for each statistic of each hero
+            // Step 3: Calculate z-score for each statistic of each hero
             for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
                 String hero = heroIter.next();
                 JSONObject heroObj = json.getJSONObject(hero);
+                boolean isRanged = heroObj.getInt("isRanged") == 1;
                 Map<String, Double> zScoreMap = new HashMap<>();
                 for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
                     String stat = statIter.next();
                     double value = heroObj.getDouble(stat);
-                    double mean = meanMap.get(stat);
-                    double stdDev = stdDevMap.get(stat);
+                    double mean = meanMap.getOrDefault(stat, 0.0);
+                    double stdDev = stdDevMap.getOrDefault(stat, 0.0);
                     double zScore;
-                    if (stdDev == 0) {
-                        zScore = 0;
+
+                    if (stat.equals("attackRange")) {
+                        if (isRanged) {
+                            double rangedMean = calculateMean(rangedAttackRanges);
+                            double rangedStdDev = calculateStdDev(rangedAttackRanges, rangedMean);
+                            zScore = (value - rangedMean) / rangedStdDev;
+                        } else {
+                            double meleeMean = calculateMean(meleeAttackRanges);
+                            double meleeStdDev = calculateStdDev(meleeAttackRanges, meleeMean);
+                            zScore = (value - meleeMean) / meleeStdDev;
+                        }
                     } else {
-                        zScore = (value - mean) / stdDev;
+                        if (stdDev == 0) {
+                            zScore = 0;
+                        } else {
+                            zScore = (value - mean) / stdDev;
+                        }
                     }
 
                     zScoreMap.put(stat, zScore);
@@ -122,6 +156,27 @@ public class Calculations {
             return zScoresMap;
         }
     }
+
+    // Helper method to calculate the mean
+    private static double calculateMean(List<Double> values) {
+        double sum = 0;
+        for (double value : values) {
+            sum += value;
+        }
+        return sum / values.size();
+    }
+
+    // Helper method to calculate the standard deviation
+    private static double calculateStdDev(List<Double> values, double mean) {
+        double sumSquaredDiff = 0;
+        for (double value : values) {
+            double diff = value - mean;
+            sumSquaredDiff += diff * diff;
+        }
+        double variance = sumSquaredDiff / values.size();
+        return Math.sqrt(variance);
+    }
+
 
     //TODO: seperate attackrange scores for melee vs ranged
     public static Map<String, Map<String, Double>> mapAllMinMaxPropertiesValues(JSONObject heroesStatsJson) throws JSONException {

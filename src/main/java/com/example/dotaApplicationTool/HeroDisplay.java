@@ -41,12 +41,10 @@ public class HeroDisplay {
         return updatedJson.toString();
     }
 
-
     @RequestMapping(method = RequestMethod.GET, path = "api/heroes")
     public String getHeroes() throws UnirestException, JSONException {
         return getAllHeroes();
     }
-
 
     @GetMapping("/hero/{heroName}")
     public String getHero(@PathVariable String heroName) throws UnirestException, JSONException {
@@ -110,6 +108,9 @@ public class HeroDisplay {
                 if (statValue instanceof Number) {
                     statObj.put(statKey, statValue);
                 }
+                if (statKey.equals("attackType")) {
+                    statObj.put("isRanged", statValue.equals("Ranged") ? 1 : 0);
+                }
             }
 
             resultJson.put(displayName, statObj);
@@ -130,9 +131,6 @@ public class HeroDisplay {
             String displayName = heroObj.getString("displayName");
             JSONObject statObj = heroObj.getJSONObject("stat");
 
-//            int startingDamageMin = statObj.getInt("startingDamageMin");
-//            int startingDamageMax = statObj.getInt("startingDamageMax");
-//            int startingDamage = (startingDamageMin + startingDamageMax) / 2;
             int startingDamage = Calculations.calculateStartingDamage(statObj.getInt("startingDamageMin"), statObj.getInt("startingDamageMax"));
             double hp = Calculations.calculateHP(statObj.getInt("strengthBase"));
             double rawHPRegen = Calculations.calculateRawHPRegen(statObj.getInt("hpRegen"), statObj.getInt("strengthBase"));
