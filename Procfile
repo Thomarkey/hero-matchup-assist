@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/dotaApplicationTool-0.0.1-SNAPSHOT.jar & node server.js
+web: java --debug -Dserver.port=$PORT -jar target/dotaApplicationTool-0.0.1-SNAPSHOT.jar & node server.js
