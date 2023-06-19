@@ -1,12 +1,16 @@
 const express = require('express');
-const app = express();
+const path = require('path');
 
-app.use(express.static('Frontend/dist'));
+const app = express();
+const distPath = path.join(__dirname, 'Frontend', 'dist', 'frontend');
+
+app.use(express.static(distPath));
 
 app.get('/*', (req, res) => {
-  res.sendFile('index.html', { root: 'Frontend/dist' });
+  res.sendFile('index.html', { root: distPath });
 });
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log('Server is running on port', process.env.PORT || 8080);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log('Server is running on port', port);
 });
