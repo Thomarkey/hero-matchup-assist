@@ -7,7 +7,7 @@
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "npm install --force --prefix Frontend && npm run build --prefix Frontend && npm install --prefix Backend && npm run build --prefix Backend"
+    "heroku-postbuild": "npm install --force --prefix Frontend && npm run build --prefix Frontend && npm install --prefix . && npm run build --prefix ."
   },
   "private": true,
   "dependencies": {
