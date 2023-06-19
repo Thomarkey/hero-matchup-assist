@@ -7,6 +7,7 @@ const distPath = path.join(__dirname, 'Frontend', 'dist', 'frontend');
 app.use(express.static(distPath));
 
 app.get('/*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store'); // Set cache control header
   res.sendFile('index.html', { root: distPath });
 });
 
