@@ -11,6 +11,16 @@ app.use(express.static(distPath, { setHeaders: (res, filePath) => {
   }
 }}));
 
+// Define the middleware function
+const setJsonContentType = (req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  next(); // Call next to proceed to the next middleware or route handler
+};
+
+// Apply the middleware to all API calls
+app.use('/', setJsonContentType);
+
+
 app.get('/*', (req, res) => {
   res.sendFile('index.html', { root: distPath });
 });
