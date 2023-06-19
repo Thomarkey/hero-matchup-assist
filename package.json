@@ -1,6 +1,15 @@
 {
-  "name": "hero_matchup_assistant",
+  "name": "frontend",
   "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build --configuration=production",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "heroku-postbuild": "npm install --force --prefix Frontend && npm run build --prefix Frontend"
+
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
