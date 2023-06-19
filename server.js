@@ -4,10 +4,14 @@ const path = require('path');
 const app = express();
 const distPath = path.join(__dirname, 'Frontend', 'dist', 'frontend');
 
-app.use(express.static(distPath));
+// Set cache control headers for static files
+app.use(express.static(distPath, { setHeaders: (res, filePath) => {
+  if (filePath.endsWith('.js') || filePath.endsWith('.css')) {
+    res.setHeader('Cache-Control', 'no-store');
+  }
+}}));
 
 app.get('/*', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store'); // Set cache control header
   res.sendFile('index.html', { root: distPath });
 });
 
