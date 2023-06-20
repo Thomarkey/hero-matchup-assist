@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    backendApiUrl: 'http://localhost:8080',
+    backendApiUrl: 'https://dota-hero-matchup-cfe3a3ef874f.herokuapp.com',
 };
