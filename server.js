@@ -4,8 +4,10 @@ const cors = require('cors');
 
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors());
+// Enable CORS
+app.use(cors({
+  origin: 'https://dota-hero-matchup-cfe3a3ef874f.herokuapp.com'
+}));
 
 const distPath = path.join(__dirname, 'Frontend', 'dist', 'frontend');
 
