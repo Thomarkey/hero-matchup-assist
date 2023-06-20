@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
+
 const distPath = path.join(__dirname, 'Frontend', 'dist', 'frontend');
 
 // Set cache control headers for static files
