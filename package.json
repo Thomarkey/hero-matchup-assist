@@ -1,14 +1,11 @@
 {
-  "name": "frontend",
+  "name": "backend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "heroku-postbuild": "ng build --prod && cp -R dist/* /src/main/resources/static"
-
+    "heroku-postbuild": "cd Frontend && npm install && ng build --prod && cp -R dist/Frontend/* ../dotaApplicationTool/src/main/resources/static"
   },
   "private": true,
   "dependencies": {
