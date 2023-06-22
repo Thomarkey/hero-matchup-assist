@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar Frontend/dist/frontend/index.html
