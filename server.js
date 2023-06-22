@@ -29,6 +29,8 @@ const setJsonContentType = (req, res, next) => {
 app.use('/', setJsonContentType);
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+const host = process.env.HOST ||'0.0.0.0';
+
+app.listen(port, host, () => {
   console.log('Server is running on port', port);
 });
