@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "heroku-postbuild": "cd Frontend && npm install && ng build && cp -R dist/frontend/* ../src/main/resources/static"
+    "build": "ng build",
+    "heroku-postbuild": "cd Frontend && npm install @angular/cli && ng build && cp -R dist/frontend/* ../src/main/resources/static"
   },
   "private": true,
   "dependencies": {
