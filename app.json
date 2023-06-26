@@ -2,7 +2,7 @@
   "environments": {
     "production": {
       "scripts": {
-        "postdeploy": "ng build --configuration=production"
+        "postdeploy": "cd frontend && ng build --configuration=production"
       }
     }
   },
