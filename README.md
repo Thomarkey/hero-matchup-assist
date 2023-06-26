@@ -1,4 +1,4 @@
-<h1>Hero Matchup Assist</h1>
+<h1>Dota Hero Matchup Assist</h1>
 
 <h2>Overview</h2>
 
