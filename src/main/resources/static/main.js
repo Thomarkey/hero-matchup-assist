@@ -2305,8 +2305,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "environment": () => (/* binding */ environment)
 /* harmony export */ });
 const environment = {
-  production: true,
-  backendApiUrl: 'http://localhost:8080'
+  production: false,
+  backendApiUrl: 'https://dota-hero-matchup-cfe3a3ef874f.herokuapp.com'
 };
 
 /***/ }),
