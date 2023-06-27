@@ -13,7 +13,7 @@ import { PropertyService } from './services/property/property.service';
 export class AppComponent {
   constructor(private sharedService: SharedService, private heroService: HeroService, private propertiesZScoresService: PropertiesZScoresService, private propertyService: PropertyService) { }
 
-  title = "CHOOSE YOUR HERO";
+  title = "DOTA HERO MATCHUP ASSIST";
   firstHero: string | undefined;
 
   ngOnInit() {

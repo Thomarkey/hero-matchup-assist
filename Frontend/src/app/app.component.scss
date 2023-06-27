@@ -1,3 +1,11 @@
+a {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .search-btn {
     padding: .375rem 2.250rem;
     display: flex;
