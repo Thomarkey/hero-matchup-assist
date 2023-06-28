@@ -169,7 +169,6 @@ public class HeroDisplay {
         return minMaxPropertyValuesMap;
     }
 
-
     @GetMapping("/hero/{heroName}/{propertyName}")
     public Double getHeroPropertyZScore(@PathVariable String heroName, @PathVariable String propertyName) throws UnirestException, JSONException {
         return Calculations.getHeroZScore(heroName, propertyName);

@@ -166,9 +166,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loader_loader_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./loader/loader.component */ 5242);
 /* harmony import */ var _hero_properties_zscore_hero_properties_zscore_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hero-properties-zscore/hero-properties-zscore.component */ 8242);
 /* harmony import */ var _home_dropdown_home_dropdown_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home-dropdown/home-dropdown.component */ 5869);
-/* harmony import */ var _hero_header_hero_header_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./hero-header/hero-header.component */ 9016);
-/* harmony import */ var _comparing_heroes_comparing_heroes_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./comparing-heroes/comparing-heroes.component */ 8663);
-/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./footer/footer.component */ 970);
+/* harmony import */ var _comparing_heroes_comparing_heroes_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./comparing-heroes/comparing-heroes.component */ 8663);
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./footer/footer.component */ 970);
+/* harmony import */ var _hero_navigation_hero_navigation_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hero-navigation/hero-navigation.component */ 2725);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 2560);
 
 
@@ -202,7 +202,7 @@ AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵ
 });
 (function () {
   (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_15__["ɵɵsetNgModuleScope"](AppModule, {
-    declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent, _hero_hero_component__WEBPACK_IMPORTED_MODULE_2__.HeroComponent, _hero_dropdown_hero_dropdown_component__WEBPACK_IMPORTED_MODULE_3__.HeroDropdownComponent, _pipes_round_pipe__WEBPACK_IMPORTED_MODULE_4__.RoundPipe, _pipes_transformed_properties_pipe__WEBPACK_IMPORTED_MODULE_5__.TransformedPropertiesPipe, _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_6__.HeroImagesPipe, _hero_card_hero_card_component__WEBPACK_IMPORTED_MODULE_7__.HeroCardComponent, _hero_property_checkboxes_hero_property_checkboxes_component__WEBPACK_IMPORTED_MODULE_8__.HeroPropertyCheckboxesComponent, _loader_loader_component__WEBPACK_IMPORTED_MODULE_9__.LoaderComponent, _hero_properties_zscore_hero_properties_zscore_component__WEBPACK_IMPORTED_MODULE_10__.HeroPropertiesZscoreComponent, _home_dropdown_home_dropdown_component__WEBPACK_IMPORTED_MODULE_11__.HomeDropdownComponent, _hero_header_hero_header_component__WEBPACK_IMPORTED_MODULE_12__.HeroHeaderComponent, _comparing_heroes_comparing_heroes_component__WEBPACK_IMPORTED_MODULE_13__.ComparingHeroesComponent, _footer_footer_component__WEBPACK_IMPORTED_MODULE_14__.FooterComponent],
+    declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent, _hero_hero_component__WEBPACK_IMPORTED_MODULE_2__.HeroComponent, _hero_dropdown_hero_dropdown_component__WEBPACK_IMPORTED_MODULE_3__.HeroDropdownComponent, _pipes_round_pipe__WEBPACK_IMPORTED_MODULE_4__.RoundPipe, _pipes_transformed_properties_pipe__WEBPACK_IMPORTED_MODULE_5__.TransformedPropertiesPipe, _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_6__.HeroImagesPipe, _hero_card_hero_card_component__WEBPACK_IMPORTED_MODULE_7__.HeroCardComponent, _hero_property_checkboxes_hero_property_checkboxes_component__WEBPACK_IMPORTED_MODULE_8__.HeroPropertyCheckboxesComponent, _loader_loader_component__WEBPACK_IMPORTED_MODULE_9__.LoaderComponent, _hero_properties_zscore_hero_properties_zscore_component__WEBPACK_IMPORTED_MODULE_10__.HeroPropertiesZscoreComponent, _home_dropdown_home_dropdown_component__WEBPACK_IMPORTED_MODULE_11__.HomeDropdownComponent, _comparing_heroes_comparing_heroes_component__WEBPACK_IMPORTED_MODULE_12__.ComparingHeroesComponent, _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__.FooterComponent, _hero_navigation_hero_navigation_component__WEBPACK_IMPORTED_MODULE_14__.HeroNavigationComponent],
     imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_16__.BrowserModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_17__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_18__.FormsModule]
   });
 })();
@@ -596,11 +596,9 @@ class HeroDropdownComponent {
     this.router = router;
     this.heroSelectedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_2__.EventEmitter();
   }
-  //TODO: set heroeNames in shared service
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
       this.heroes = heroes;
-      console.log(heroes);
     });
   }
   heroSelected(event) {
@@ -612,12 +610,10 @@ class HeroDropdownComponent {
       console.log(secondHero);
       this.secondHero = secondHero;
       this.sharedService.setSecondHero(secondHero);
-      console.log("start of the emit");
       this.heroSelectedEvent.emit({
         firstHero: this.firstHero,
         secondHero
       });
-      console.log("emit should be done now?");
       this.router.navigate(['/' + this.firstHero?.displayName + '/' + this.secondHero?.displayName]);
     });
   }
@@ -660,69 +656,86 @@ HeroDropdownComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ 9016:
-/*!******************************************************!*\
-  !*** ./src/app/hero-header/hero-header.component.ts ***!
-  \******************************************************/
+/***/ 2725:
+/*!**************************************************************!*\
+  !*** ./src/app/hero-navigation/hero-navigation.component.ts ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HeroHeaderComponent": () => (/* binding */ HeroHeaderComponent)
+/* harmony export */   "HeroNavigationComponent": () => (/* binding */ HeroNavigationComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pipes/hero-images.pipe */ 8139);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/shared/shared.service */ 1571);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pipes/hero-images.pipe */ 8139);
 
 
 
-function HeroHeaderComponent_div_0_img_1_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "img", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](1, "heroImages");
-  }
-  if (rf & 2) {
-    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("src", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](1, 1, ctx_r1.hero == null ? null : ctx_r1.hero.displayName).largeImage, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
-  }
-}
-function HeroHeaderComponent_div_0_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, HeroHeaderComponent_div_0_img_1_Template, 2, 3, "img", 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r0.isComparing);
-  }
-}
-class HeroHeaderComponent {}
-HeroHeaderComponent.ɵfac = function HeroHeaderComponent_Factory(t) {
-  return new (t || HeroHeaderComponent)();
+
+const _c0 = function (a1) {
+  return ["/hero", a1];
 };
-HeroHeaderComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
-  type: HeroHeaderComponent,
-  selectors: [["app-hero-header"]],
+class HeroNavigationComponent {
+  constructor(sharedService) {
+    this.sharedService = sharedService;
+  }
+  ngOnChanges() {
+    this.sharedService.heroNamesList$?.subscribe(heroNames => {
+      this.heroNamesList = heroNames;
+      this.currentIndex = this.heroNamesList.indexOf(this.hero.displayName);
+      const totalHeroes = this.heroNamesList.length;
+      this.previousHeroName = this.heroNamesList[(this.currentIndex + totalHeroes - 1) % totalHeroes];
+      this.nextHeroName = this.heroNamesList[(this.currentIndex + 1) % totalHeroes];
+    });
+  }
+}
+HeroNavigationComponent.ɵfac = function HeroNavigationComponent_Factory(t) {
+  return new (t || HeroNavigationComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_services_shared_shared_service__WEBPACK_IMPORTED_MODULE_0__.SharedService));
+};
+HeroNavigationComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({
+  type: HeroNavigationComponent,
+  selectors: [["app-hero-navigation"]],
   inputs: {
-    hero: "hero",
-    isComparing: "isComparing",
-    loading: "loading"
+    hero: "hero"
   },
-  decls: 1,
-  vars: 1,
-  consts: [[4, "ngIf"], [3, "src", 4, "ngIf"], [3, "src"]],
-  template: function HeroHeaderComponent_Template(rf, ctx) {
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵNgOnChangesFeature"]],
+  decls: 13,
+  vars: 16,
+  consts: [[1, "hero-navigation"], [1, "previous-hero"], [1, "navigation-link", 3, "routerLink"], [1, "navigation-indicator", "previous"], [1, "hero-header-crop-img", "previous", 3, "src", "alt", "title"], [1, "next-hero"], [1, "hero-header-crop-img", "next", 3, "src", "alt", "title"], [1, "navigation-indicator", "next"]],
+  template: function HeroNavigationComponent_Template(rf, ctx) {
     if (rf & 1) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, HeroHeaderComponent_div_0_Template, 2, 1, "div", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "a", 2)(3, "span", 3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, "<");
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](5, "img", 4);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](6, "heroImages");
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "div", 5)(8, "a", 2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](9, "img", 6);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](10, "heroImages");
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](11, "span", 7);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](12, ">");
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()()();
     }
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.loading);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpureFunction1"](12, _c0, ctx.previousHeroName));
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate"]("alt", ctx.previousHeroName);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate"]("title", ctx.previousHeroName);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("src", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](6, 8, ctx.previousHeroName).cropImage, _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpureFunction1"](14, _c0, ctx.nextHeroName));
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate"]("alt", ctx.nextHeroName);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpropertyInterpolate"]("title", ctx.nextHeroName);
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("src", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](10, 10, ctx.nextHeroName).cropImage, _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.NgIf, _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_0__.HeroImagesPipe],
-  styles: ["img[_ngcontent-%COMP%] {\n  display: block;\n  margin: auto;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvaGVyby1oZWFkZXIvaGVyby1oZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxjQUFBO0VBQ0EsWUFBQTtBQUNKIiwic291cmNlc0NvbnRlbnQiOlsiaW1nIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgbWFyZ2luOiBhdXRvO1xyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
+  dependencies: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterLink, _pipes_hero_images_pipe__WEBPACK_IMPORTED_MODULE_1__.HeroImagesPipe],
+  styles: [".hero-navigation[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.previous-hero[_ngcontent-%COMP%], .next-hero[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n}\n\n.navigation-link[_ngcontent-%COMP%] {\n  color: inherit;\n  display: flex;\n  align-items: center;\n  text-decoration: none;\n  margin-right: 1em;\n}\n\n.navigation-indicator[_ngcontent-%COMP%] {\n  color: #cae8e8;\n  box-shadow: 0 0 6px #6879d8;\n}\n\n.navigation-indicator.previous[_ngcontent-%COMP%] {\n  padding: 0em 0.3em 0.11em 0.15em;\n}\n\n.navigation-indicator.next[_ngcontent-%COMP%] {\n  padding: 0.1em 0.15em 0.1em 0.3em;\n}\n\n.hero-header-crop-img[_ngcontent-%COMP%] {\n  width: 4em;\n}\n\n.hero-header-crop-img.previous[_ngcontent-%COMP%] {\n  padding-left: 0.5em;\n}\n\n.hero-header-crop-img.next[_ngcontent-%COMP%] {\n  padding-right: 0.5em;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvaGVyby1uYXZpZ2F0aW9uL2hlcm8tbmF2aWdhdGlvbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtFQUNBLG1CQUFBO0FBQ0o7O0FBRUE7O0VBRUksYUFBQTtFQUNBLG1CQUFBO0FBQ0o7O0FBRUE7RUFDSSxjQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtBQUNKOztBQUVBO0VBQ0ksY0FBQTtFQUNBLDJCQUFBO0FBQ0o7O0FBRUE7RUFDSSxnQ0FBQTtBQUNKOztBQUVBO0VBQ0ksaUNBQUE7QUFDSjs7QUFFQTtFQUNJLFVBQUE7QUFDSjs7QUFFQTtFQUNJLG1CQUFBO0FBQ0o7O0FBRUE7RUFDSSxvQkFBQTtBQUNKIiwic291cmNlc0NvbnRlbnQiOlsiLmhlcm8tbmF2aWdhdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLnByZXZpb3VzLWhlcm8sXHJcbi5uZXh0LWhlcm8ge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5uYXZpZ2F0aW9uLWxpbmsge1xyXG4gICAgY29sb3I6IGluaGVyaXQ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICAgIG1hcmdpbi1yaWdodDogMWVtO1xyXG59XHJcblxyXG4ubmF2aWdhdGlvbi1pbmRpY2F0b3Ige1xyXG4gICAgY29sb3I6ICNjYWU4ZTg7XHJcbiAgICBib3gtc2hhZG93OiAwIDAgNnB4ICM2ODc5ZDg7XHJcbn1cclxuXHJcbi5uYXZpZ2F0aW9uLWluZGljYXRvci5wcmV2aW91cyB7XHJcbiAgICBwYWRkaW5nOiAwZW0gMC4zZW0gMC4xMWVtIDAuMTVlbTtcclxufVxyXG5cclxuLm5hdmlnYXRpb24taW5kaWNhdG9yLm5leHQge1xyXG4gICAgcGFkZGluZzogMC4xZW0gMC4xNWVtIDAuMWVtIDAuM2VtO1xyXG59XHJcblxyXG4uaGVyby1oZWFkZXItY3JvcC1pbWcge1xyXG4gICAgd2lkdGg6IDRlbTtcclxufVxyXG5cclxuLmhlcm8taGVhZGVyLWNyb3AtaW1nLnByZXZpb3VzIHtcclxuICAgIHBhZGRpbmctbGVmdDogMC41ZW07XHJcbn1cclxuXHJcbi5oZXJvLWhlYWRlci1jcm9wLWltZy5uZXh0IHtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDAuNWVtO1xyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
 /***/ }),
@@ -1030,17 +1043,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "HeroComponent": () => (/* binding */ HeroComponent)
 /* harmony export */ });
 /* harmony import */ var C_Users_thoma_IdeaProjects_dotaApplicationTool_frontend_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ 228);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ 228);
 /* harmony import */ var _services_hero_hero_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/hero/hero.service */ 5849);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 124);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 124);
 /* harmony import */ var _services_property_property_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/property/property.service */ 3705);
 /* harmony import */ var _services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/shared/shared.service */ 1571);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _hero_dropdown_hero_dropdown_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hero-dropdown/hero-dropdown.component */ 6871);
 /* harmony import */ var _hero_card_hero_card_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hero-card/hero-card.component */ 5268);
 /* harmony import */ var _hero_property_checkboxes_hero_property_checkboxes_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hero-property-checkboxes/hero-property-checkboxes.component */ 9611);
 /* harmony import */ var _loader_loader_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../loader/loader.component */ 5242);
+/* harmony import */ var _hero_navigation_hero_navigation_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../hero-navigation/hero-navigation.component */ 2725);
 
 
 
@@ -1054,32 +1068,45 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function HeroComponent_div_8_div_4_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](0, "div")(1, "div", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelement"](2, "app-hero-card", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]()();
-  }
-  if (rf & 2) {
-    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("isComparing", ctx_r1.isComparing)("hero", ctx_r1.secondHero)("selectedProperties", ctx_r1.showProperties);
-  }
-}
+
 function HeroComponent_div_8_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](0, "div")(1, "div", 7)(2, "div", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelement"](3, "app-hero-card", 9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtemplate"](4, HeroComponent_div_8_div_4_Template, 3, 3, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](1, "app-hero-navigation", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("hero", ctx_r0.hero)("selectedProperties", ctx_r0.showProperties);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("ngIf", ctx_r0.isComparing);
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("hero", ctx_r0.hero);
+  }
+}
+function HeroComponent_div_9_div_4_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "div")(1, "div", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](2, "app-hero-card", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]()();
+  }
+  if (rf & 2) {
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("isComparing", ctx_r2.isComparing)("hero", ctx_r2.secondHero)("selectedProperties", ctx_r2.showProperties);
+  }
+}
+function HeroComponent_div_9_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "div")(1, "div", 8)(2, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](3, "app-hero-card", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](4, HeroComponent_div_9_div_4_Template, 3, 3, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("hero", ctx_r1.hero)("selectedProperties", ctx_r1.showProperties);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngIf", ctx_r1.isComparing);
   }
 }
 class HeroComponent {
@@ -1091,8 +1118,8 @@ class HeroComponent {
     this.loading = true;
     this.isComparing = false;
     this.showProperties = this.propertyService.showProperties;
-    this.destroyed$ = new rxjs__WEBPACK_IMPORTED_MODULE_9__.Subject();
-    this.heroSelectedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_8__.EventEmitter();
+    this.destroyed$ = new rxjs__WEBPACK_IMPORTED_MODULE_10__.Subject();
+    this.heroSelectedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_9__.EventEmitter();
     this.sharedService.isComparing$.subscribe(isComparing => {
       this.isComparing = isComparing;
     });
@@ -1150,9 +1177,9 @@ class HeroComponent {
   }
 }
 HeroComponent.ɵfac = function HeroComponent_Factory(t) {
-  return new (t || HeroComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdirectiveInject"](_services_hero_hero_service__WEBPACK_IMPORTED_MODULE_1__.HeroService), _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_10__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdirectiveInject"](_services_property_property_service__WEBPACK_IMPORTED_MODULE_2__.PropertyService), _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdirectiveInject"](_services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__.SharedService));
+  return new (t || HeroComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_services_hero_hero_service__WEBPACK_IMPORTED_MODULE_1__.HeroService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_services_property_property_service__WEBPACK_IMPORTED_MODULE_2__.PropertyService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_services_shared_shared_service__WEBPACK_IMPORTED_MODULE_3__.SharedService));
 };
-HeroComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdefineComponent"]({
+HeroComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineComponent"]({
   type: HeroComponent,
   selectors: [["app-hero"]],
   inputs: {
@@ -1161,41 +1188,44 @@ HeroComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_8__["�
   outputs: {
     heroSelectedEvent: "heroSelectedEvent"
   },
-  decls: 9,
-  vars: 5,
-  consts: [[1, "compare-wrapper"], [1, "toBeCompared"], [3, "firstHero", "heroSelectedEvent"], [3, "loading"], [1, "checkbox-wrapper"], [3, "showProperties", "selectedProperties"], [4, "ngIf"], [1, "hero-wrapper"], [1, "hero-card"], [3, "hero", "selectedProperties"], [1, "hero-card", "isComparing"], [3, "isComparing", "hero", "selectedProperties"]],
+  decls: 10,
+  vars: 6,
+  consts: [[1, "compare-wrapper"], [1, "toBeCompared"], [3, "firstHero", "heroSelectedEvent"], [3, "loading"], [1, "checkbox-wrapper"], [3, "showProperties", "selectedProperties"], [4, "ngIf"], [3, "hero"], [1, "hero-wrapper"], [1, "hero-card"], [3, "hero", "selectedProperties"], [1, "hero-card", "isComparing"], [3, "isComparing", "hero", "selectedProperties"]],
   template: function HeroComponent_Template(rf, ctx) {
     if (rf & 1) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "span");
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](3);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](4, "app-hero-dropdown", 2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵlistener"]("heroSelectedEvent", function HeroComponent_Template_app_hero_dropdown_heroSelectedEvent_4_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "span");
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](4, "app-hero-dropdown", 2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵlistener"]("heroSelectedEvent", function HeroComponent_Template_app_hero_dropdown_heroSelectedEvent_4_listener($event) {
         return ctx.onHeroSelection($event.firstHero, $event.secondHero);
       });
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]()()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelement"](5, "app-loader", 3);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](6, "div", 4)(7, "app-hero-property-checkboxes", 5);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵlistener"]("selectedProperties", function HeroComponent_Template_app_hero_property_checkboxes_selectedProperties_7_listener($event) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]()()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](5, "app-loader", 3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](6, "div", 4)(7, "app-hero-property-checkboxes", 5);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵlistener"]("selectedProperties", function HeroComponent_Template_app_hero_property_checkboxes_selectedProperties_7_listener($event) {
         return ctx.onPropertySelection($event);
       });
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]()();
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtemplate"](8, HeroComponent_div_8_Template, 5, 3, "div", 6);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]()();
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](8, HeroComponent_div_8_Template, 2, 1, "div", 6);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](9, HeroComponent_div_9_Template, 5, 3, "div", 6);
     }
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](3);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtextInterpolate1"]("compare ", ctx.hero.displayName, " to : ");
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("firstHero", ctx.hero);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("loading", ctx.loading);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](2);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("showProperties", ctx.showProperties);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵadvance"](1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵproperty"]("ngIf", !ctx.loading);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate1"]("compare ", ctx.hero.displayName, " to : ");
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("firstHero", ctx.hero);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("loading", ctx.loading);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("showProperties", ctx.showProperties);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngIf", !ctx.isComparing);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngIf", !ctx.loading);
     }
   },
-  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_11__.NgIf, _hero_dropdown_hero_dropdown_component__WEBPACK_IMPORTED_MODULE_4__.HeroDropdownComponent, _hero_card_hero_card_component__WEBPACK_IMPORTED_MODULE_5__.HeroCardComponent, _hero_property_checkboxes_hero_property_checkboxes_component__WEBPACK_IMPORTED_MODULE_6__.HeroPropertyCheckboxesComponent, _loader_loader_component__WEBPACK_IMPORTED_MODULE_7__.LoaderComponent],
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.NgIf, _hero_dropdown_hero_dropdown_component__WEBPACK_IMPORTED_MODULE_4__.HeroDropdownComponent, _hero_card_hero_card_component__WEBPACK_IMPORTED_MODULE_5__.HeroCardComponent, _hero_property_checkboxes_hero_property_checkboxes_component__WEBPACK_IMPORTED_MODULE_6__.HeroPropertyCheckboxesComponent, _loader_loader_component__WEBPACK_IMPORTED_MODULE_7__.LoaderComponent, _hero_navigation_hero_navigation_component__WEBPACK_IMPORTED_MODULE_8__.HeroNavigationComponent],
   styles: ["\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
 });
 
@@ -1240,7 +1270,6 @@ class HomeDropdownComponent {
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
       this.heroes = heroes;
-      console.log(heroes);
     });
   }
   heroSelected(event) {
@@ -1354,7 +1383,7 @@ class HeroImagesPipe {
     const mapping = _services_hero_HeroImageMappings__WEBPACK_IMPORTED_MODULE_0__.heroImageMappings[heroName];
     if (mapping) {
       return {
-        largeImage: mapping.largeImage,
+        cropImage: mapping.cropImage,
         smallImage: mapping.smallImage
       };
     }
@@ -1456,499 +1485,499 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const heroImageMappings = {
   'Abaddon': {
-    largeImage: 'assets/heroes/crops/abaddon.png',
+    cropImage: 'assets/heroes/crops/abaddon.png',
     smallImage: 'assets/heroes/abaddon.png'
   },
   'Alchemist': {
-    largeImage: 'assets/heroes/crops/alchemist.png',
+    cropImage: 'assets/heroes/crops/alchemist.png',
     smallImage: 'assets/heroes/alchemist.png'
   },
   'Ancient Apparition': {
-    largeImage: 'assets/heroes/crops/ancient_apparition.png',
+    cropImage: 'assets/heroes/crops/ancient_apparition.png',
     smallImage: 'assets/heroes/ancient_apparition.png'
   },
   'Anti-Mage': {
-    largeImage: 'assets/heroes/crops/antimage.png',
+    cropImage: 'assets/heroes/crops/antimage.png',
     smallImage: 'assets/heroes/antimage.png'
   },
   'Arc Warden': {
-    largeImage: 'assets/heroes/crops/arc_warden.png',
+    cropImage: 'assets/heroes/crops/arc_warden.png',
     smallImage: 'assets/heroes/arc_warden.png'
   },
   'Axe': {
-    largeImage: 'assets/heroes/crops/axe.png',
+    cropImage: 'assets/heroes/crops/axe.png',
     smallImage: 'assets/heroes/axe.png'
   },
   'Bane': {
-    largeImage: 'assets/heroes/crops/bane.png',
+    cropImage: 'assets/heroes/crops/bane.png',
     smallImage: 'assets/heroes/bane.png'
   },
   'Batrider': {
-    largeImage: 'assets/heroes/crops/batrider.png',
+    cropImage: 'assets/heroes/crops/batrider.png',
     smallImage: 'assets/heroes/batrider.png'
   },
   'Beastmaster': {
-    largeImage: 'assets/heroes/crops/beastmaster.png',
+    cropImage: 'assets/heroes/crops/beastmaster.png',
     smallImage: 'assets/heroes/beastmaster.png'
   },
   'Bloodseeker': {
-    largeImage: 'assets/heroes/crops/bloodseeker.png',
+    cropImage: 'assets/heroes/crops/bloodseeker.png',
     smallImage: 'assets/heroes/bloodseeker.png'
   },
   'Bounty Hunter': {
-    largeImage: 'assets/heroes/crops/bounty_hunter.png',
+    cropImage: 'assets/heroes/crops/bounty_hunter.png',
     smallImage: 'assets/heroes/bounty_hunter.png'
   },
   'Brewmaster': {
-    largeImage: 'assets/heroes/crops/brewmaster.png',
+    cropImage: 'assets/heroes/crops/brewmaster.png',
     smallImage: 'assets/heroes/brewmaster.png'
   },
   'Bristleback': {
-    largeImage: 'assets/heroes/crops/bristleback.png',
+    cropImage: 'assets/heroes/crops/bristleback.png',
     smallImage: 'assets/heroes/bristleback.png'
   },
   'Broodmother': {
-    largeImage: 'assets/heroes/crops/broodmother.png',
+    cropImage: 'assets/heroes/crops/broodmother.png',
     smallImage: 'assets/heroes/broodmother.png'
   },
   'Centaur Warrunner': {
-    largeImage: 'assets/heroes/crops/centaur_warrunner.png',
+    cropImage: 'assets/heroes/crops/centaur_warrunner.png',
     smallImage: 'assets/heroes/centaur_warrunner.png'
   },
   'Chaos Knight': {
-    largeImage: 'assets/heroes/crops/chaos_knight.png',
+    cropImage: 'assets/heroes/crops/chaos_knight.png',
     smallImage: 'assets/heroes/chaos_knight.png'
   },
   'Chen': {
-    largeImage: 'assets/heroes/crops/chen.png',
+    cropImage: 'assets/heroes/crops/chen.png',
     smallImage: 'assets/heroes/chen.png'
   },
   'Clinkz': {
-    largeImage: 'assets/heroes/crops/clinkz.png',
+    cropImage: 'assets/heroes/crops/clinkz.png',
     smallImage: 'assets/heroes/clinkz.png'
   },
   'Clockwerk': {
-    largeImage: 'assets/heroes/crops/clockwerk.png',
+    cropImage: 'assets/heroes/crops/clockwerk.png',
     smallImage: 'assets/heroes/clockwerk.png'
   },
   'Crystal Maiden': {
-    largeImage: 'assets/heroes/crops/crystal_maiden.png',
+    cropImage: 'assets/heroes/crops/crystal_maiden.png',
     smallImage: 'assets/heroes/crystal_maiden.png'
   },
   'Dark Seer': {
-    largeImage: 'assets/heroes/crops/dark_seer.png',
+    cropImage: 'assets/heroes/crops/dark_seer.png',
     smallImage: 'assets/heroes/dark_seer.png'
   },
   'Dark Willow': {
-    largeImage: 'assets/heroes/crops/dark_willow.png',
+    cropImage: 'assets/heroes/crops/dark_willow.png',
     smallImage: 'assets/heroes/dark_willow.png'
   },
   'Dawnbreaker': {
-    largeImage: 'assets/heroes/crops/dawnbreaker.png',
+    cropImage: 'assets/heroes/crops/dawnbreaker.png',
     smallImage: 'assets/heroes/dawnbreaker.png'
   },
   'Dazzle': {
-    largeImage: 'assets/heroes/crops/dazzle.png',
+    cropImage: 'assets/heroes/crops/dazzle.png',
     smallImage: 'assets/heroes/dazzle.png'
   },
   'Death Prophet': {
-    largeImage: 'assets/heroes/crops/death_prophet.png',
+    cropImage: 'assets/heroes/crops/death_prophet.png',
     smallImage: 'assets/heroes/death_prophet.png'
   },
   'Disruptor': {
-    largeImage: 'assets/heroes/crops/disruptor.png',
+    cropImage: 'assets/heroes/crops/disruptor.png',
     smallImage: 'assets/heroes/disruptor.png'
   },
   'Doom': {
-    largeImage: 'assets/heroes/crops/doom.png',
+    cropImage: 'assets/heroes/crops/doom.png',
     smallImage: 'assets/heroes/doom.png'
   },
   'Dragon Knight': {
-    largeImage: 'assets/heroes/crops/dragon_knight.png',
+    cropImage: 'assets/heroes/crops/dragon_knight.png',
     smallImage: 'assets/heroes/dragon_knight.png'
   },
   'Drow Ranger': {
-    largeImage: 'assets/heroes/crops/drow_ranger.png',
+    cropImage: 'assets/heroes/crops/drow_ranger.png',
     smallImage: 'assets/heroes/drow_ranger.png'
   },
   'Earth Spirit': {
-    largeImage: 'assets/heroes/crops/earth_spirit.png',
+    cropImage: 'assets/heroes/crops/earth_spirit.png',
     smallImage: 'assets/heroes/earth_spirit.png'
   },
   'Earthshaker': {
-    largeImage: 'assets/heroes/crops/earthshaker.png',
+    cropImage: 'assets/heroes/crops/earthshaker.png',
     smallImage: 'assets/heroes/earthshaker.png'
   },
   'Elder Titan': {
-    largeImage: 'assets/heroes/crops/elder_titan.png',
+    cropImage: 'assets/heroes/crops/elder_titan.png',
     smallImage: 'assets/heroes/elder_titan.png'
   },
   'Ember Spirit': {
-    largeImage: 'assets/heroes/crops/ember_spirit.png',
+    cropImage: 'assets/heroes/crops/ember_spirit.png',
     smallImage: 'assets/heroes/ember_spirit.png'
   },
   'Enchantress': {
-    largeImage: 'assets/heroes/crops/enchantress.png',
+    cropImage: 'assets/heroes/crops/enchantress.png',
     smallImage: 'assets/heroes/enchantress.png'
   },
   'Enigma': {
-    largeImage: 'assets/heroes/crops/enigma.png',
+    cropImage: 'assets/heroes/crops/enigma.png',
     smallImage: 'assets/heroes/enigma.png'
   },
   'Faceless Void': {
-    largeImage: 'assets/heroes/crops/faceless_void.png',
+    cropImage: 'assets/heroes/crops/faceless_void.png',
     smallImage: 'assets/heroes/faceless_void.png'
   },
   'Grimstroke': {
-    largeImage: 'assets/heroes/crops/grimstroke.png',
+    cropImage: 'assets/heroes/crops/grimstroke.png',
     smallImage: 'assets/heroes/grimstroke.png'
   },
   'Gyrocopter': {
-    largeImage: 'assets/heroes/crops/gyrocopter.png',
+    cropImage: 'assets/heroes/crops/gyrocopter.png',
     smallImage: 'assets/heroes/gyrocopter.png'
   },
   'Hoodwink': {
-    largeImage: 'assets/heroes/crops/hoodwink.png',
+    cropImage: 'assets/heroes/crops/hoodwink.png',
     smallImage: 'assets/heroes/hoodwink.png'
   },
   'Huskar': {
-    largeImage: 'assets/heroes/crops/huskar.png',
+    cropImage: 'assets/heroes/crops/huskar.png',
     smallImage: 'assets/heroes/huskar.png'
   },
   'Invoker': {
-    largeImage: 'assets/heroes/crops/invoker.png',
+    cropImage: 'assets/heroes/crops/invoker.png',
     smallImage: 'assets/heroes/invoker.png'
   },
   'Io': {
-    largeImage: 'assets/heroes/crops/io.png',
+    cropImage: 'assets/heroes/crops/io.png',
     smallImage: 'assets/heroes/io.png'
   },
   'Jakiro': {
-    largeImage: 'assets/heroes/crops/jakiro.png',
+    cropImage: 'assets/heroes/crops/jakiro.png',
     smallImage: 'assets/heroes/jakiro.png'
   },
   'Juggernaut': {
-    largeImage: 'assets/heroes/crops/juggernaut.png',
+    cropImage: 'assets/heroes/crops/juggernaut.png',
     smallImage: 'assets/heroes/juggernaut.png'
   },
   'Keeper of the Light': {
-    largeImage: 'assets/heroes/crops/keeper_of_the_light.png',
+    cropImage: 'assets/heroes/crops/keeper_of_the_light.png',
     smallImage: 'assets/heroes/keeper_of_the_light.png'
   },
   'Kunkka': {
-    largeImage: 'assets/heroes/crops/kunkka.png',
+    cropImage: 'assets/heroes/crops/kunkka.png',
     smallImage: 'assets/heroes/kunkka.png'
   },
   'Legion Commander': {
-    largeImage: 'assets/heroes/crops/legion_commander.png',
+    cropImage: 'assets/heroes/crops/legion_commander.png',
     smallImage: 'assets/heroes/legion_commander.png'
   },
   'Leshrac': {
-    largeImage: 'assets/heroes/crops/leshrac.png',
+    cropImage: 'assets/heroes/crops/leshrac.png',
     smallImage: 'assets/heroes/leshrac.png'
   },
   'Lich': {
-    largeImage: 'assets/heroes/crops/lich.png',
+    cropImage: 'assets/heroes/crops/lich.png',
     smallImage: 'assets/heroes/lich.png'
   },
   'Lifestealer': {
-    largeImage: 'assets/heroes/crops/lifestealer.png',
+    cropImage: 'assets/heroes/crops/lifestealer.png',
     smallImage: 'assets/heroes/lifestealer.png'
   },
   'Lina': {
-    largeImage: 'assets/heroes/crops/lina.png',
+    cropImage: 'assets/heroes/crops/lina.png',
     smallImage: 'assets/heroes/lina.png'
   },
   'Lion': {
-    largeImage: 'assets/heroes/crops/lion.png',
+    cropImage: 'assets/heroes/crops/lion.png',
     smallImage: 'assets/heroes/lion.png'
   },
   'Lone Druid': {
-    largeImage: 'assets/heroes/crops/lone_druid.png',
+    cropImage: 'assets/heroes/crops/lone_druid.png',
     smallImage: 'assets/heroes/lone_druid.png'
   },
   'Luna': {
-    largeImage: 'assets/heroes/crops/luna.png',
+    cropImage: 'assets/heroes/crops/luna.png',
     smallImage: 'assets/heroes/luna.png'
   },
   'Lycan': {
-    largeImage: 'assets/heroes/crops/lycan.png',
+    cropImage: 'assets/heroes/crops/lycan.png',
     smallImage: 'assets/heroes/lycan.png'
   },
   'Magnus': {
-    largeImage: 'assets/heroes/crops/magnus.png',
+    cropImage: 'assets/heroes/crops/magnus.png',
     smallImage: 'assets/heroes/magnus.png'
   },
   'Marci': {
-    largeImage: 'assets/heroes/crops/marci.png',
+    cropImage: 'assets/heroes/crops/marci.png',
     smallImage: 'assets/heroes/marci.png'
   },
   'Mars': {
-    largeImage: 'assets/heroes/crops/mars.png',
+    cropImage: 'assets/heroes/crops/mars.png',
     smallImage: 'assets/heroes/mars.png'
   },
   'Medusa': {
-    largeImage: 'assets/heroes/crops/medusa.png',
+    cropImage: 'assets/heroes/crops/medusa.png',
     smallImage: 'assets/heroes/medusa.png'
   },
   'Meepo': {
-    largeImage: 'assets/heroes/crops/meepo.png',
+    cropImage: 'assets/heroes/crops/meepo.png',
     smallImage: 'assets/heroes/meepo.png'
   },
   'Mirana': {
-    largeImage: 'assets/heroes/crops/mirana.png',
+    cropImage: 'assets/heroes/crops/mirana.png',
     smallImage: 'assets/heroes/mirana.png'
   },
   'Monkey King': {
-    largeImage: 'assets/heroes/crops/monkey_king.png',
+    cropImage: 'assets/heroes/crops/monkey_king.png',
     smallImage: 'assets/heroes/monkey_king.png'
   },
   'Morphling': {
-    largeImage: 'assets/heroes/crops/morphling.png',
+    cropImage: 'assets/heroes/crops/morphling.png',
     smallImage: 'assets/heroes/morphling.png'
   },
   'Muerta': {
-    largeImage: 'assets/heroes/crops/muerta.png',
+    cropImage: 'assets/heroes/crops/muerta.png',
     smallImage: 'assets/heroes/muerta.png'
   },
   'Naga Siren': {
-    largeImage: 'assets/heroes/crops/naga_siren.png',
+    cropImage: 'assets/heroes/crops/naga_siren.png',
     smallImage: 'assets/heroes/naga_siren.png'
   },
   'Natures Prophet': {
-    largeImage: 'assets/heroes/crops/natures_prophet.png',
+    cropImage: 'assets/heroes/crops/natures_prophet.png',
     smallImage: 'assets/heroes/natures_prophet.png'
   },
   'Necrophos': {
-    largeImage: 'assets/heroes/crops/necrophos.png',
+    cropImage: 'assets/heroes/crops/necrophos.png',
     smallImage: 'assets/heroes/necrophos.png'
   },
   'Night Stalker': {
-    largeImage: 'assets/heroes/crops/night_stalker.png',
+    cropImage: 'assets/heroes/crops/night_stalker.png',
     smallImage: 'assets/heroes/night_stalker.png'
   },
   'Nyx Assassin': {
-    largeImage: 'assets/heroes/crops/nyx_assassin.png',
+    cropImage: 'assets/heroes/crops/nyx_assassin.png',
     smallImage: 'assets/heroes/nyx_assassin.png'
   },
   'Ogre Magi': {
-    largeImage: 'assets/heroes/crops/ogre_magi.png',
+    cropImage: 'assets/heroes/crops/ogre_magi.png',
     smallImage: 'assets/heroes/ogre_magi.png'
   },
   'Omniknight': {
-    largeImage: 'assets/heroes/crops/omniknight.png',
+    cropImage: 'assets/heroes/crops/omniknight.png',
     smallImage: 'assets/heroes/omniknight.png'
   },
   'Oracle': {
-    largeImage: 'assets/heroes/crops/oracle.png',
+    cropImage: 'assets/heroes/crops/oracle.png',
     smallImage: 'assets/heroes/oracle.png'
   },
   'Outworld Destroyer': {
-    largeImage: 'assets/heroes/crops/outworld_destroyer.png',
+    cropImage: 'assets/heroes/crops/outworld_destroyer.png',
     smallImage: 'assets/heroes/outworld_destroyer.png'
   },
   'Pangolier': {
-    largeImage: 'assets/heroes/crops/pangolier.png',
+    cropImage: 'assets/heroes/crops/pangolier.png',
     smallImage: 'assets/heroes/pangolier.png'
   },
   'Phantom Assassin': {
-    largeImage: 'assets/heroes/crops/phantom_assassin.png',
+    cropImage: 'assets/heroes/crops/phantom_assassin.png',
     smallImage: 'assets/heroes/phantom_assassin.png'
   },
   'Phantom Lancer': {
-    largeImage: 'assets/heroes/crops/phantom_lancer.png',
+    cropImage: 'assets/heroes/crops/phantom_lancer.png',
     smallImage: 'assets/heroes/phantom_lancer.png'
   },
   'Phoenix': {
-    largeImage: 'assets/heroes/crops/phoenix.png',
+    cropImage: 'assets/heroes/crops/phoenix.png',
     smallImage: 'assets/heroes/phoenix.png'
   },
   'Primal Beast': {
-    largeImage: 'assets/heroes/crops/lycan.png',
+    cropImage: 'assets/heroes/crops/lycan.png',
     smallImage: 'assets/heroes/lycan.png'
   },
   'Puck': {
-    largeImage: 'assets/heroes/crops/puck.png',
+    cropImage: 'assets/heroes/crops/puck.png',
     smallImage: 'assets/heroes/puck.png'
   },
   'Pudge': {
-    largeImage: 'assets/heroes/crops/pudge.png',
+    cropImage: 'assets/heroes/crops/pudge.png',
     smallImage: 'assets/heroes/pudge.png'
   },
   'Pugna': {
-    largeImage: 'assets/heroes/crops/pugna.png',
+    cropImage: 'assets/heroes/crops/pugna.png',
     smallImage: 'assets/heroes/pugna.png'
   },
   'Queen of Pain': {
-    largeImage: 'assets/heroes/crops/queen_of_pain.png',
+    cropImage: 'assets/heroes/crops/queen_of_pain.png',
     smallImage: 'assets/heroes/queen_of_pain.png'
   },
   'Razor': {
-    largeImage: 'assets/heroes/crops/razor.png',
+    cropImage: 'assets/heroes/crops/razor.png',
     smallImage: 'assets/heroes/razor.png'
   },
   'Riki': {
-    largeImage: 'assets/heroes/crops/riki.png',
+    cropImage: 'assets/heroes/crops/riki.png',
     smallImage: 'assets/heroes/riki.png'
   },
   'Rubick': {
-    largeImage: 'assets/heroes/crops/rubick.png',
+    cropImage: 'assets/heroes/crops/rubick.png',
     smallImage: 'assets/heroes/rubick.png'
   },
   'Sand King': {
-    largeImage: 'assets/heroes/crops/sand_king.png',
+    cropImage: 'assets/heroes/crops/sand_king.png',
     smallImage: 'assets/heroes/sand_king.png'
   },
   'Shadow Demon': {
-    largeImage: 'assets/heroes/crops/shadow_demon.png',
+    cropImage: 'assets/heroes/crops/shadow_demon.png',
     smallImage: 'assets/heroes/shadow_demon.png'
   },
   'Shadow Fiend': {
-    largeImage: 'assets/heroes/crops/shadow_fiend.png',
+    cropImage: 'assets/heroes/crops/shadow_fiend.png',
     smallImage: 'assets/heroes/shadow_fiend.png'
   },
   'Shadow Shaman': {
-    largeImage: 'assets/heroes/crops/shadow_shaman.png',
+    cropImage: 'assets/heroes/crops/shadow_shaman.png',
     smallImage: 'assets/heroes/shadow_shaman.png'
   },
   'Silencer': {
-    largeImage: 'assets/heroes/crops/silencer.png',
+    cropImage: 'assets/heroes/crops/silencer.png',
     smallImage: 'assets/heroes/silencer.png'
   },
   'Skywrath Mage': {
-    largeImage: 'assets/heroes/crops/skywrath_mage.png',
+    cropImage: 'assets/heroes/crops/skywrath_mage.png',
     smallImage: 'assets/heroes/skywrath_mage.png'
   },
   'Slardar': {
-    largeImage: 'assets/heroes/crops/slardar.png',
+    cropImage: 'assets/heroes/crops/slardar.png',
     smallImage: 'assets/heroes/slardar.png'
   },
   'Slark': {
-    largeImage: 'assets/heroes/crops/slark.png',
+    cropImage: 'assets/heroes/crops/slark.png',
     smallImage: 'assets/heroes/slark.png'
   },
   'Snapfire': {
-    largeImage: 'assets/heroes/crops/snapfire.png',
+    cropImage: 'assets/heroes/crops/snapfire.png',
     smallImage: 'assets/heroes/snapfire.png'
   },
   'Sniper': {
-    largeImage: 'assets/heroes/crops/sniper.png',
+    cropImage: 'assets/heroes/crops/sniper.png',
     smallImage: 'assets/heroes/sniper.png'
   },
   'Spectre': {
-    largeImage: 'assets/heroes/crops/spectre.png',
+    cropImage: 'assets/heroes/crops/spectre.png',
     smallImage: 'assets/heroes/spectre.png'
   },
   'Spirit Breaker': {
-    largeImage: 'assets/heroes/crops/spirit_breaker.png',
+    cropImage: 'assets/heroes/crops/spirit_breaker.png',
     smallImage: 'assets/heroes/spirit_breaker.png'
   },
   'Storm Spirit': {
-    largeImage: 'assets/heroes/crops/storm_spirit.png',
+    cropImage: 'assets/heroes/crops/storm_spirit.png',
     smallImage: 'assets/heroes/storm_spirit.png'
   },
   'Sven': {
-    largeImage: 'assets/heroes/crops/sven.png',
+    cropImage: 'assets/heroes/crops/sven.png',
     smallImage: 'assets/heroes/sven.png'
   },
   'Techies': {
-    largeImage: 'assets/heroes/crops/techies.png',
+    cropImage: 'assets/heroes/crops/techies.png',
     smallImage: 'assets/heroes/techies.png'
   },
   'Templar Assassin': {
-    largeImage: 'assets/heroes/crops/templar_assassin.png',
+    cropImage: 'assets/heroes/crops/templar_assassin.png',
     smallImage: 'assets/heroes/templar_assassin.png'
   },
   'Terrorblade': {
-    largeImage: 'assets/heroes/crops/terrorblade.png',
+    cropImage: 'assets/heroes/crops/terrorblade.png',
     smallImage: 'assets/heroes/terrorblade.png'
   },
   'Tidehunter': {
-    largeImage: 'assets/heroes/crops/tidehunter.png',
+    cropImage: 'assets/heroes/crops/tidehunter.png',
     smallImage: 'assets/heroes/tidehunter.png'
   },
   'Timbersaw': {
-    largeImage: 'assets/heroes/crops/timbersaw.png',
+    cropImage: 'assets/heroes/crops/timbersaw.png',
     smallImage: 'assets/heroes/timbersaw.png'
   },
   'Tinker': {
-    largeImage: 'assets/heroes/crops/tinker.png',
+    cropImage: 'assets/heroes/crops/tinker.png',
     smallImage: 'assets/heroes/tinker.png'
   },
   'Tiny': {
-    largeImage: 'assets/heroes/crops/tiny.png',
+    cropImage: 'assets/heroes/crops/tiny.png',
     smallImage: 'assets/heroes/crops/tiny.png'
   },
   'Treant Protector': {
-    largeImage: 'assets/heroes/crops/treant_protector.png',
+    cropImage: 'assets/heroes/crops/treant_protector.png',
     smallImage: 'assets/heroes/treant_protector.png'
   },
   'Troll Warlord': {
-    largeImage: 'assets/heroes/crops/troll_warlord.png',
+    cropImage: 'assets/heroes/crops/troll_warlord.png',
     smallImage: 'assets/heroes/troll_warlord.png'
   },
   'Tusk': {
-    largeImage: 'assets/heroes/crops/tusk.png',
+    cropImage: 'assets/heroes/crops/tusk.png',
     smallImage: 'assets/heroes/tusk.png'
   },
   'Underlord': {
-    largeImage: 'assets/heroes/crops/underlord.png',
+    cropImage: 'assets/heroes/crops/underlord.png',
     smallImage: 'assets/heroes/underlord.png'
   },
   'Undying': {
-    largeImage: 'assets/heroes/crops/undying.png',
+    cropImage: 'assets/heroes/crops/undying.png',
     smallImage: 'assets/heroes/undying.png'
   },
   'Ursa': {
-    largeImage: 'assets/heroes/crops/ursa.png',
+    cropImage: 'assets/heroes/crops/ursa.png',
     smallImage: 'assets/heroes/ursa.png'
   },
   'Vengeful Spirit': {
-    largeImage: 'assets/heroes/crops/vengeful_spirit.png',
+    cropImage: 'assets/heroes/crops/vengeful_spirit.png',
     smallImage: 'assets/heroes/vengeful_spirit.png'
   },
   'Venomancer': {
-    largeImage: 'assets/heroes/crops/venomancer.png',
+    cropImage: 'assets/heroes/crops/venomancer.png',
     smallImage: 'assets/heroes/venomancer.png'
   },
   'Viper': {
-    largeImage: 'assets/heroes/crops/viper.png',
+    cropImage: 'assets/heroes/crops/viper.png',
     smallImage: 'assets/heroes/viper.png'
   },
   'Visage': {
-    largeImage: 'assets/heroes/crops/visage.png',
+    cropImage: 'assets/heroes/crops/visage.png',
     smallImage: 'assets/heroes/crops/visage.png'
   },
   'Void Spirit': {
-    largeImage: 'assets/heroes/crops/void_spirit.png',
+    cropImage: 'assets/heroes/crops/void_spirit.png',
     smallImage: 'assets/heroes/crops/void_spirit.png'
   },
   'Warlock': {
-    largeImage: 'assets/heroes/crops/warlock.png',
+    cropImage: 'assets/heroes/crops/warlock.png',
     smallImage: 'assets/heroes/warlock.png'
   },
   'Weaver': {
-    largeImage: 'assets/heroes/crops/weaver.png',
+    cropImage: 'assets/heroes/crops/weaver.png',
     smallImage: 'assets/heroes/weaver.png'
   },
   'Windranger': {
-    largeImage: 'assets/heroes/crops/windranger.png',
+    cropImage: 'assets/heroes/crops/windranger.png',
     smallImage: 'assets/heroes/windranger.png'
   },
   'Winter Wyvern': {
-    largeImage: 'assets/heroes/crops/winter_wyvern.png',
+    cropImage: 'assets/heroes/crops/winter_wyvern.png',
     smallImage: 'assets/heroes/winter_wyvern.png'
   },
   'Witch Doctor': {
-    largeImage: 'assets/heroes/crops/witch_doctor.png',
+    cropImage: 'assets/heroes/crops/witch_doctor.png',
     smallImage: 'assets/heroes/witch_doctor.png'
   },
   'Wraith King': {
-    largeImage: 'assets/heroes/crops/wraith_king.png',
+    cropImage: 'assets/heroes/crops/wraith_king.png',
     smallImage: 'assets/heroes/crops/wraith_king.png'
   },
   'Zeus': {
-    largeImage: 'assets/heroes/crops/zeus.png',
+    cropImage: 'assets/heroes/crops/zeus.png',
     smallImage: 'assets/heroes/zeus.png'
   }
 };
@@ -1966,14 +1995,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "HeroService": () => (/* binding */ HeroService)
 /* harmony export */ });
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 2340);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var _shared_shared_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/shared.service */ 1571);
+
 
 
 
 class HeroService {
-  constructor(http) {
+  constructor(http, sharedService) {
     this.http = http;
+    this.sharedService = sharedService;
     this.backendApiUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.backendApiUrl;
   }
   getHero(heroName) {
@@ -1981,25 +2013,35 @@ class HeroService {
     return this.http.get(url);
   }
   getHeroNames() {
-    return this.http.get(`${this.backendApiUrl}/heroNames`);
+    const cachedHeroNamesList$ = this.sharedService.getHeroNamesList();
+    if (cachedHeroNamesList$) {
+      return cachedHeroNamesList$;
+    } else {
+      const heroNamesList$ = this.http.get(`${this.backendApiUrl}/heroNames`);
+      this.sharedService.setHeroNames(heroNamesList$);
+      return heroNamesList$;
+    }
   }
+  //TODO: put in sharedService like getHeroNames() above
   getHeroPropertyZScore(heroName, propertyName) {
     const url = `${this.backendApiUrl}/hero/${heroName}/${propertyName}`;
     return this.http.get(url);
   }
+  //TODO: put in sharedService like getHeroNames() above
   getAllHeroesPropertiesZScores() {
     const url = `${this.backendApiUrl}/propertiesZScores`;
     return this.http.get(url);
   }
+  //TODO: put in sharedService like getHeroNames() above
   getAllHeroesMinMaxPropertiesValues() {
     const url = `${this.backendApiUrl}/minMaxPropertiesValues`;
     return this.http.get(url);
   }
 }
 HeroService.ɵfac = function HeroService_Factory(t) {
-  return new (t || HeroService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient));
+  return new (t || HeroService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_shared_shared_service__WEBPACK_IMPORTED_MODULE_1__.SharedService));
 };
-HeroService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
+HeroService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
   token: HeroService,
   factory: HeroService.ɵfac,
   providedIn: 'root'
@@ -2275,6 +2317,14 @@ class SharedService {
   }
   setComparingStatus(isComparing) {
     this.isComparingSubject.next(isComparing);
+  }
+  setHeroNames(heroNamesList$) {
+    console.log("setting heroNames from shared service!");
+    this.heroNamesList$ = heroNamesList$;
+  }
+  getHeroNamesList() {
+    console.log("get heroNames from sharedService!");
+    return this.heroNamesList$;
   }
   setFirstHero(hero) {
     this.firstHeroSubject.next(hero);
