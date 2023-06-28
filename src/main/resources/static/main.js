@@ -1906,7 +1906,7 @@ const heroImageMappings = {
   },
   'Tiny': {
     cropImage: 'assets/heroes/crops/tiny.png',
-    smallImage: 'assets/heroes/crops/tiny.png'
+    smallImage: 'assets/heroes/tiny.png'
   },
   'Treant Protector': {
     cropImage: 'assets/heroes/crops/treant_protector.png',
@@ -1946,11 +1946,11 @@ const heroImageMappings = {
   },
   'Visage': {
     cropImage: 'assets/heroes/crops/visage.png',
-    smallImage: 'assets/heroes/crops/visage.png'
+    smallImage: 'assets/heroes/visage.png'
   },
   'Void Spirit': {
     cropImage: 'assets/heroes/crops/void_spirit.png',
-    smallImage: 'assets/heroes/crops/void_spirit.png'
+    smallImage: 'assets/heroes/void_spirit.png'
   },
   'Warlock': {
     cropImage: 'assets/heroes/crops/warlock.png',
@@ -1974,7 +1974,7 @@ const heroImageMappings = {
   },
   'Wraith King': {
     cropImage: 'assets/heroes/crops/wraith_king.png',
-    smallImage: 'assets/heroes/crops/wraith_king.png'
+    smallImage: 'assets/heroes/wraith_king.png'
   },
   'Zeus': {
     cropImage: 'assets/heroes/crops/zeus.png',
