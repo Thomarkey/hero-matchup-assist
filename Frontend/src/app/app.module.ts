@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroComponent } from './hero/hero.component';
@@ -15,9 +14,9 @@ import { HeroPropertyCheckboxesComponent } from './hero-property-checkboxes/hero
 import { LoaderComponent } from './loader/loader.component';
 import { HeroPropertiesZscoreComponent } from './hero-properties-zscore/hero-properties-zscore.component';
 import { HomeDropdownComponent } from './home-dropdown/home-dropdown.component';
-import { HeroHeaderComponent } from './hero-header/hero-header.component';
 import { ComparingHeroesComponent } from './comparing-heroes/comparing-heroes.component';
 import { FooterComponent } from './footer/footer.component';
+import { HeroNavigationComponent } from './hero-navigation/hero-navigation.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +31,9 @@ import { FooterComponent } from './footer/footer.component';
     LoaderComponent,
     HeroPropertiesZscoreComponent,
     HomeDropdownComponent,
-    HeroHeaderComponent,
     ComparingHeroesComponent,
     FooterComponent,
+    HeroNavigationComponent,
   ],
   imports: [
     BrowserModule,

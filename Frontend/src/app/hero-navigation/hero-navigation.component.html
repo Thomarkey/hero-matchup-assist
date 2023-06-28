@@ -1,0 +1,16 @@
+<div class="hero-navigation">
+    <div class="previous-hero">
+        <a class="navigation-link" [routerLink]="['/hero', previousHeroName]">
+            <span class="navigation-indicator previous">&lt;</span>
+            <img class="hero-header-crop-img previous" [src]="(previousHeroName! | heroImages).cropImage"
+                alt="{{previousHeroName}}" title="{{previousHeroName}}">
+        </a>
+    </div>
+    <div class="next-hero">
+        <a class="navigation-link" [routerLink]="['/hero', nextHeroName]">
+            <img class="hero-header-crop-img next" [src]="(nextHeroName! | heroImages).cropImage" alt="{{nextHeroName}}"
+                title="{{nextHeroName}}">
+            <span class="navigation-indicator next">&gt;</span>
+        </a>
+    </div>
+</div>

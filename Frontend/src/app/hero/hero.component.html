@@ -15,6 +15,9 @@
     (selectedProperties)="onPropertySelection($event)"></app-hero-property-checkboxes>
 </div>
 
+<div *ngIf="!isComparing">
+  <app-hero-navigation [hero]="hero"></app-hero-navigation>
+</div>
 
 <div *ngIf="!loading">
   <div class="hero-wrapper">

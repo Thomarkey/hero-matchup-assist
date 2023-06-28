@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PropertyService } from '../services/property/property.service';
 import { attackTypeIcons } from '../services/shared/attack-type-icons';
 import { primaryStatsIcons } from '../services/shared/primary-stats-icons';
 

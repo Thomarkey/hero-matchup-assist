@@ -1,0 +1,44 @@
+.hero-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.previous-hero,
+.next-hero {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-link {
+    color: inherit;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-right: 1em;
+}
+
+.navigation-indicator {
+    color: #cae8e8;
+    box-shadow: 0 0 6px #6879d8;
+}
+
+.navigation-indicator.previous {
+    padding: 0em 0.3em 0.11em 0.15em;
+}
+
+.navigation-indicator.next {
+    padding: 0.1em 0.15em 0.1em 0.3em;
+}
+
+.hero-header-crop-img {
+    width: 4em;
+}
+
+.hero-header-crop-img.previous {
+    padding-left: 0.5em;
+}
+
+.hero-header-crop-img.next {
+    padding-right: 0.5em;
+}

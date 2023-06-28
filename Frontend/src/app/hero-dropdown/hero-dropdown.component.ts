@@ -25,7 +25,6 @@ export class HeroDropdownComponent implements OnInit {
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
       this.heroes = heroes;
-      console.log(heroes);
     })
   }
 
@@ -39,10 +38,8 @@ export class HeroDropdownComponent implements OnInit {
       console.log(secondHero);
       this.secondHero = secondHero;
       this.sharedService.setSecondHero(secondHero);
-      console.log("start of the emit");
       this.heroSelectedEvent.emit(
         { firstHero: this.firstHero!, secondHero });
-      console.log("emit should be done now?");
       this.router.navigate(['/' + this.firstHero?.displayName + '/' + this.secondHero?.displayName]);
     });
   }

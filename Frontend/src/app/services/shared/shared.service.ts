@@ -17,13 +17,13 @@ export class SharedService {
   }
 
 
-  private heroNamesList$?: Observable<string[]>;
+  public heroNamesList$?: Observable<string[]>;
   setHeroNames(heroNamesList$: Observable<string[]>) {
     console.log("setting heroNames from shared service!");
     this.heroNamesList$ = heroNamesList$;
   }
 
-  getHeroNames(): Observable<string[]> | undefined {
+  getHeroNamesList(): Observable<string[]> | undefined {
     console.log("get heroNames from sharedService!");
     return this.heroNamesList$;
   }

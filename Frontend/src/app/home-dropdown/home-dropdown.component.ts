@@ -23,7 +23,6 @@ export class HomeDropdownComponent {
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
       this.heroes = heroes;
-      console.log(heroes);
     })
   }
 

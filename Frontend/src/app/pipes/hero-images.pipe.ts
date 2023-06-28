@@ -9,7 +9,7 @@ export class HeroImagesPipe implements PipeTransform {
   transform(heroName: string): any {
     const mapping = heroImageMappings[heroName as keyof typeof heroImageMappings];
     if (mapping) {
-      return { largeImage: mapping.largeImage, smallImage: mapping.smallImage };
+      return { cropImage: mapping.cropImage, smallImage: mapping.smallImage };
     }
   }
 
