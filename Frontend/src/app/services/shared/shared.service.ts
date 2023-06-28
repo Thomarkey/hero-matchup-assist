@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Hero } from 'src/app/hero';
 
 @Injectable({
@@ -16,6 +16,17 @@ export class SharedService {
     this.isComparingSubject.next(isComparing);
   }
 
+
+  private heroNamesList$?: Observable<string[]>;
+  setHeroNames(heroNamesList$: Observable<string[]>) {
+    console.log("setting heroNames from shared service!");
+    this.heroNamesList$ = heroNamesList$;
+  }
+
+  getHeroNames(): Observable<string[]> | undefined {
+    console.log("get heroNames from sharedService!");
+    return this.heroNamesList$;
+  }
 
   private firstHeroSubject = new BehaviorSubject<Hero | undefined>(undefined);
   public firstHero$ = this.firstHeroSubject.asObservable();

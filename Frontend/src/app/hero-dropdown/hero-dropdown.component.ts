@@ -21,7 +21,7 @@ export class HeroDropdownComponent implements OnInit {
   constructor(private heroService: HeroService, private sharedService: SharedService, private router: Router
   ) { }
 
-  //TODO: set heroeNames in shared service
+
   ngOnInit() {
     this.heroService.getHeroNames().subscribe(heroes => {
       this.heroes = heroes;

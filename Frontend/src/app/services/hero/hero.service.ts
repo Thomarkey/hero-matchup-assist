@@ -20,8 +20,20 @@ export class HeroService {
   }
 
   getHeroNames(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.backendApiUrl}/heroNames`);
+    const cachedHeroNamesList$ = this.sharedService.getHeroNames();
+    if (cachedHeroNamesList$) {
+      return cachedHeroNamesList$;
+    } else {
+      const heroNamesList$ = this.http.get<string[]>(`${this.backendApiUrl}/heroNames`)
+      this.sharedService.setHeroNames(heroNamesList$);
+      return heroNamesList$;
+    }
   }
+
+  // getPreviousHeroName(hero: any): string | undefined {
+
+  // }
+
 
   getHeroPropertyZScore(heroName: string, propertyName: string): Observable<number> {
     const url = `${this.backendApiUrl}/hero/${heroName}/${propertyName}`;
