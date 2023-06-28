@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import java.util.*;
 
-import static com.example.dotaApplicationTool.HeroDisplay.zScoresMap;
 
 public class Calculations {
     static final int MAIN_HP = 120;
@@ -73,88 +72,84 @@ public class Calculations {
 
 
     public static Map<String, Map<String, Double>> calculateZScores(JSONObject json) throws JSONException {
-        if (zScoresMap == null) {
-            Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
+        Map<String, Map<String, Double>> zScoresMap = new HashMap<>();
 
-            // Step 1: Calculate mean and standard deviation for each statistic
-            Map<String, Double> meanMap = new HashMap<>();
-            Map<String, Double> stdDevMap = new HashMap<>();
+        // Step 1: Calculate mean and standard deviation for each statistic
+        Map<String, Double> meanMap = new HashMap<>();
+        Map<String, Double> stdDevMap = new HashMap<>();
 
-            // Step 2: Separate ranged and melee heroes based on attack range
-            List<Double> rangedAttackRanges = new ArrayList<>();
-            List<Double> meleeAttackRanges = new ArrayList<>();
+        // Step 2: Separate ranged and melee heroes based on attack range
+        List<Double> rangedAttackRanges = new ArrayList<>();
+        List<Double> meleeAttackRanges = new ArrayList<>();
 
-            for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
-                String hero = heroIter.next();
-                JSONObject heroObj = json.getJSONObject(hero);
-                boolean isRanged = heroObj.getInt("isRanged") == 1;
+        for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
+            String hero = heroIter.next();
+            JSONObject heroObj = json.getJSONObject(hero);
+            boolean isRanged = heroObj.getInt("isRanged") == 1;
 
-                // Iterate over the hero's stats
-                for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
-                    String stat = statIter.next();
-                    double value = heroObj.getDouble(stat);
+            // Iterate over the hero's stats
+            for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
+                String stat = statIter.next();
+                double value = heroObj.getDouble(stat);
 
-                    if (stat.equals("attackRange")) {
-                        if (isRanged) {
-                            rangedAttackRanges.add(value);
-                        } else {
-                            meleeAttackRanges.add(value);
-                        }
+                if (stat.equals("attackRange")) {
+                    if (isRanged) {
+                        rangedAttackRanges.add(value);
                     } else {
-
-                        meanMap.merge(stat, value, Double::sum);
-                        stdDevMap.merge(stat, value * value, Double::sum);
+                        meleeAttackRanges.add(value);
                     }
+                } else {
+
+                    meanMap.merge(stat, value, Double::sum);
+                    stdDevMap.merge(stat, value * value, Double::sum);
                 }
             }
-
-            int numHeroes = json.length();
-            for (String stat : meanMap.keySet()) {
-                double mean = meanMap.get(stat) / numHeroes;
-                double stdDev = Math.sqrt(stdDevMap.get(stat) / numHeroes - mean * mean);
-                stdDevMap.put(stat, stdDev);
-                meanMap.put(stat, mean);
-            }
-
-            // Step 3: Calculate z-score for each statistic of each hero
-            for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
-                String hero = heroIter.next();
-                JSONObject heroObj = json.getJSONObject(hero);
-                boolean isRanged = heroObj.getInt("isRanged") == 1;
-                Map<String, Double> zScoreMap = new HashMap<>();
-                for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
-                    String stat = statIter.next();
-                    double value = heroObj.getDouble(stat);
-                    double mean = meanMap.getOrDefault(stat, 0.0);
-                    double stdDev = stdDevMap.getOrDefault(stat, 0.0);
-                    double zScore;
-
-                    if (stat.equals("attackRange")) {
-                        if (isRanged) {
-                            double rangedMean = calculateMean(rangedAttackRanges);
-                            double rangedStdDev = calculateStdDev(rangedAttackRanges, rangedMean);
-                            zScore = (value - rangedMean) / rangedStdDev;
-                        } else {
-                            double meleeMean = calculateMean(meleeAttackRanges);
-                            double meleeStdDev = calculateStdDev(meleeAttackRanges, meleeMean);
-                            zScore = (value - meleeMean) / meleeStdDev;
-                        }
-                    } else {
-                        if (stdDev == 0) {
-                            zScore = 0;
-                        } else {
-                            zScore = (value - mean) / stdDev;
-                        }
-                    }
-
-                    zScoreMap.put(stat, zScore);
-                }
-                zScoresMap.put(hero, zScoreMap);
-            }
-            return zScoresMap;
-        } else {
-            return zScoresMap;
         }
+
+        int numHeroes = json.length();
+        for (String stat : meanMap.keySet()) {
+            double mean = meanMap.get(stat) / numHeroes;
+            double stdDev = Math.sqrt(stdDevMap.get(stat) / numHeroes - mean * mean);
+            stdDevMap.put(stat, stdDev);
+            meanMap.put(stat, mean);
+        }
+
+        // Step 3: Calculate z-score for each statistic of each hero
+        for (Iterator<String> heroIter = json.keys(); heroIter.hasNext(); ) {
+            String hero = heroIter.next();
+            JSONObject heroObj = json.getJSONObject(hero);
+            boolean isRanged = heroObj.getInt("isRanged") == 1;
+            Map<String, Double> zScoreMap = new HashMap<>();
+            for (Iterator<String> statIter = heroObj.keys(); statIter.hasNext(); ) {
+                String stat = statIter.next();
+                double value = heroObj.getDouble(stat);
+                double mean = meanMap.getOrDefault(stat, 0.0);
+                double stdDev = stdDevMap.getOrDefault(stat, 0.0);
+                double zScore;
+
+                if (stat.equals("attackRange")) {
+                    if (isRanged) {
+                        double rangedMean = calculateMean(rangedAttackRanges);
+                        double rangedStdDev = calculateStdDev(rangedAttackRanges, rangedMean);
+                        zScore = (value - rangedMean) / rangedStdDev;
+                    } else {
+                        double meleeMean = calculateMean(meleeAttackRanges);
+                        double meleeStdDev = calculateStdDev(meleeAttackRanges, meleeMean);
+                        zScore = (value - meleeMean) / meleeStdDev;
+                    }
+                } else {
+                    if (stdDev == 0) {
+                        zScore = 0;
+                    } else {
+                        zScore = (value - mean) / stdDev;
+                    }
+                }
+
+                zScoreMap.put(stat, zScore);
+            }
+            zScoresMap.put(hero, zScoreMap);
+        }
+        return zScoresMap;
     }
 
     // Helper method to calculate the mean
@@ -221,10 +216,9 @@ public class Calculations {
     }
 
     public static Double getHeroZScore(String hero, String propertyName) throws UnirestException, JSONException {
-        if (zScoresMap == null) {
-            JSONObject heroesStatsJson = heroDisplay.getHeroesWithStatsJson();
-            zScoresMap = calculateZScores(heroesStatsJson);
-        }
+
+        JSONObject heroesStatsJson = heroDisplay.getHeroesWithStatsJsonObject();
+        Map<String, Map<String, Double>> zScoresMap = calculateZScores(heroesStatsJson);
 
         Map<String, Double> heroZScores = zScoresMap.get(hero);
         if (heroZScores == null) {

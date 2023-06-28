@@ -1,6 +1,7 @@
 package com.example.dotaApplicationTool;
 
-import com.mashape.unirest.http.*;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,23 +23,25 @@ public class HeroDisplay {
 
     public static Map<String, Map<String, Double>> zScoresMap;
     public static Map<String, Map<String, Double>> minMaxPropertyValuesMap;
-
-    final String URL = "https://api.stratz.com/api/v1/Hero";
-    final String BEARER = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTc5NzgzMzE0OTgiLCJ1bmlxdWVfbmFtZSI6IlRPTUFUT1JPIiwiU3ViamVjdCI6ImYzNDg2ODVjLWYyYTAtNDllZS1hNGYwLWM5ZmUwYjc4OWUyYiIsIlN0ZWFtSWQiOiIxODA2NTc3MCIsIm5iZiI6MTY4MjM0MTYzNCwiZXhwIjoxNzEzODc3NjM0LCJpYXQiOjE2ODIzNDE2MzQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.XtyfxyjVDpP5DTHMCEnIuYpFqcnMqqu4M9l-Lod-Tnk";
+    private static String allHeroesJsonString;
+    private static JSONObject allHeroesWithStatsJson;
+    private final String URL = "https://api.stratz.com/api/v1/Hero";
+    private final String BEARER = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTc5NzgzMzE0OTgiLCJ1bmlxdWVfbmFtZSI6IlRPTUFUT1JPIiwiU3ViamVjdCI6ImYzNDg2ODVjLWYyYTAtNDllZS1hNGYwLWM5ZmUwYjc4OWUyYiIsIlN0ZWFtSWQiOiIxODA2NTc3MCIsIm5iZiI6MTY4MjM0MTYzNCwiZXhwIjoxNzEzODc3NjM0LCJpYXQiOjE2ODIzNDE2MzQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.XtyfxyjVDpP5DTHMCEnIuYpFqcnMqqu4M9l-Lod-Tnk";
 
     public String getAllHeroes() throws UnirestException, JSONException {
-        Unirest.setTimeouts(0, 0);
-        HttpResponse<String> response = Unirest.get(URL)
-                .header("Authorization", "Bearer " + BEARER)
-                .asString();
+        if (allHeroesJsonString == null) {
+            Unirest.setTimeouts(0, 0);
+            HttpResponse<String> response = Unirest.get(URL)
+                    .header("Authorization", "Bearer " + BEARER)
+                    .asString();
 
-        System.out.println("Response code: " + response.getStatus() + " " + LocalDateTime.now());
+            System.out.println("Response code: " + response.getStatus() + " " + LocalDateTime.now());
 
-        JSONObject responseJSON = new JSONObject(response.getBody());
-        JSONObject updatedJson = addExtraStatsToHeroes(responseJSON);
-
-
-        return updatedJson.toString();
+            JSONObject responseJSON = new JSONObject(response.getBody());
+            JSONObject allHeroesJson = addExtraStatsToHeroes(responseJSON);
+            allHeroesJsonString = allHeroesJson.toString();
+        }
+        return allHeroesJsonString;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "api/heroes")
@@ -46,56 +49,29 @@ public class HeroDisplay {
         return getAllHeroes();
     }
 
-    @GetMapping("/hero/{heroName}")
-    public String getHero(@PathVariable String heroName) throws UnirestException, JSONException {
-        return returnHero(heroName);
-    }
-
-    public String returnHero(String name) throws UnirestException, JSONException {
-
-        String jsonString = getAllHeroes();
-        JSONObject obj = new JSONObject(jsonString);
-        String heroJson = "";
-
-        Iterator<String> keys = obj.sortedKeys();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            JSONObject hero = obj.getJSONObject(key);
-            String displayName = hero.getString("displayName");
-            if (displayName.equalsIgnoreCase(name)) {
-                heroJson = hero.toString();
-                break;
-            }
+    private JSONObject getAllHeroesJsonObject() throws JSONException, UnirestException {
+        if (allHeroesJsonString == null) {
+            return new JSONObject(getAllHeroes());
+        } else {
+            return new JSONObject(allHeroesJsonString);
         }
-
-        return heroJson;
     }
 
-    @GetMapping("/heroNames")
-    public List<String> getHeroNames() throws UnirestException, JSONException {
-        String jsonString = getAllHeroes();
-        JSONObject obj = new JSONObject(jsonString);
-        List<String> heroesList = new ArrayList<String>();
-
-        Iterator<String> keys = obj.sortedKeys();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            JSONObject hero = obj.getJSONObject(key);
-            heroesList.add(hero.getString("displayName"));
+    public JSONObject getHeroesWithStatsJsonObject() throws JSONException, UnirestException {
+        if (allHeroesWithStatsJson == null) {
+            JSONObject allHeroesJson = getAllHeroesJsonObject();
+            allHeroesWithStatsJson = getHeroesWithStatsJson(allHeroesJson);
         }
-        Collections.sort(heroesList);
-
-        return heroesList;
+        return allHeroesWithStatsJson;
     }
 
-    public JSONObject getHeroesWithStatsJson() throws JSONException, UnirestException {
-        JSONObject json = new JSONObject(getAllHeroes());
+    public JSONObject getHeroesWithStatsJson(JSONObject allHeroesJson) throws JSONException {
         JSONObject resultJson = new JSONObject();
 
-        Iterator<String> sortedKeys = json.keys();
+        Iterator<String> sortedKeys = allHeroesJson.keys();
         while (sortedKeys.hasNext()) {
             String key = sortedKeys.next();
-            JSONObject hero = json.getJSONObject(key);
+            JSONObject hero = allHeroesJson.getJSONObject(key);
             String displayName = hero.getString("displayName");
             JSONObject stat = hero.getJSONObject("stat");
 
@@ -118,6 +94,47 @@ public class HeroDisplay {
 
         System.out.println(resultJson);
         return resultJson;
+    }
+
+    @GetMapping("/hero/{heroName}")
+    public String getHero(@PathVariable String heroName) throws UnirestException, JSONException {
+        return returnHero(heroName);
+    }
+
+    public String returnHero(String name) throws UnirestException, JSONException {
+        JSONObject obj = getAllHeroesJsonObject();
+
+        String heroJson = "";
+
+        Iterator<String> keys = obj.sortedKeys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            JSONObject hero = obj.getJSONObject(key);
+            String displayName = hero.getString("displayName");
+            if (displayName.equalsIgnoreCase(name)) {
+                heroJson = hero.toString();
+                break;
+            }
+        }
+
+        return heroJson;
+    }
+
+    @GetMapping("/heroNames")
+    public List<String> getHeroNames() throws UnirestException, JSONException {
+
+        JSONObject obj = getAllHeroesJsonObject();
+        List<String> heroesList = new ArrayList<>();
+
+        Iterator<String> keys = obj.sortedKeys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            JSONObject hero = obj.getJSONObject(key);
+            heroesList.add(hero.getString("displayName"));
+        }
+        Collections.sort(heroesList);
+
+        return heroesList;
     }
 
     //EXTRA STATS: attackDamage, HP, rawHPRegen
@@ -153,7 +170,7 @@ public class HeroDisplay {
     public Map<String, Map<String, Double>> getAllHeroesPropertiesZScores() throws JSONException, UnirestException {
         System.out.println("getHeroPropertyZScore");
         if (zScoresMap == null) {
-            JSONObject heroesStatsJson = getHeroesWithStatsJson();
+            JSONObject heroesStatsJson = getHeroesWithStatsJsonObject();
             zScoresMap = calculateZScores(heroesStatsJson);
         }
         System.out.println("returning the zScoresMap from the getAllHeroesPropertiesZScores aka /propertiesZScores");
@@ -161,16 +178,16 @@ public class HeroDisplay {
         return zScoresMap;
     }
 
-    //TODO: rework the double called getHeroesWithsStatsJson()
     @GetMapping("/minMaxPropertiesValues")
     public Map<String, Map<String, Double>> getAllMinMaxPropertiesValues() throws JSONException, UnirestException {
-        JSONObject heroesStatsJson = getHeroesWithStatsJson();
+        JSONObject heroesStatsJson = getHeroesWithStatsJsonObject();
         minMaxPropertyValuesMap = Calculations.mapAllMinMaxPropertiesValues(heroesStatsJson);
         return minMaxPropertyValuesMap;
     }
 
     @GetMapping("/hero/{heroName}/{propertyName}")
-    public Double getHeroPropertyZScore(@PathVariable String heroName, @PathVariable String propertyName) throws UnirestException, JSONException {
+    public Double getHeroPropertyZScore(@PathVariable String heroName, @PathVariable String propertyName) throws
+            UnirestException, JSONException {
         return Calculations.getHeroZScore(heroName, propertyName);
     }
 
