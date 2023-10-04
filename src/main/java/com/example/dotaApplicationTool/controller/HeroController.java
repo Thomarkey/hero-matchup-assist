@@ -1,5 +1,6 @@
-package com.example.dotaApplicationTool;
+package com.example.dotaApplicationTool.controller;
 
+import com.example.dotaApplicationTool.service.Calculations;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -14,12 +15,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.dotaApplicationTool.Calculations.calculateZScores;
+import static com.example.dotaApplicationTool.service.Calculations.calculateZScores;
 
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200", "https://dota-hero-matchup-cfe3a3ef874f.herokuapp.com", "https://dota-hero-matchup-cfe3a3ef874f.herokuapp.com"})
-public class HeroDisplay {
+public class HeroController {
 
     public static Map<String, Map<String, Double>> zScoresMap;
     public static Map<String, Map<String, Double>> minMaxPropertyValuesMap;

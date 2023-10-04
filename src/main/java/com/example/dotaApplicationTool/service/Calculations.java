@@ -1,5 +1,6 @@
-package com.example.dotaApplicationTool;
+package com.example.dotaApplicationTool.service;
 
+import com.example.dotaApplicationTool.controller.HeroController;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +12,7 @@ public class Calculations {
     static final int MAIN_HP = 120;
     static final int HP_MULTIPLIER = 22;
     static final double HP_REGEN_MULTIPLIER = 0.1;
-    static HeroDisplay heroDisplay = new HeroDisplay();
+    static HeroController heroController = new HeroController();
 
     public static int calculateStartingDamage(int startingDamageMin, int startingDamageMax) {
         return (startingDamageMin + startingDamageMax) / 2;
@@ -217,7 +218,7 @@ public class Calculations {
 
     public static Double getHeroZScore(String hero, String propertyName) throws UnirestException, JSONException {
 
-        JSONObject heroesStatsJson = heroDisplay.getHeroesWithStatsJsonObject();
+        JSONObject heroesStatsJson = heroController.getHeroesWithStatsJsonObject();
         Map<String, Map<String, Double>> zScoresMap = calculateZScores(heroesStatsJson);
 
         Map<String, Double> heroZScores = zScoresMap.get(hero);

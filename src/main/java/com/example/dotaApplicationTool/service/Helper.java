@@ -1,4 +1,4 @@
-package com.example.dotaApplicationTool;
+package com.example.dotaApplicationTool.service;
 
 import java.util.*;
 
